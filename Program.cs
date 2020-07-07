@@ -46,7 +46,6 @@ namespace Lab_2._2
 					//computes the sqaure and cube of the current value of x
 					int squared = x * x;
 					int cubed = x * x * x;
-					//Console.WriteLine($"{x}\t\t{squared}\t\t{cubed}");
 					Console.WriteLine(String.Format("{0,10}\t{1,10}\t{2,10}", x, squared, cubed));
 
 				}
