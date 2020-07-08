@@ -13,7 +13,7 @@ namespace Lab_2._2
 			bool keepRunning = true;
 			while (keepRunning)
 			{
-				//asks ang gets an integer from the user
+				//asks and gets an integer from the user
 				int number;
 				Console.WriteLine("\nEnter an integer:");
 				number = int.Parse(Console.ReadLine());
@@ -32,25 +32,25 @@ namespace Lab_2._2
 					//determines if input will result in an out of range cube and asks for a smaller number
 					else if (number > MAX_CUBED_VALUE)
 					{
-						Console.WriteLine($"\nThis number cannot be cubed.  Please enter a number smaller than {MAX_CUBED_VALUE}.");
+						Console.WriteLine($"\nThis number cannot be cubed.  Please enter a number no greater than {MAX_CUBED_VALUE}.");
 						number = int.Parse(Console.ReadLine());
 					}
 				}
 
-				//computes and prints out square and cube up to and including the entered number
+				//formatted strings to be right aligned
 				Console.WriteLine(String.Format("\n{0,-10}\t{1,-10}\t{2,-10}", "Number", "Squared", "Cubed"));
 				Console.WriteLine(String.Format("{0,-10}\t{1,-10}\t{2,-10}", "==========", "==========", "=========="));
 				//loops through 1 to the entered number
 				for(int x=1; x<=number; x++)
 				{
-					//computes the sqaure and cube of the current value of x
+					//computes and prints out the sqaure and cube of the current value of x
 					int squared = x * x;
 					int cubed = x * x * x;
 					Console.WriteLine(String.Format("{0,10}\t{1,10}\t{2,10}", x, squared, cubed));
 
 				}
 
-				//determines is the user wants to keep going or quit
+				//determines if the user wants to keep going or quit
 				Console.WriteLine("\nContinue? (y/n):");
 				string keepGoing = Console.ReadLine();
 				if(keepGoing == "n" || keepGoing == "N")
