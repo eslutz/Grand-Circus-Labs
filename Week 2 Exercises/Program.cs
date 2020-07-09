@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Week_2_Exercises
 {
@@ -6,7 +7,6 @@ namespace Week_2_Exercises
 	{
 		static void Main(string[] args)
 		{
-			/*
 			//Exercise 1
 			Console.WriteLine("Enter some text =>");
 			string text = Console.ReadLine();
@@ -303,7 +303,7 @@ namespace Week_2_Exercises
 				{
 					go12 = false;
 				}
-			}*/
+			}
 
 			//Exercise 20
 			bool go13 = true;
@@ -323,6 +323,262 @@ namespace Week_2_Exercises
 				if (input == "n")
 				{
 					go13 = false;
+				}
+			}
+
+			//Exercise 21
+			bool go14 = true, go15 = true;
+			string word = "";
+			while (go14)
+			{
+				while (go15)
+				{
+					Console.WriteLine("Enter a word. =>");
+					word += Console.ReadLine() + " ";
+					Console.WriteLine("Would you like to enter another word (y/n)?");
+					string input1 = Console.ReadLine();
+					if (input1 == "n")
+					{
+						go15 = false;
+					}
+				}
+				Console.WriteLine(word);
+				word = "";
+				go15 = true;
+				Console.WriteLine("\nWould you like to continue (y/n)?");
+				string input2 = Console.ReadLine();
+				if (input2 == "n")
+				{
+					go14 = false;
+				}
+			}
+
+			//Exercise 22
+			bool go16 = true;
+			while (go16)
+			{
+				Console.WriteLine("Enter a number:");
+				int num1 = int.Parse(Console.ReadLine());
+				Console.WriteLine("Enter a larger number:");
+				int num2 = int.Parse(Console.ReadLine());
+				Console.WriteLine($"Your range is {num1}-{num2}.");
+				Console.WriteLine("Enter a number to verifiy if it is in the range:");
+				int num3 = int.Parse(Console.ReadLine());
+
+				if(num3 >= num1 && num3 <= num2)
+				{
+					Console.WriteLine($"{num3} is in the range.");
+				}
+				else
+				{
+					Console.WriteLine($"{num3} is outside of the range.");
+				}
+
+				Console.WriteLine("\nWould you like to continue (y/n)?");
+				string input = Console.ReadLine();
+				if (input == "n")
+				{
+					go16 = false;
+				}
+			}
+
+			//Exercise 23
+			bool go17 = true;
+			while (go17)
+			{
+				Console.WriteLine("Enter some text:");
+				string texts = Console.ReadLine();
+				if (texts.Length >= 10)
+				{
+					texts = texts.Substring(0, 10);
+					Console.WriteLine($"The first ten characters were: {texts}");
+				}
+				else
+				{
+					Console.WriteLine($"{texts} is not long enough to get a substring of 10 characters.");
+				}
+
+				Console.WriteLine("\nWould you like to continue (y/n)?");
+				string input = Console.ReadLine();
+				if (input == "n")
+				{
+					go17 = false;
+				}
+			}
+
+			//Exercise 24
+			bool go18 = true;
+			while (go18)
+			{
+				Console.WriteLine("Enter some text:");
+				string text1 = Console.ReadLine();
+				if (text1.Length >= 10)
+				{
+					int wordLength = text1.Length-1;
+					text1 = text1.Substring(wordLength-9, 10);
+					Console.WriteLine($"The first ten characters were: {text1}");
+				}
+				else
+				{
+					Console.WriteLine($"{text1} is not long enough to get a substring of 10 characters.");
+				}
+
+				Console.WriteLine("\nWould you like to continue (y/n)?");
+				string input = Console.ReadLine();
+				if (input == "n")
+				{
+					go18 = false;
+				}
+			}
+
+			//Exercise 25
+			bool go19 = true;
+			while (go19)
+			{
+				Console.WriteLine("Enter a sentence:");
+				string text2 = Console.ReadLine();
+				string[] words = text2.Split(' ');
+
+				foreach(string p in words)
+				{
+					Console.WriteLine(p);
+				}
+
+				Console.WriteLine("\nWould you like to continue (y/n)?");
+				string input = Console.ReadLine();
+				if (input == "n")
+				{
+					go19 = false;
+				}
+			}
+
+			//Exercise 26
+			bool go20 = true;
+			while (go20)
+			{
+				int vowelCount = 0;
+				Console.WriteLine("Enter a sentence:");
+				string text3 = Console.ReadLine().ToLower();
+				char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+				foreach(char c in vowels)
+				{
+					for(int x=0; x<text3.Length; x++)
+					{
+						if(c == text3[x])
+						{
+							vowelCount++;
+						}
+					}	
+				}
+				Console.WriteLine($"There were {vowelCount} vowels.");
+				
+				Console.WriteLine("\nWould you like to continue (y/n)?");
+				string input = Console.ReadLine();
+				if (input == "n")
+				{
+					go20 = false;
+				}
+			}
+
+			//Exercise 27
+			bool go21 = true;
+			while (go21)
+			{
+				int consonantCount = 0;
+				Console.WriteLine("Enter a sentence:");
+				string text4 = Console.ReadLine().ToUpper();
+				char[] consonant = { 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'Y', 'V', 'W', 'X', 'Z' };
+				foreach (char c in consonant)
+				{
+					for (int x = 0; x < text4.Length; x++)
+					{
+						if (c == text4[x])
+						{
+							consonantCount++;
+						}
+					}
+				}
+				Console.WriteLine($"There were {consonantCount} consonants.");
+
+				Console.WriteLine("\nWould you like to continue (y/n)?");
+				string input = Console.ReadLine();
+				if (input == "n")
+				{
+					go21 = false;
+				}
+			}
+
+			//Exercise 28
+			bool go22 = true;
+			while (go22)
+			{
+				Console.WriteLine("Enter a sentence:");
+				string text5 = Console.ReadLine();
+				char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+				for (int x = 0; x < text5.Length; x++)
+				{
+					foreach (char c in vowels)
+					{
+						if (text5[x] == c)
+						{
+							text5 = text5.Remove(text5.IndexOf(c), 1);
+
+						}
+					}
+				}
+				Console.WriteLine(text5);
+
+				Console.WriteLine("\nWould you like to continue (y/n)?");
+				string input = Console.ReadLine();
+				if (input == "n")
+				{
+					go22 = false;
+				}
+			}
+
+			//Exercise 29
+			bool go23 = true;
+			while (go23)
+			{
+				Console.WriteLine("Enter a sentence:");
+				string text6 = Console.ReadLine();
+				string[] words = text6.Split(' ');
+				string[] newWord = new string[words.Length];
+				for (int x = 0; x < words.Length; x++)
+				{
+					newWord[x] = Regex.Replace(words[x], "(?<!^)[aeiou](?!$)", "");
+				}
+				foreach (string s in newWord)
+				{
+					Console.Write(s + " ");
+				}
+
+				Console.WriteLine("\n\nWould you like to continue (y/n)?");
+				string input = Console.ReadLine();
+				if (input == "n")
+				{
+					go23 = false;
+				}
+			}
+
+			//Exercise 30
+			bool go24 = true;
+			while (go24)
+			{
+				Console.WriteLine("Enter a sentence:");
+				string text6 = Console.ReadLine();
+				string reverseText = "";
+				for (int x = text6.Length - 1; x >= 0; x--)
+				{
+					reverseText += text6[x];
+				}
+				Console.WriteLine(reverseText);
+
+				Console.WriteLine("\nWould you like to continue (y/n)?");
+				string input = Console.ReadLine();
+				if (input == "n")
+				{
+					go24 = false;
 				}
 			}
 		}
