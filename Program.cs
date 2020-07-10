@@ -73,7 +73,7 @@ namespace Lab_2._3
 			}
 
 			//validates HTML elements
-			Regex htmlReg = new Regex("^<.*>.*</.*>$");
+			Regex htmlReg = new Regex(@"^<([A-Za-z0-9}]+)>.*</\1>$");
 			Console.WriteLine("\nPlease enter a valid HTML element:");
 			string html = Console.ReadLine();
 			bool htmlValid = htmlReg.IsMatch(html);
