@@ -49,6 +49,8 @@ namespace Lab_3._1
 					food = false;
 				}
 
+
+				//Asks if more info is desired about the user and if so, displays it
 				Console.Write($"\nWould you like to know more about {firstName}? (yes or no) => ");
 				string learnMore = Console.ReadLine().ToLower();
 				while (!(learnMore == "yes" || learnMore == "no"))
@@ -56,6 +58,7 @@ namespace Lab_3._1
 					Console.Write("\nInvalid input.  Please enter \"yes\" or \"no\" =>");
 					learnMore = Console.ReadLine().ToLower();
 				}
+				//The more info displayed is determined by what has already been displayed
 				if (learnMore == "yes" && food)
 				{
 					Console.WriteLine($"\n{firstName} also held the previous title of {studentPrevTitle[index]}.");
@@ -65,6 +68,7 @@ namespace Lab_3._1
 					Console.WriteLine($"\n{firstName} also likes the food {studentFood[index]}.");
 				}
 
+				//Asks if the user wants to get info on another student
 				Console.Write("\nWould you like to know about another student? (yes or no) => ");
 				string keepGoing = Console.ReadLine().ToLower();
 				while (!(keepGoing == "yes" || keepGoing == "no"))
