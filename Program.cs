@@ -29,41 +29,41 @@ namespace Lab_3._1
 				string firstName = studentName[index].Substring(0, studentName[index].IndexOf(' '));
 				//Displays the picked student and asks the user what they want to know about them and takes that input
 				Console.Write($"\nStudent {student} is {studentName[index]}. What would you like to know about {firstName}? (enter \"favorite food\" or \"previous title\") => ");
-				string factChoice = Console.ReadLine();
-				while (!(String.Equals(factChoice, "favorite food") || String.Equals(factChoice, "previous title")))
+				string factChoice = Console.ReadLine().ToLower();
+				bool food  = String.Equals(factChoice, "favorite food") || String.Equals(factChoice, "favorite") || String.Equals(factChoice, "food") || String.Equals(factChoice, "fav food") || String.Equals(factChoice, "fav");
+				bool title = String.Equals(factChoice, "previous title") || String.Equals(factChoice, "previous") || String.Equals(factChoice, "title") || String.Equals(factChoice, "prev title") || String.Equals(factChoice, "prev");
+				while (!(food || title))
 				{
 					Console.Write("\nThat data does not exist.  Please try again. (enter \"favorite food\" or \"previous title\") => ");
-					factChoice = Console.ReadLine();
+					factChoice = Console.ReadLine().ToLower();
+					food = String.Equals(factChoice, "favorite food") || String.Equals(factChoice, "favorite") || String.Equals(factChoice, "food") || String.Equals(factChoice, "fav food") || String.Equals(factChoice, "fav");
+					title = String.Equals(factChoice, "previous title") || String.Equals(factChoice, "previous") || String.Equals(factChoice, "title") || String.Equals(factChoice, "prev title") || String.Equals(factChoice, "prev");
 				}
-
 				//Displays the info about the student that was requested
-				bool food = true;
-				if (String.Equals(factChoice, "favorite food"))
+				if (food)
 				{
 					Console.WriteLine($"\n{firstName}'s favorite food is {studentFood[index]}.");
-					food = true;
 				}
-				else if (String.Equals(factChoice, "previous title"))
+				else if (title)
 				{
 					Console.WriteLine($"\n{firstName}'s previous title is {studentPrevTitle[index]}.");
 					food = false;
 				}
 
-
 				//Asks if more info is desired about the user and if so, displays it
 				Console.Write($"\nWould you like to know more about {firstName}? (yes or no) => ");
 				string learnMore = Console.ReadLine().ToLower();
-				while (!(learnMore == "yes" || learnMore == "no"))
+				while (!(learnMore == "yes" || learnMore == "y" || learnMore == "no" || learnMore == "n"))
 				{
 					Console.Write("\nInvalid input.  Please enter \"yes\" or \"no\" => ");
 					learnMore = Console.ReadLine().ToLower();
 				}
 				//The more info displayed is determined by what has already been displayed
-				if (learnMore == "yes" && food)
+				if ((learnMore == "yes" || learnMore == "y") && food)
 				{
 					Console.WriteLine($"\n{firstName} also held the previous title of {studentPrevTitle[index]}.");
 				}
-				else if (learnMore == "yes" && !food)
+				else if ((learnMore == "yes" || learnMore == "y") && title)
 				{
 					Console.WriteLine($"\n{firstName} also likes the food {studentFood[index]}.");
 				}
@@ -71,12 +71,12 @@ namespace Lab_3._1
 				//Asks if the user wants to get info on another student
 				Console.Write("\nWould you like to know about another student? (yes or no) => ");
 				string keepGoing = Console.ReadLine().ToLower();
-				while (!(keepGoing == "yes" || keepGoing == "no"))
+				while (!(keepGoing == "yes" || keepGoing == "y" || keepGoing == "no" || keepGoing == "n"))
 				{
 					Console.Write("\nInvalid input.  Please enter \"yes\" or \"no\" => ");
 					keepGoing = Console.ReadLine().ToLower();
 				}
-				if(keepGoing == "no")
+				if(keepGoing == "no" || keepGoing == "n")
 				{
 					Console.Clear();
 					break;
@@ -90,12 +90,12 @@ namespace Lab_3._1
 			//Asks the user if they want a list of all the students
 			Console.Write("Would you like to see a list of all the students? (yes or no) => ");
 			string allStudents = Console.ReadLine().ToLower();
-			while (!(allStudents == "yes" || allStudents == "no"))
+			while (!(allStudents == "yes" || allStudents == "y" || allStudents == "no" || allStudents == "n"))
 			{
 				Console.Write("\nInvalid input.  Please enter \"yes\" or \"no\" => ");
 				allStudents = Console.ReadLine().ToLower();
 			}
-			if (allStudents == "yes")
+			if (allStudents == "yes" || allStudents == "y")
 			{
 				Console.WriteLine();
 				//runs through a loop to display all info about all the students
@@ -104,6 +104,7 @@ namespace Lab_3._1
 					Console.WriteLine($"Student {x + 1} is {studentName[x]} with the previous title of {studentPrevTitle[x]} and their favorite food is {studentFood[x]}.");
 				}
 			}
+			Console.WriteLine("\nThanks for learning about the Dev.Build class!");
 		}
 	}
 }
