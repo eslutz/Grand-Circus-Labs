@@ -55,7 +55,7 @@ namespace Lab_3._1
 				string learnMore = Console.ReadLine().ToLower();
 				while (!(learnMore == "yes" || learnMore == "no"))
 				{
-					Console.Write("\nInvalid input.  Please enter \"yes\" or \"no\" =>");
+					Console.Write("\nInvalid input.  Please enter \"yes\" or \"no\" => ");
 					learnMore = Console.ReadLine().ToLower();
 				}
 				//The more info displayed is determined by what has already been displayed
@@ -73,7 +73,7 @@ namespace Lab_3._1
 				string keepGoing = Console.ReadLine().ToLower();
 				while (!(keepGoing == "yes" || keepGoing == "no"))
 				{
-					Console.Write("\nInvalid input.  Please enter \"yes\" or \"no\" =>");
+					Console.Write("\nInvalid input.  Please enter \"yes\" or \"no\" => ");
 					keepGoing = Console.ReadLine().ToLower();
 				}
 				if(keepGoing == "no")
@@ -101,7 +101,7 @@ namespace Lab_3._1
 				//runs through a loop to display all info about all the students
 				for(int x = 0; x < 14; x++)
 				{
-					Console.WriteLine($"Student {x + 1} is {studentName[x]} with the prvious title of {studentPrevTitle[x]} and their favorite food is {studentFood[x]}.");
+					Console.WriteLine($"Student {x + 1} is {studentName[x]} with the previous title of {studentPrevTitle[x]} and their favorite food is {studentFood[x]}.");
 				}
 			}
 		}
