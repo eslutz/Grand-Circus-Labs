@@ -9,7 +9,7 @@ namespace Lab_2._3
 		{
 			//validates name only has alphabets, starts with a capital, does not exceed 30
 			//after first letter, characters can be upper or lower case
-			Regex nameReg = new Regex(@"^[A-Z][A-Za-z]{0,30}$");
+			Regex nameReg = new Regex(@"^[A-Z][A-Za-z]{0,29}$");
 			Console.WriteLine("Please enter a valid name:");
 			string name = Console.ReadLine();
 			bool nameValid = nameReg.IsMatch(name);
@@ -26,7 +26,7 @@ namespace Lab_2._3
 			//{5-30 alphanumeric characters w/ no special characters}
 			//@{5-10 alphanumeric characters w/ no special characters}
 			//.{2-3 alphanumeric characters}
-			Regex emailReg = new Regex(@"^\w{5,30}@\w{5,10}.\w{2,3}$");
+			Regex emailReg = new Regex(@"^\w{5,30}@\w{5,10}\.\w{2,3}$");
 			Console.WriteLine("\nPlease enter a valid email:");
 			string email = Console.ReadLine();
 			bool emailValid = emailReg.IsMatch(email);
@@ -43,7 +43,7 @@ namespace Lab_2._3
 			//313-555-1212
 			//313.555.1212
 			//(313)-555-1212
-			Regex phoneNumberReg = new Regex(@"^[(]{0,1}\d{3}[)]{0,1}[-.]\d{3}[-.]\d{4}$");
+			Regex phoneNumberReg = new Regex(@"^\({0,1}\d{3}\){0,1}[-.]\d{3}[-.]\d{4}$");
 			Console.WriteLine("\nPlease enter a valid phone number:");
 			string phoneNumber = Console.ReadLine();
 			bool phoneNumberValid = phoneNumberReg.IsMatch(phoneNumber);
