@@ -73,6 +73,18 @@ namespace Lab_3._2
 					Console.Clear();
 				}
 			}
+
+			Console.WriteLine("\nThanks for your order!");
+			Console.WriteLine("Here's what you got:");
+			Console.WriteLine("=============================");
+			decimal average = 0m;
+			for(int x = 0; x < orderItem.Count; x++)
+			{
+				Console.WriteLine($"{orderItem[x],-20}${orderPrice[x],-20}");
+				average += (decimal)orderPrice[x];
+			}
+			average /= orderPrice.Count;
+			Console.WriteLine($"\nAverage price per item in your order was ${average:N2}.");
 		}
 	}
 }
