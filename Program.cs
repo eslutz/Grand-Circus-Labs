@@ -74,17 +74,33 @@ namespace Lab_3._2
 				}
 			}
 
+			//Prints out the users order
 			Console.WriteLine("\nThanks for your order!");
 			Console.WriteLine("Here's what you got:");
 			Console.WriteLine("=============================");
-			decimal average = 0m;
+			decimal average = 0m, leastExpensive = Decimal.MaxValue, mostExpensive = 0m;
+			int leastExpensiveIndex = 0, mostExpensiveIndex = 0;
 			for(int x = 0; x < orderItem.Count; x++)
 			{
 				Console.WriteLine($"{orderItem[x],-20}${orderPrice[x],-20}");
+				//gets the total price of all items added to the order
 				average += (decimal)orderPrice[x];
+				if(mostExpensive < (decimal)orderPrice[x])
+				{
+					mostExpensive = (decimal)orderPrice[x];
+					mostExpensiveIndex = x;
+				}
+				if (leastExpensive > (decimal)orderPrice[x])
+				{
+					leastExpensive = (decimal)orderPrice[x];
+					leastExpensiveIndex = x;
+				}
 			}
+			//computes and display the average item price for the order.
 			average /= orderPrice.Count;
 			Console.WriteLine($"\nAverage price per item in your order was ${average:N2}.");
+			Console.WriteLine($"The least expensive item ordered was {orderItem[leastExpensiveIndex]} at ${leastExpensive}.");
+			Console.WriteLine($"The most expensive item ordered was {orderItem[mostExpensiveIndex]} at ${mostExpensive}.");
 		}
 	}
 }
