@@ -22,7 +22,7 @@ namespace Lab_3._2
 				["Ice Cream"] = 8.99m,
 				["Cookie"] = 3.99m
 			};
-			//Declared and initialized numerical values for menu options
+			//Declared and initialized numerical values for menu options.
 			Dictionary<int, string> itemsMenu = new Dictionary<int, string>()
 			{
 				[1] = "Pizza",
@@ -36,6 +36,7 @@ namespace Lab_3._2
 				[9] = "Ice Cream",
 				[10] = "Cookie"
 			};
+			//Declared the arraylists needed to hold the users order.
 			ArrayList orderItem = new ArrayList();
 			ArrayList orderPrice = new ArrayList();
 			ArrayList orderQuantity = new ArrayList();
@@ -60,31 +61,10 @@ namespace Lab_3._2
 				string order = Console.ReadLine();
 				int orderNumber = 0;
 				//If the input is not in the list you are asked to try again until you pick a valid item.
-				//while (!items.ContainsKey(order))
 				while (!(items.ContainsKey(order) || (int.TryParse(order, out orderNumber) && (orderNumber >= 1 && orderNumber <= items.Count))))
 				{
 					Console.Write("\nSorry, we don't have that item.  Please try again. => ");
 					order = Console.ReadLine();
-				}
-				//If the user entered the actual item.
-				if (orderNumber == 0)
-				{
-					//Outputs what the user added and how much it is.
-					Console.WriteLine($"Adding {order} to the cart for ${items[order]}");
-					//Adds the item to the order item arraylist.
-					orderItem.Add(order);
-					//Adds the price for that item to the order price arraylist.
-					orderPrice.Add(items[order]);
-				}
-				//If the user entered the menu number.
-				else
-				{
-					//Outputs what the user added and how much it is.
-					Console.WriteLine($"Adding {itemsMenu[orderNumber]} to the cart for ${items[itemsMenu[orderNumber]]}");
-					//Adds the item to the order item arraylist.
-					orderItem.Add(itemsMenu[orderNumber]);
-					//Adds the price for that item to the order price arraylist.
-					orderPrice.Add(items[itemsMenu[orderNumber]]);
 				}
 
 				//Determines the quantity of the item the user wants.
@@ -95,9 +75,50 @@ namespace Lab_3._2
 					Console.Write("You did not enter a valid number.  Please enter a number greater than 0. => ");
 					isValid = int.TryParse(Console.ReadLine(), out quantity);
 				}
-				//Adds the quantity of that item to the order quantity arraylist.
-				orderQuantity.Add(quantity);
 
+				//If the user entered the actual item.
+				if (orderNumber == 0)
+				{
+					//Outputs what the user added and how much it is.
+					Console.WriteLine($"Adding {order} to the cart for ${items[order]}");
+					//Checks to see if item is already on the list before adding it.
+					if (!orderItem.Contains(order))
+					{
+						//Adds the item to the order item arraylist.
+						orderItem.Add(order);
+						//Adds the price for that item to the order price arraylist.
+						orderPrice.Add(items[order]);
+						//Adds the quantity of that item to the order quantity arraylist. 
+						orderQuantity.Add(quantity);
+					}
+					else
+					{
+						//If item already exists and the item was specified by name, the quantity is updated.
+						orderQuantity[orderItem.IndexOf(order)] = (int)orderQuantity[orderItem.IndexOf(order)] + quantity;
+					}
+				}
+				//If the user entered the menu number.
+				else
+				{
+					//Outputs what the user added and how much it is.
+					Console.WriteLine($"Adding {itemsMenu[orderNumber]} to the cart for ${items[itemsMenu[orderNumber]]}");
+					//Checks to see if item is already on the list before adding it.
+					if (!orderItem.Contains(itemsMenu[orderNumber]))
+					{
+						//Adds the item to the order item arraylist.
+						orderItem.Add(itemsMenu[orderNumber]);
+						//Adds the price for that item to the order price arraylist.
+						orderPrice.Add(items[itemsMenu[orderNumber]]);
+						//Adds the quantity of that item to the order quantity arraylist. 
+						orderQuantity.Add(quantity);
+					}
+					else
+					{
+						//If item already exists and the item was specified by number, the quantity is updated.
+						orderQuantity[orderItem.IndexOf(itemsMenu[orderNumber])] = (int)orderQuantity[orderItem.IndexOf(itemsMenu[orderNumber])] + quantity;
+					}
+				}
+			
 				//Determines if the user would like to order more items and either runs again or ends the loop.
 				Console.Write("\nWould you like to order anything else? (yes/no) => ");
 				string orderMore = Console.ReadLine().ToLower();
@@ -111,45 +132,50 @@ namespace Lab_3._2
 					Console.Clear();
 					runAgain = false;
 				}
-
 				else
 				{
 					Console.Clear();
 				}
 			}
 
-			//Prints out the users order
+			//Prints out the users order.
 			Console.WriteLine("\nThanks for your order!");
-			Console.WriteLine("Here's what you got:");
+			Console.WriteLine("Here's what you got:\n");
 			Console.WriteLine($"{"qty",-4}{"item", -14}{"price per",-14}{"total",-14}");
 			Console.WriteLine("========================================");
-			decimal average = 0m, leastExpensive = Decimal.MaxValue, mostExpensive = 0m, total = 0m;
+			decimal average = 0m, leastExpensive = Decimal.MaxValue, mostExpensive = 0m, itemTotal = 0m, orderTotal = 0m;
 			int totalQuantity = 0;
 			int leastExpensiveIndex = 0, mostExpensiveIndex = 0;
 			for(int x = 0; x < orderItem.Count; x++)
 			{
-				total += (decimal)orderPrice[x] * (int)orderQuantity[x];
+				//Gets the item total and the order total.
+				itemTotal += ((decimal)orderPrice[x] * (int)orderQuantity[x]);
+				orderTotal += itemTotal;
+				//Gets the total quantity of items ordered.
 				totalQuantity += (int)orderQuantity[x];
-				Console.WriteLine($"{orderQuantity[x],-4}{orderItem[x],-14}{"$"+orderPrice[x]+" each",-14}{"$"+total,-14}");
-				//gets the total price of all items added to the order
+				//Displays info for each item in the order.
+				Console.WriteLine($"{orderQuantity[x],-4}{orderItem[x],-14}{"$"+orderPrice[x]+" each",-14}{"$"+ itemTotal,-14}");
+				//Sums up individual item prices to computer average later.
 				average += (decimal)orderPrice[x];
+				//Finds the most expensive item.
 				if (mostExpensive < (decimal)orderPrice[x])
 				{
 					mostExpensive = (decimal)orderPrice[x];
 					mostExpensiveIndex = x;
 				}
+				//Finds the least expensive item.
 				if (leastExpensive > (decimal)orderPrice[x])
 				{
 					leastExpensive = (decimal)orderPrice[x];
 					leastExpensiveIndex = x;
 				}
 			}
-			//computes and display the average item price for the order.
+			//Computes and display the average item price for the order.
 			average /= orderPrice.Count;
 			Console.WriteLine($"\nAverage price per item in your order was ${average:N2}.");
 			Console.WriteLine($"The least expensive item ordered was {orderItem[leastExpensiveIndex]} at ${leastExpensive}.");
 			Console.WriteLine($"The most expensive item ordered was {orderItem[mostExpensiveIndex]} at ${mostExpensive}.");
-			Console.WriteLine($"Your total comes to ${total} for {totalQuantity} items.");
+			Console.WriteLine($"Your total comes to ${orderTotal} for {totalQuantity} items.");
 		}
 	}
 }
