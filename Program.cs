@@ -38,6 +38,7 @@ namespace Lab_3._2
 			};
 			ArrayList orderItem = new ArrayList();
 			ArrayList orderPrice = new ArrayList();
+			ArrayList orderQuantity = new ArrayList();
 
 			//Loops through allowing the user to order items until they decide they are done.
 			bool runAgain = true;
@@ -86,6 +87,17 @@ namespace Lab_3._2
 					orderPrice.Add(items[itemsMenu[orderNumber]]);
 				}
 
+				//Determines the quantity of the item the user wants.
+				Console.Write("\nHow many of this item do you want? => ");
+				bool isValid = int.TryParse(Console.ReadLine(), out int quantity);
+				while (!isValid || quantity <= 0)
+				{
+					Console.Write("You did not enter a valid number.  Please enter a number greater than 0. => ");
+					isValid = int.TryParse(Console.ReadLine(), out quantity);
+				}
+				//Adds the quantity of that item to the order quantity arraylist.
+				orderQuantity.Add(quantity);
+
 				//Determines if the user would like to order more items and either runs again or ends the loop.
 				Console.Write("\nWould you like to order anything else? (yes/no) => ");
 				string orderMore = Console.ReadLine().ToLower();
@@ -109,15 +121,19 @@ namespace Lab_3._2
 			//Prints out the users order
 			Console.WriteLine("\nThanks for your order!");
 			Console.WriteLine("Here's what you got:");
-			Console.WriteLine("=============================");
-			decimal average = 0m, leastExpensive = Decimal.MaxValue, mostExpensive = 0m;
+			Console.WriteLine($"{"qty",-4}{"item", -14}{"price per",-14}{"total",-14}");
+			Console.WriteLine("========================================");
+			decimal average = 0m, leastExpensive = Decimal.MaxValue, mostExpensive = 0m, total = 0m;
+			int totalQuantity = 0;
 			int leastExpensiveIndex = 0, mostExpensiveIndex = 0;
 			for(int x = 0; x < orderItem.Count; x++)
 			{
-				Console.WriteLine($"{orderItem[x],-20}${orderPrice[x],-20}");
+				total += (decimal)orderPrice[x] * (int)orderQuantity[x];
+				totalQuantity += (int)orderQuantity[x];
+				Console.WriteLine($"{orderQuantity[x],-4}{orderItem[x],-14}{"$"+orderPrice[x]+" each",-14}{"$"+total,-14}");
 				//gets the total price of all items added to the order
 				average += (decimal)orderPrice[x];
-				if(mostExpensive < (decimal)orderPrice[x])
+				if (mostExpensive < (decimal)orderPrice[x])
 				{
 					mostExpensive = (decimal)orderPrice[x];
 					mostExpensiveIndex = x;
@@ -133,6 +149,7 @@ namespace Lab_3._2
 			Console.WriteLine($"\nAverage price per item in your order was ${average:N2}.");
 			Console.WriteLine($"The least expensive item ordered was {orderItem[leastExpensiveIndex]} at ${leastExpensive}.");
 			Console.WriteLine($"The most expensive item ordered was {orderItem[mostExpensiveIndex]} at ${mostExpensive}.");
+			Console.WriteLine($"Your total comes to ${total} for {totalQuantity} items.");
 		}
 	}
 }
