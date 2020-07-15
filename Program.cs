@@ -8,7 +8,7 @@ namespace Lab_3._2
 	{
 		static void Main(string[] args)
 		{
-			//Declared and intinalized the items dictionary.  Made the key case insensitive.
+			//Declared and initialized the items dictionary.  Made the key case insensitive.
 			Dictionary<string, decimal> items = new Dictionary<string, decimal>(StringComparer.CurrentCultureIgnoreCase)
 			{
 				["Pizza"] = 6.99m,
@@ -22,6 +22,20 @@ namespace Lab_3._2
 				["Ice Cream"] = 8.99m,
 				["Cookie"] = 3.99m
 			};
+			//Declared and initialized numerical values for menu options
+			Dictionary<int, string> itemsMenu = new Dictionary<int, string>()
+			{
+				[1] = "Pizza",
+				[2] = "Beets",
+				[3] = "Hamburger",
+				[4] = "Hot Dog",
+				[5] = "Pineapple",
+				[6] = "Apple",
+				[7] = "Cheese",
+				[8] = "Ham",
+				[9] = "Ice Cream",
+				[10] = "Cookie"
+			};
 			ArrayList orderItem = new ArrayList();
 			ArrayList orderPrice = new ArrayList();
 
@@ -30,29 +44,47 @@ namespace Lab_3._2
 			while (runAgain)
 			{
 				//Displays out the menu items
+				int options = 1;
 				Console.WriteLine("Welcome to Dwight's Market!\n");
-				Console.WriteLine($"{"Item",-20}{"Price",-20}");
+				Console.WriteLine($"{"#",2} {"Item",-20}{"Price",-20}");
 				Console.WriteLine("=============================");
 				foreach (KeyValuePair<string, decimal> item in items)
 				{
-					Console.WriteLine($"{item.Key,-20}${item.Value,-20}");
+					Console.WriteLine($"{options,2}. {item.Key,-20}${item.Value,-20}");
+					options++;
 				}
 
 				//Gets the users input and makes sure it's a valid option.
 				Console.Write("\nWhat item would you like to order? => ");
 				string order = Console.ReadLine();
+				int orderNumber = 0;
 				//If the input is not in the list you are asked to try again until you pick a valid item.
-				while (!items.ContainsKey(order))
+				//while (!items.ContainsKey(order))
+				while (!(items.ContainsKey(order) || (int.TryParse(order, out orderNumber) && (orderNumber >= 1 && orderNumber <= items.Count))))
 				{
 					Console.Write("\nSorry, we don't have that item.  Please try again. => ");
 					order = Console.ReadLine();
 				}
-				//Outputs what the user added and how much it is.
-				Console.WriteLine($"Adding {order} to the cart for ${items[order]}");
-				//Adds the item to the order item arraylist.
-				orderItem.Add(order);
-				//Adds the price for that item to the order price arraylist.
-				orderPrice.Add(items[order]);
+				//If the user entered the actual item.
+				if (orderNumber == 0)
+				{
+					//Outputs what the user added and how much it is.
+					Console.WriteLine($"Adding {order} to the cart for ${items[order]}");
+					//Adds the item to the order item arraylist.
+					orderItem.Add(order);
+					//Adds the price for that item to the order price arraylist.
+					orderPrice.Add(items[order]);
+				}
+				//If the user entered the menu number.
+				else
+				{
+					//Outputs what the user added and how much it is.
+					Console.WriteLine($"Adding {itemsMenu[orderNumber]} to the cart for ${items[itemsMenu[orderNumber]]}");
+					//Adds the item to the order item arraylist.
+					orderItem.Add(itemsMenu[orderNumber]);
+					//Adds the price for that item to the order price arraylist.
+					orderPrice.Add(items[itemsMenu[orderNumber]]);
+				}
 
 				//Determines if the user would like to order more items and either runs again or ends the loop.
 				Console.Write("\nWould you like to order anything else? (yes/no) => ");
