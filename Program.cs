@@ -172,10 +172,10 @@ namespace Lab_3._2
 			}
 			//Computes and display the average item price for the order.
 			average /= orderPrice.Count;
-			Console.WriteLine($"\nAverage price per item in your order was ${average:N2}.");
-			Console.WriteLine($"The least expensive item ordered was {orderItem[leastExpensiveIndex]} at ${leastExpensive}.");
-			Console.WriteLine($"The most expensive item ordered was {orderItem[mostExpensiveIndex]} at ${mostExpensive}.");
-			Console.WriteLine($"Your total comes to ${orderTotal} for {totalQuantity} items.");
+			Console.WriteLine($"\nAverage price per item in your order was {average:C}.");
+			Console.WriteLine($"The least expensive item ordered was {orderItem[leastExpensiveIndex]} at {leastExpensive:C}.");
+			Console.WriteLine($"The most expensive item ordered was {orderItem[mostExpensiveIndex]} at {mostExpensive:C}.");
+			Console.WriteLine($"Your total comes to {orderTotal:C} for {totalQuantity} items.");
 		}
 	}
 }
