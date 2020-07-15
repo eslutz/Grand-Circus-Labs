@@ -16,10 +16,10 @@ namespace Lab_3._1
 				Console.Write("Welcome to out Dev.Build class.  Which student would you like to learn more about? (enter a number 1-14) => ");
 				int student;
 				bool isValid = int.TryParse(Console.ReadLine(), out student);
-				//Checks that the user entered a valid number that is between 1 and 16.  If it isn't the user has to try again.
+				//Checks that the user entered a valid number that is between 1 and 14.  If it isn't the user has to try again.
 				while (!isValid || !(student >= 1 && student <= 14))
 				{
-					Console.Write("\nThat student does not exist.  Please try again. (enter a number 1-16) => ");
+					Console.Write("\nThat student does not exist.  Please try again. (enter a number 1-14) => ");
 					isValid = int.TryParse(Console.ReadLine(), out student);
 				}
 
