@@ -9,18 +9,38 @@ namespace Lab_3._3
 	{
 		static void Main(string[] args)
 		{
-			//Asks the user for a word to reverse and takes the input.
-			Console.Write("Please enter a word you would like to reverse. => ");
-			string input = Console.ReadLine();
-			//Uses regex to verify the word(s) only contain letters and not symbols and numbers.
-			Regex validation = new Regex(@"^[A-Za-z\s]*$");
-			while (!validation.IsMatch(input))
+			while (true)
 			{
-				Console.Write("Sorry, that is not valid input.  Try again. => ");
-				input = Console.ReadLine();
+				//Asks the user for a word to reverse and takes the input.
+				Console.Write("Please enter a word you would like to reverse. => ");
+				string input = Console.ReadLine();
+				//Uses regex to verify the word(s) only contain letters and not symbols and numbers.
+				Regex validation = new Regex(@"^[A-Za-z\s]*$");
+				while (!validation.IsMatch(input))
+				{
+					Console.Write("Sorry, that is not valid input.  Try again. => ");
+					input = Console.ReadLine();
+				}
+				//Passes the users input to the Reverse method and prints out the return.
+				Console.WriteLine($"Your word in reverse is: {Reverse(input)}");
+
+				//Asks if the user wants to go again and either continues or breaks from loop depending on the users answer.
+				Console.Write("\nDo you want to go again? (yes/no) => ");
+				string goAgain = Console.ReadLine().ToLower();
+				while (!(goAgain == "yes" || goAgain == "y" || goAgain == "no" || goAgain == "n"))
+				{
+					Console.Write("\nInvalid input.  Please enter \"yes\" or \"no\" => ");
+					goAgain = Console.ReadLine().ToLower();
+				}
+				if (goAgain == "no" || goAgain == "n")
+				{
+					break;
+				}
+				else
+				{
+					Console.Clear();
+				}
 			}
-			//Passes the users input to the Reverse method and prints out the return.
-			Console.WriteLine($"Your word in reverse is: {Reverse(input)}");
 		}
 
 		static string Reverse(string sentence)
