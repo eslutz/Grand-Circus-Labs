@@ -22,11 +22,8 @@ namespace Lab_4._1
 			{
 				//Declare an array and calls the DiceRoll method to get the values from the dice roll.
 				int[] diceValues = DiceRoll(diceSides);
-				Console.WriteLine($"\nRoll {rollCount}:");
-				//Outputs the value of the dice.
-				Console.WriteLine($"You rolled a {diceValues[0]} and a {diceValues[1]} for a total of {diceValues[0] + diceValues[1]}.");
 				//Calls method to output what kind of combination of dice you have 
-				SoWhatDoesItMean(diceSides, diceValues);
+				SoWhatDoesItMean(rollCount, diceSides, diceValues);
 
 				//Determines if the user wants to roll again.  If not, quits the program.
 				Console.Write("\nKeep rolling? (y/n) => ");
@@ -45,7 +42,6 @@ namespace Lab_4._1
 					keepRolling = false;
 					Console.WriteLine("Thanks for playing!!");
 				}
-
 			}
 		}
 
@@ -62,10 +58,14 @@ namespace Lab_4._1
 			return rollValues;
 		}
 
-		static void SoWhatDoesItMean(int sides, int[] values)
+		static void SoWhatDoesItMean(int count, int sides, int[] values)
 		{
+			//Outputs the current roll count.
+			Console.WriteLine($"\nRoll {count}:");
+			//Outputs the value of the dice.
+			Console.WriteLine($"You rolled a {values[0]} and a {values[1]} for a total of {values[0] + values[1]}.");
 			//Only prints out if 6 sided dice are used.
-			if(sides == 6)
+			if (sides == 6)
 			{
 				//Snake Eyes
 				if(values[0] == 1 && values[1] == 1)
