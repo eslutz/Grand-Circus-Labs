@@ -23,7 +23,10 @@ namespace Lab_4._1
 				//Declare an array and calls the DiceRoll method to get the values from the dice roll.
 				int[] diceValues = DiceRoll(diceSides);
 				Console.WriteLine($"\nRoll {rollCount}:");
+				//Outputs the value of the dice.
 				Console.WriteLine($"You rolled a {diceValues[0]} and a {diceValues[1]} for a total of {diceValues[0] + diceValues[1]}.");
+				//Calls method to output what kind of combination of dice you have 
+				SoWhatDoesItMean(diceSides, diceValues);
 
 				//Determines if the user wants to roll again.  If not, quits the program.
 				Console.Write("\nKeep rolling? (y/n) => ");
@@ -59,6 +62,37 @@ namespace Lab_4._1
 			return rollValues;
 		}
 
-
+		static void SoWhatDoesItMean(int sides, int[] values)
+		{
+			//Only prints out if 6 sided dice are used.
+			if(sides == 6)
+			{
+				//Snake Eyes
+				if(values[0] == 1 && values[1] == 1)
+				{
+					Console.WriteLine("Snake Eyes");
+				}
+				//Ace Deuce
+				else if((values[0] == 1 && values[1] == 2) || (values[0] == 2 && values[1] == 1))
+				{
+					Console.WriteLine("Ace Deuce");
+				}
+				//Boxcars
+				else if(values[0] == 6 && values[1] == 6)
+				{
+					Console.WriteLine("Boxcars");
+				}
+				//Win
+				else if((values[0] + values[1] == 7) || (values[0] + values[1] == 11))
+				{
+					Console.WriteLine("WIN!!!");
+				}
+				//Craps
+				if((values[0] + values[1] == 2) || (values[0] + values[1] == 3) || (values[0] + values[1] == 12))
+				{
+					Console.WriteLine("Craps!");
+				}
+			}
+		}
 	}
 }
