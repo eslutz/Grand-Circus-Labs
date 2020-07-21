@@ -72,6 +72,7 @@ namespace Lab_4._2
 					{
 						words[index] = words[index] + "way";
 						vowelFirst = true;
+						break;
 					}
 				}
 				vowelIndex = words[index].IndexOfAny(vowels);
@@ -79,7 +80,7 @@ namespace Lab_4._2
 				{
 					words[index] = words[index].Substring(vowelIndex) + words[index].Substring(0, vowelIndex) + "ay";
 				}
-				else
+				else if(!vowelFirst)
 				{
 					words[index] += "ay";
 				}
@@ -135,10 +136,6 @@ namespace Lab_4._2
 				{
 					caseCondition[index] = 0;
 				}
-			}
-			foreach (int x in caseCondition)
-			{
-				Console.WriteLine($"case condition: {x}");
 			}
 			return caseCondition;
 		}
