@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Lab_4._2
 {
@@ -19,7 +20,7 @@ namespace Lab_4._2
 				//Calls method to get input from the user of sentence to translate.
 				string[] translation = LineToBeTranslated();
 				//Determines the case of the sentence.
-				int caseCondition = CaseCondition(translation);
+				int[] caseCondition = CaseCondition(translation);
 				//Calls translation method and prints out the translation.
 				Console.WriteLine($"Translation: {TranslateToPigLatin(translation, caseCondition)}");
 
@@ -51,28 +52,56 @@ namespace Lab_4._2
 		}
 
 		//Checks the case condition of the word.
-		//Returns 0 for all lower case.
 		//Returns 1 for all upper case.
-		//Returns 3 for a mix.
-		public static int CaseCondition(string[] words)
+		//Returns 2 for all lower case.
+		//Returns 3 for first letter upper.
+		//Returns 0 for inconsistent case.
+		public static int[] CaseCondition(string[] words)
 		{
-			foreach(string word in words)
+			Regex firstCap = new Regex(@"^[A-Z][a-z]*");
+			int[] caseCondition = new int[words.Length];
+			for(int index = 0; index < words.Length; index++)
 			{
-				for(int x = 0; x < word.Length; x++)
+				int caseCount = 0;
+				for (int x = 0; x < words[index].Length; x++)
 				{
-					if (char.IsUpper(word[x]))
+					if (char.IsUpper(words[index][x]))
 					{
-
+						caseCount++;
 					}
 				}
+				//All upper.
+				if(caseCount == words[index].Length)
+				{
+					caseCondition[index] = 1;
+				}
+				//All lower.
+				else if(caseCount == 0)
+				{
+					caseCondition[index] = 2;
+				}
+				//First letter upper.
+				else if(firstCap.IsMatch(words[index]))
+				{
+					caseCondition[index] = 3;
+				}
+				//Mixed case throughout word.
+				else
+				{
+					caseCondition[index] = 0;
+				}
 			}
-			return 0;
+			foreach(int x in caseCondition)
+			{
+				Console.WriteLine($"case condition: {x}");
+			}
+			return caseCondition;
 		}
 
-		public static string TranslateToPigLatin(string[] words, int caseCondition)
+		public static string TranslateToPigLatin(string[] words, int[] caseCondition)
 		{
 			Regex symbols = new Regex(@"(\W|\d)");
-			char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+			char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
 			int vowelIndex;
 			
 			//Loops through each word in the sentence
@@ -86,6 +115,7 @@ namespace Lab_4._2
 				//First check to see if the word starts with a vowel.
 				//If it does, translate it.
 				//If it doesn't, get the index of the first vowel for word and then translates the word.
+				//If there are no vowels in the word, adds "ay" to the end.
 				bool vowelFirst = false;
 				foreach (char vowel in vowels)
 				{
@@ -95,12 +125,18 @@ namespace Lab_4._2
 						vowelFirst = true;
 					}
 				}
-				if (!vowelFirst)
+				vowelIndex = words[index].IndexOfAny(vowels);
+				if (!vowelFirst && (vowelIndex != -1))
 				{
-					vowelIndex = words[index].IndexOfAny(vowels);
 					words[index] = words[index].Substring(vowelIndex) + words[index].Substring(0, vowelIndex) + "ay";
 				}
+				else
+				{
+					words[index] += "ay";
+				}
 			}
+
+			words = FixCase(words, caseCondition);
 
 			//Rebuilds each word back into a sentence.
 			string translatedSentence = "";
@@ -111,6 +147,40 @@ namespace Lab_4._2
 
 			//Returns the completed sentence.
 			return translatedSentence;
+		}
+
+		public static string[] FixCase(string[] words, int[] caseCondition)
+		{
+			for(int index = 0; index < words.Length; index++)
+			{
+				switch (caseCondition[index])
+				{
+					//Mix of cases, so don't do anything.
+					case 0:
+						continue;
+					//Convert to all upper.
+					case 1:
+						words[index] = words[index].ToUpper();
+						break;
+					//Convert all to lower.
+					case 2:
+						words[index] = words[index].ToLower();
+						break;
+					//Converts the first letter to upper, the rest lower.
+					case 3:
+						string temp = "";
+						temp +=	char.ToUpper(words[index][0]);
+						words[index] = words[index].ToLower();
+						words[index] = words[index].Remove(0,1);
+						words[index] = words[index].Insert(0, temp);
+						break;
+					//Don't do anything in this case
+					default:
+						continue;
+				}
+			}
+
+			return words;
 		}
 	}
 }
