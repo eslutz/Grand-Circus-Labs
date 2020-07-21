@@ -6,6 +6,7 @@ namespace Lab_4._1
 	{
 		static void Main(string[] args)
 		{
+			Random roll = new Random();
 			bool keepRolling = true;
 			int rollCount = 1;
 			Console.WriteLine("Welcome to the Grand Circus Casino!");
@@ -21,7 +22,7 @@ namespace Lab_4._1
 			while (keepRolling)
 			{
 				//Declare an array and calls the DiceRoll method to get the values from the dice roll.
-				int[] diceValues = DiceRoll(diceSides);
+				int[] diceValues = DiceRoll(diceSides, roll);
 				//Calls method to output what kind of combination of dice you have 
 				SoWhatDoesItMean(rollCount, diceSides, diceValues);
 
@@ -46,9 +47,8 @@ namespace Lab_4._1
 		}
 
 		//Takes in the number of sides on the dice, generates a random value for that dice, and returns the values.
-		static int[] DiceRoll(int sides)
+		static int[] DiceRoll(int sides, Random roll)
 		{
-			Random roll = new Random();
 			int[] rollValues = new int[2];
 
 			//Using the Random Class to generate values for the dice between 1 and n.
