@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Globalization;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace Lab_4._2
 {
@@ -19,8 +15,10 @@ namespace Lab_4._2
 			{
 				//Calls method to get input from the user of sentence to translate.
 				string[] translation = LineToBeTranslated();
+
 				//Determines the case of the sentence.
 				int[] caseCondition = CaseCondition(translation);
+
 				//Calls translation method and prints out the translation.
 				Console.WriteLine($"Translation: {TranslateToPigLatin(translation, caseCondition)}");
 
@@ -47,55 +45,7 @@ namespace Lab_4._2
 				Console.Write("You have to enter something.\n");
 				words = LineToBeTranslated();
 			}
-
 			return words;
-		}
-
-		//Checks the case condition of the word.
-		//Returns 1 for all upper case.
-		//Returns 2 for all lower case.
-		//Returns 3 for first letter upper.
-		//Returns 0 for inconsistent case.
-		public static int[] CaseCondition(string[] words)
-		{
-			Regex firstCap = new Regex(@"^[A-Z][a-z]*");
-			int[] caseCondition = new int[words.Length];
-			for(int index = 0; index < words.Length; index++)
-			{
-				int caseCount = 0;
-				for (int x = 0; x < words[index].Length; x++)
-				{
-					if (char.IsUpper(words[index][x]))
-					{
-						caseCount++;
-					}
-				}
-				//All upper.
-				if(caseCount == words[index].Length)
-				{
-					caseCondition[index] = 1;
-				}
-				//All lower.
-				else if(caseCount == 0)
-				{
-					caseCondition[index] = 2;
-				}
-				//First letter upper.
-				else if(firstCap.IsMatch(words[index]))
-				{
-					caseCondition[index] = 3;
-				}
-				//Mixed case throughout word.
-				else
-				{
-					caseCondition[index] = 0;
-				}
-			}
-			foreach(int x in caseCondition)
-			{
-				Console.WriteLine($"case condition: {x}");
-			}
-			return caseCondition;
 		}
 
 		public static string TranslateToPigLatin(string[] words, int[] caseCondition)
@@ -103,7 +53,6 @@ namespace Lab_4._2
 			Regex symbols = new Regex(@"(\W|\d)");
 			char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
 			int vowelIndex;
-			
 			//Loops through each word in the sentence
 			for(int index = 0; index < words.Length; index++)
 			{
@@ -135,20 +84,66 @@ namespace Lab_4._2
 					words[index] += "ay";
 				}
 			}
-
+			//Once the words are translated, calls the method to fix the case of the word.
 			words = FixCase(words, caseCondition);
-
 			//Rebuilds each word back into a sentence.
 			string translatedSentence = "";
 			foreach (string word in words)
 			{
 				translatedSentence += word + " ";
 			}
-
 			//Returns the completed sentence.
 			return translatedSentence;
 		}
 
+		//Checks the case condition of the word.
+		//Returns 1 for all upper case.
+		//Returns 2 for all lower case.
+		//Returns 3 for first letter upper.
+		//Returns 0 for inconsistent case.
+		public static int[] CaseCondition(string[] words)
+		{
+			Regex firstCap = new Regex(@"^[A-Z][a-z]*");
+			int[] caseCondition = new int[words.Length];
+			for (int index = 0; index < words.Length; index++)
+			{
+				int caseCount = 0;
+				for (int x = 0; x < words[index].Length; x++)
+				{
+					if (char.IsUpper(words[index][x]))
+					{
+						caseCount++;
+					}
+				}
+				//All upper.
+				if (caseCount == words[index].Length)
+				{
+					caseCondition[index] = 1;
+				}
+				//All lower.
+				else if (caseCount == 0)
+				{
+					caseCondition[index] = 2;
+				}
+				//First letter upper.
+				else if (firstCap.IsMatch(words[index]))
+				{
+					caseCondition[index] = 3;
+				}
+				//Mixed case throughout word.
+				else
+				{
+					caseCondition[index] = 0;
+				}
+			}
+			foreach (int x in caseCondition)
+			{
+				Console.WriteLine($"case condition: {x}");
+			}
+			return caseCondition;
+		}
+
+		//Matches the case of each word to their original value.
 		public static string[] FixCase(string[] words, int[] caseCondition)
 		{
 			for(int index = 0; index < words.Length; index++)
@@ -179,7 +174,6 @@ namespace Lab_4._2
 						continue;
 				}
 			}
-
 			return words;
 		}
 	}
