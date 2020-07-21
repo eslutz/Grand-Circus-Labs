@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Lab_4._2
@@ -78,7 +79,26 @@ namespace Lab_4._2
 				vowelIndex = words[index].IndexOfAny(vowels);
 				if (!vowelFirst && (vowelIndex != -1))
 				{
-					words[index] = words[index].Substring(vowelIndex) + words[index].Substring(0, vowelIndex) + "ay";
+					//Special case for words containing "qu".
+					if(words[index].Contains("qu"))
+					{
+						//Finds the second vowel in the word, if there is one.
+						vowelIndex = words[index].IndexOfAny(vowels, (vowelIndex + 1));
+						//If there is a second vowel, move everything before it to the end and add "ay".
+						if (vowelIndex != -1)
+						{
+							words[index] = words[index].Substring(vowelIndex) + words[index].Substring(0, vowelIndex) + "ay";
+						}
+						//If there are no vowels after the qu, add "ay" to the end.
+						else
+						{
+							words[index] += "ay";
+						}
+					}
+					else
+					{
+						words[index] = words[index].Substring(vowelIndex) + words[index].Substring(0, vowelIndex) + "ay";
+					}
 				}
 				else if(!vowelFirst)
 				{
