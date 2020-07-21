@@ -53,7 +53,7 @@ namespace Lab_4._2
 			Regex symbols = new Regex(@"(\W|\d)");
 			char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
 			int vowelIndex;
-			//Loops through each word in the sentence
+			//Loops through each word in the sentence.
 			for(int index = 0; index < words.Length; index++)
 			{
 				//Checks if word needs to be skipped due to symbols or numbers.
@@ -166,7 +166,7 @@ namespace Lab_4._2
 						words[index] = words[index].Remove(0,1);
 						words[index] = words[index].Insert(0, temp);
 						break;
-					//Don't do anything in this case
+					//Don't do anything in this case.
 					default:
 						continue;
 				}
@@ -176,7 +176,7 @@ namespace Lab_4._2
 	}
 }
 
-//Attempt to do translate with Regex.  Keeping for reference.
+//Attempt to translate with Regex.  Keeping for reference.
 //Regex symbols = new Regex(@"(\W|\d)");
 //Regex vowels = new Regex(@"^[AEIOUaeiou]");
 //Regex consonants = new Regex(@"^[B-DF-HJ-NP-TV-Zb-df-hj-np-tv-z][B-DF-HJ-NP-TV-Zb-df-hj-np-tv-z]");
