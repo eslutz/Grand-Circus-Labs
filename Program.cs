@@ -12,12 +12,13 @@ namespace Lab_4._3
 			List<Movies> movieList = GenerateMovies();
 			List<string> categories = GetCategories(movieList);
 
-			Console.WriteLine("Welcome to the Movie List Application!\n");
+			Console.WriteLine("Welcome to the Movie List Application!");
 
+			string yesOrNo;
 			do
 			{
 				//Shows how many movies and a list of the available categories.
-				Console.WriteLine($"There are {movieList.Count} movies in the list of the following categories:");
+				Console.WriteLine($"\nThere are {movieList.Count} movies in the list of the following categories:");
 				for (int index = 0; index < categories.Count; index++)
 				{
 					Console.WriteLine($"{index + 1}. {categories[index]}");
@@ -36,7 +37,16 @@ namespace Lab_4._3
 				//Calls method to display the movies, passing the list of movies and the chosen category.
 				DisplayMovies(movieList, categories[input - 1]);
 
-			} while (true);
+				//Asks the user if they want to continue translating and validates their input.
+				Console.Write("\nContinue? (y/n): ");
+				yesOrNo = Console.ReadLine().ToLower();
+				while (!(yesOrNo == "yes" || yesOrNo == "y" || yesOrNo == "no" || yesOrNo == "n"))
+				{
+					Console.Write("Invalid input.  Continue? (y/n): ");
+					yesOrNo = Console.ReadLine().ToLower();
+				}
+				Console.Clear();
+			} while (yesOrNo == "yes" || yesOrNo == "y");
 		}
 
 		//Generates a list of movies and returns the list.
@@ -62,7 +72,7 @@ namespace Lab_4._3
 			movies.Add(new Movies("Gladiator", "Drama"));
 			movies.Add(new Movies("Hidden Figures", "Drama"));
 			movies.Add(new Movies("Idiocracy", "Documentary"));
-			movies.Add(new Movies("Indiana Jones", "Action"));
+			movies.Add(new Movies("Indiana Jones and the Last Crusade", "Action"));
 			movies.Add(new Movies("John Wick", "Action"));
 			movies.Add(new Movies("Joker", "Drama"));
 			movies.Add(new Movies("Jurassic Park", "Action"));
@@ -118,15 +128,15 @@ namespace Lab_4._3
 				}				
 			}
 
-			//Sorted movies by title using LINQ.
-			sortedMovies.OrderBy(x => x.Title);
+			//Sorted movies by title.
+			sortedMovies.Sort((p, q) => p.Title.CompareTo(q.Title));
 
 			//Displays list of movies of the chosen category.
-			Console.WriteLine($"\n{"Title",-25}{"Category",-25}");
-			Console.WriteLine(new String('*', 50));
+			Console.WriteLine($"\n{"Title",-40}{"Category",-15}");
+			Console.WriteLine(new String('*', 55));
 			foreach(Movies movie in sortedMovies)
 			{
-				Console.WriteLine($"{movie.Title,-25}{movie.Category,-25}");
+				Console.WriteLine($"{movie.Title,-40}{movie.Category,-15}");
 			}
 		}
 	}
