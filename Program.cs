@@ -201,7 +201,6 @@ namespace Lab_4._2
 		}
 	}
 }
-
 //Attempt to translate with Regex.  Keeping for reference.
 //Regex symbols = new Regex(@"(\W|\d)");
 //Regex vowels = new Regex(@"^[AEIOUaeiou]");
