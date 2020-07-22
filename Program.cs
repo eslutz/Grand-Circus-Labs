@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Lab_4._2
@@ -83,7 +82,7 @@ namespace Lab_4._2
 				if (!vowelFirst && (vowelIndex != -1))
 				{
 					//Special case for words containing "qu".
-					if(words[index].Contains("qu"))
+					if(words[index].ToLower().Contains("qu") && (vowelIndex > words[index].ToLower().IndexOf('q')))
 					{
 						//Finds the second vowel in the word, if there is one.
 						vowelIndex = words[index].IndexOfAny(vowels, (vowelIndex + 1));
@@ -127,7 +126,7 @@ namespace Lab_4._2
 		//Returns 0 for inconsistent case.
 		public static int[] CaseCondition(string[] words)
 		{
-			Regex firstCap = new Regex(@"^[A-Z][a-z]*");
+			Regex firstCap = new Regex(@"^[A-Z][a-z]*$");
 			int[] caseCondition = new int[words.Length];
 			for (int index = 0; index < words.Length; index++)
 			{
@@ -183,10 +182,14 @@ namespace Lab_4._2
 						break;
 					//Converts the first letter to upper, the rest lower.
 					case 3:
+						//Use temp to store upper case version of the first char of the translated word.
 						string temp = "";
 						temp +=	char.ToUpper(words[index][0]);
+						//Sets entire string to lowwer case.
 						words[index] = words[index].ToLower();
+						//Removed the lower case version of the first char.
 						words[index] = words[index].Remove(0,1);
+						//Inserted the upper case version of the first char.
 						words[index] = words[index].Insert(0, temp);
 						break;
 					//Don't do anything in this case.
