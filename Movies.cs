@@ -8,7 +8,7 @@ namespace Lab_4._3
 		private string _title;
 		private string _category;
 
-		//
+		//Properties
 		public string Title
 		{
 			get { return _title; }
@@ -19,7 +19,7 @@ namespace Lab_4._3
 			get { return _category; }
 		}
 
-		//Constructor
+		//Constructors
 		public Movies(string title, string category)
 		{
 			_title = title;
