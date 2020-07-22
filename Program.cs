@@ -39,7 +39,10 @@ namespace Lab_4._2
 		public static string[] LineToBeTranslated()
 		{
 			Console.Write("\nEnter a line to be translated: ");
-			string input = Console.ReadLine();
+			//Saves input removing leading and trailing whitespace.
+			string input = Console.ReadLine().Trim();
+			//Removes extra whitespace between words.
+			input = Regex.Replace(input, @"\s+", " ");
 			string[] words = input.Split(" ");
 			if (string.IsNullOrWhiteSpace(input))
 			{
