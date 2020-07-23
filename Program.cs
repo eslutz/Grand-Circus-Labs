@@ -23,18 +23,9 @@ namespace Lab_4._3
 					Console.WriteLine($"{index + 1}. {categories[index]}");
 				}
 
-				//Gets input from the user and validates it for their category choice
-				Console.Write($"What category are you interested in? Please select a category 1 - {categories.Count} => ");
-				bool isValid = int.TryParse(Console.ReadLine(), out int input);
-				while (!isValid || !(input > 0 && input <= categories.Count))
-				{
-					Console.WriteLine("That is not a valid category.");
-					Console.Write($"Please select a category 1 - {categories.Count} => ");
-					isValid = int.TryParse(Console.ReadLine(), out input);
-				}
-
-				//Calls method to display the movies, passing the list of movies and the chosen category.
-				DisplayMovies(movieList, categories[input - 1]);
+				//Gets category and displays movies of that category
+				int catIndex = GetCategoryInput(categories);
+				DisplayMovies(movieList, categories[catIndex]);
 
 				//Asks the user if they want to continue translating and validates their input.
 				Console.Write("\nContinue? (y/n): ");
@@ -149,5 +140,70 @@ namespace Lab_4._3
 				Console.WriteLine($"{movie.Title, -40}|{movie.Category, -12}|{movie.ReleaseYear, -15}|{movie.Runtime, -10}");
 			}
 		}
+
+		//Gets category choice from the user, validates it, and returns it.
+		public static int GetCategoryInput(List<string> categories)
+		{
+			//Create a lower case version of the categories for comparison.
+			List<string> lowerCategories = new List<string>();
+			foreach(string category in categories)
+			{
+				lowerCategories.Add(category.ToLower());
+			}
+
+			//Get the category input from the user.
+			Console.Write($"What category are you interested in? Please select a category 1 - {categories.Count} => ");
+			string input = Console.ReadLine().ToLower();
+			//Determines if they entered a valid integer.
+			bool isValid = int.TryParse(input, out int selection);
+			//Determines if they entered a valid category.
+			bool catFound = lowerCategories.Contains(input);
+
+			//If there is no valid input or the number entered is not within the required range the user is required to try again.
+			while((!isValid || !(selection > 0 && selection <= lowerCategories.Count)) && !catFound)
+			{
+				Console.WriteLine("That is not a valid category.");
+				Console.Write($"What category are you interested in? Please select a category 1 - {lowerCategories.Count} => ");
+				input = Console.ReadLine().ToLower();
+				isValid = int.TryParse(input, out selection);
+				catFound = lowerCategories.Contains(input);
+			}
+
+			//If the user entered a number for category, returns the zero based index value.
+			if (isValid)
+			{
+				return selection - 1;
+			}
+			//If the user entered a category, returns the index value for that category.
+			else
+			{
+				return lowerCategories.IndexOf(input);
+			}
+		}
 	}
 }
+
+//Keeping for reference.
+//Console.Write($"What category are you interested in? Please select a category 1 - {categories.Count} => ");
+//string input = Console.ReadLine();
+//bool isValid = int.TryParse(input, out int selection);
+//bool catFound = categories.Contains(categories.Find(s => s.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0));
+
+//if (isValid)
+//{
+//	while (!(selection > 0 && selection <= categories.Count))
+//	{
+//		Console.WriteLine("That is not a valid category.");
+//		selection = GetCategoryInput(categories);
+//	}
+//}
+//else if (!isValid && catFound)
+//{
+//	selection = categories.FindIndex((s => s.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0));
+//}
+//else
+//{
+//	Console.WriteLine("That is not a valid category.");
+//	selection = GetCategoryInput(categories);
+//}
+//return selection;
