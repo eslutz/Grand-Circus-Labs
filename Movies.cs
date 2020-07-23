@@ -7,6 +7,8 @@ namespace Lab_4._3
 		//Fields
 		private string _title;
 		private string _category;
+		private int _releaseYear;
+		private int _runtime;
 
 		//Properties
 		public string Title
@@ -18,12 +20,23 @@ namespace Lab_4._3
 		{
 			get { return _category; }
 		}
+		public int ReleaseYear
+		{
+			get { return _releaseYear; }
+		}
+
+		public int Runtime
+		{
+			get { return _runtime; }
+		}
 
 		//Constructors
-		public Movies(string title, string category)
+		public Movies(string title, string category, int year, int runtime)
 		{
 			_title = title;
 			_category = category;
+			_releaseYear = year;
+			_runtime = runtime;
 		}
 	}
 }

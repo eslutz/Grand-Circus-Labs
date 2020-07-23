@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Lab_4._3
 {
@@ -53,39 +52,50 @@ namespace Lab_4._3
 		public static List<Movies> GenerateMovies()
 		{
 			List<Movies> movies = new List<Movies>();
-			movies.Add(new Movies("Aliens", "Sci Fi"));
-			movies.Add(new Movies("The Matrix", "Sci Fi"));
-			movies.Add(new Movies("Die Hard", "Action"));
-			movies.Add(new Movies("Evil Dead", "Horror"));
-			movies.Add(new Movies("Back to the Future", "Comedy"));
-			movies.Add(new Movies("Bad Boys", "Action"));
-			movies.Add(new Movies("Bad Santa", "Comedy"));
-			movies.Add(new Movies("Bill & Ted's Excellent Adventure", "Comedy"));
-			movies.Add(new Movies("Blade Runner", "Sci Fi"));
-			movies.Add(new Movies("The Blues Brothers", "Comedy"));
-			movies.Add(new Movies("Caddyshack", "Comedy"));
-			movies.Add(new Movies("A Christmas Story", "Comedy"));
-			movies.Add(new Movies("Dawn of the Dead", "Horror"));
-			movies.Add(new Movies("Dirty Harry", "Thriller"));
-			movies.Add(new Movies("The Fifth Element", "Sci Fi"));
-			movies.Add(new Movies("Fury", "Action"));
-			movies.Add(new Movies("Gladiator", "Drama"));
-			movies.Add(new Movies("Hidden Figures", "Drama"));
-			movies.Add(new Movies("Idiocracy", "Documentary"));
-			movies.Add(new Movies("Indiana Jones and the Last Crusade", "Action"));
-			movies.Add(new Movies("John Wick", "Action"));
-			movies.Add(new Movies("Joker", "Drama"));
-			movies.Add(new Movies("Jurassic Park", "Action"));
-			movies.Add(new Movies("The Martian", "Sci Fi"));
-			movies.Add(new Movies("Napoleon Dynamite", "Comedy"));
-			movies.Add(new Movies("Office Space", "Comedy"));
-			movies.Add(new Movies("Outland", "Sci Fi"));
-			movies.Add(new Movies("Predator", "Sci Fi"));
-			movies.Add(new Movies("Robocop", "Action"));
-			movies.Add(new Movies("Scream", "Horror"));
-			movies.Add(new Movies("Gran Torino", "Drama"));
-			movies.Add(new Movies("Contagion", "Thriller"));
-			movies.Add(new Movies("Ronin", "Thriller"));
+			movies.Add(new Movies("Aliens", "Sci Fi", 1986, 137));
+			movies.Add(new Movies("The Matrix", "Sci Fi", 1999, 136));
+			movies.Add(new Movies("Die Hard", "Action", 1988, 132));
+			movies.Add(new Movies("Evil Dead", "Horror", 1982, 85));
+			movies.Add(new Movies("Back to the Future", "Comedy", 1985, 116));
+			movies.Add(new Movies("Bad Boys", "Action", 1995, 118));
+			movies.Add(new Movies("Bad Santa", "Comedy", 2003, 99));
+			movies.Add(new Movies("Bill & Ted's Excellent Adventure", "Comedy", 1989, 89));
+			movies.Add(new Movies("Blade Runner", "Sci Fi", 1982, 117));
+			movies.Add(new Movies("The Blues Brothers", "Comedy", 1980, 157));
+			movies.Add(new Movies("Caddyshack", "Comedy", 1980, 98));
+			movies.Add(new Movies("A Christmas Story", "Comedy", 1983, 93));
+			movies.Add(new Movies("Dawn of the Dead", "Horror", 1978, 127));
+			movies.Add(new Movies("Day of the Dead", "Horror", 1985, 96));
+			movies.Add(new Movies("Night of the Living Dead", "Horror", 1968, 88));
+			movies.Add(new Movies("Dirty Harry", "Thriller", 1971, 102));
+			movies.Add(new Movies("The Fifth Element", "Sci Fi", 1997, 125));
+			movies.Add(new Movies("Fury", "Action", 2014, 134));
+			movies.Add(new Movies("Gladiator", "Drama", 2000, 155));
+			movies.Add(new Movies("Hidden Figures", "Drama", 2016, 127));
+			movies.Add(new Movies("Harold and Kumar Go to White Castle", "Comedy", 2004, 88));
+			movies.Add(new Movies("Idiocracy", "Documentary", 2007, 84));
+			movies.Add(new Movies("Indiana Jones and the Last Crusade", "Action", 1989, 126));
+			movies.Add(new Movies("John Wick", "Action", 2014, 101));
+			movies.Add(new Movies("Joker", "Drama", 2019, 121));
+			movies.Add(new Movies("Jurassic Park", "Action", 1993, 126));
+			movies.Add(new Movies("The Martian", "Sci Fi", 2015, 142));
+			movies.Add(new Movies("Napoleon Dynamite", "Comedy", 2004, 94));
+			movies.Add(new Movies("Office Space", "Comedy", 1999, 89));
+			movies.Add(new Movies("Outland", "Sci Fi", 1981, 109));
+			movies.Add(new Movies("Predator", "Sci Fi", 1987, 106));
+			movies.Add(new Movies("Robocop", "Action", 1987, 103));
+			movies.Add(new Movies("Scream", "Horror", 1996, 110));
+			movies.Add(new Movies("Gran Torino", "Drama", 2009, 116));
+			movies.Add(new Movies("Contagion", "Thriller", 2011, 106));
+			movies.Add(new Movies("Outbreak", "Drama", 1995, 122));
+			movies.Add(new Movies("Commando", "Action", 1985, 90));
+			movies.Add(new Movies("Terminator", "Action", 1984, 107));
+			movies.Add(new Movies("Stargate", "Sci Fi", 1994, 121));
+			movies.Add(new Movies("Starship Troopers", "Sci Fi", 1997, 129));
+			movies.Add(new Movies("Slither", "Horror", 2006, 95));
+			movies.Add(new Movies("Ronin", "Thriller", 1998, 121));
+			movies.Add(new Movies("Serenity", "Sci Fi", 2005, 118));
+			movies.Add(new Movies("Shaun of the Dead", "Comedy", 2004, 99));
 			return movies;
 		}
 
@@ -128,15 +138,15 @@ namespace Lab_4._3
 				}				
 			}
 
-			//Sorted movies by title.
+			//Sorts movies by title.
 			sortedMovies.Sort((p, q) => p.Title.CompareTo(q.Title));
 
 			//Displays list of movies of the chosen category.
-			Console.WriteLine($"\n{"Title",-40}{"Category",-15}");
-			Console.WriteLine(new String('*', 55));
+			Console.WriteLine($"\n{"Title", -40}|{"Category", -12}|{"Release Year", -15}|{"Runtime", -10}");
+			Console.WriteLine($"{new String('*', 40)}|{new String('*', 12)}|{new String('*', 15)}|{new String('*', 10)}");
 			foreach(Movies movie in sortedMovies)
 			{
-				Console.WriteLine($"{movie.Title,-40}{movie.Category,-15}");
+				Console.WriteLine($"{movie.Title, -40}|{movie.Category, -12}|{movie.ReleaseYear, -15}|{movie.Runtime, -10}");
 			}
 		}
 	}
