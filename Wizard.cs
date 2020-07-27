@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lab_5._1
 {
-	class Wizzard : MagicUsingCharacter
+	class Wizard : MagicUsingCharacter
 	{
 		private int _spellNumber;
 
@@ -14,7 +14,7 @@ namespace Lab_5._1
 			set { _spellNumber = value; }
 		}
 
-		public Wizzard(string name, int strength, int intellegence, int magicalEnergy, int spellNumber) : base(name, strength, intellegence, magicalEnergy)
+		public Wizard(string name, int strength, int intellegence, int magicalEnergy, int spellNumber) : base(name, strength, intellegence, magicalEnergy)
 		{
 			SpellNumber = spellNumber;
 		}
