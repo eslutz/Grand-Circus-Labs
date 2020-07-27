@@ -21,7 +21,7 @@ namespace Lab_5._1
 
 		public override void Play()
 		{
-			Console.WriteLine($"{Name} with her/his mighty magic has the strength of {Strength}, the intelligence of {Intellegence} with {MagicalEnergy} magical energy!");
+			Console.WriteLine($"{Name} with some mighty magic has the strength of {Strength}, the intelligence of {Intellegence}, and {MagicalEnergy} magical energy!");
 		}
 	}
 }
