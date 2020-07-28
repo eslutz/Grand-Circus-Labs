@@ -31,13 +31,12 @@ namespace Lab_5._3
 		//Displays all available cars and asks the user what they would like to do.
 		static void ShowOptions(CarLot lot)
 		{
-			Console.WriteLine("Welcome to the Grand Circus Used Car Emporium!");
-
 			//Loops until the user quits.
 			bool keepGoing = true;
 			do
 			{
-				Console.WriteLine();
+				Console.WriteLine("Welcome to the Grand Circus Used Car Emporium!\n");
+
 				//Calls DisplayCar method from the CarLot class to show all the cars.
 				lot.DisplayCars();
 				//Adds options to add a car or quit after all the cars are shown.
@@ -65,12 +64,14 @@ namespace Lab_5._3
 				{
 					//Calls method AddCar, passing the current list of cars in the lot.
 					AddACar(lot);
+					Console.Clear();
 				}
 				//Else, user selected the car they are interested in buying.
 				else
 				{
 					//Calls method BuyCar, passing the current list of cars in the lot and the index of the car the user selected.
 					BuyCar(lot, option - 1);
+					Console.Clear();
 				}
 			} while (keepGoing);
 		}

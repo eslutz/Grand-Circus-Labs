@@ -7,7 +7,7 @@ namespace Lab_5._3
 	class CarLot
 	{
 		//Delcares list to store all the car and used car objects.
-		List<Car> CarLotList = new List<Car>();
+		private List<Car> CarLotList = new List<Car>();
 
 		//Method to add a car or used car object to the list.
 		public void AddCar(Car addMe)
