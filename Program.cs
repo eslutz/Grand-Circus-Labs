@@ -22,7 +22,7 @@ namespace Lab_5._1
 			players.Add(new Warrior("Boromir", 50, 3, "sword"));
 			players.Add(new Warrior("Gimli", 80, 20, "axe"));
 			players.Add(new Warrior("Legolas", 40, 30, "bow"));
-			players.Add(new Wizard("Gandlf", 50, 80, 90, 8));
+			players.Add(new Wizard("Gandalf", 50, 80, 90, 8));
 			players.Add(new Wizard("Blake Henderson", 5, 100, 100, 100));
 			players.Add(new Wizard("Anders Holmvik", 15, 80, 90, 90));
 			players.Add(new Wizard("Adam DeMamp", 20, 60, 85, 70));
