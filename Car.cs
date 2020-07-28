@@ -6,11 +6,13 @@ namespace Lab_5._3
 {
 	class Car
 	{
+		//Private set for fields so they cannot be accessed outside the class.
 		private string _make;
 		private string _model;
 		private int _year;
 		private decimal _price;
 
+		//Private set for all properties so the values cannot be changed outside of the class.
 		public string Make
 		{
 			get { return _make; }
@@ -35,6 +37,7 @@ namespace Lab_5._3
 			private set { _price = value; }
 		}
 
+		//Default constructor.
 		public Car()
 		{
 			Make = "unknown";
@@ -43,6 +46,7 @@ namespace Lab_5._3
 			Price = 0m;
 		}
 		
+		//Constructor taking in arguments for all values.
 		public Car(string make, string model, int year, decimal cost)
 		{
 			Make = make;
@@ -51,6 +55,7 @@ namespace Lab_5._3
 			Price = cost;
 		}
 
+		//Override ToString() do display info about the car.
 		public override string ToString()
 		{
 			return $"{Make,-14}{Model,-14}{Year,-4}{Price,14:C}";
