@@ -26,7 +26,7 @@ namespace Lab_5._3
 
 		public override string ToString()
 		{
-			return $"{base.ToString()}{"(Used)",-8}{Mileage+" miles",-14}";
+			return $"{base.ToString()}{"(Used)",8}{Mileage.ToString("N")+" miles",18}";
 		}
 	}
 }

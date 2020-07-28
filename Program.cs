@@ -14,15 +14,15 @@ namespace Lab_5._3
 		{
 			CarLot lot = new CarLot();
 
-			lot.AddCar(new Car("Jeep", "Liberty", 2011, 10000));
-			lot.AddCar(new Car("Dodge", "Dart", 2016, 5000));
-			lot.AddCar(new UsedCar("Jeep", "Commander", 2019, 20000, 50000));
-			lot.AddCar(new Car("Dodge", "Durango", 2015, 3000));
-			lot.AddCar(new Car("Chevy", "Tahoe", 2016, 15000));
-			lot.AddCar(new UsedCar("Lincoln", "Navigator", 2018, 15000, 30000));
-			lot.AddCar(new Car("Subaru", "Ascent", 2020, 45000));
-			lot.AddCar(new UsedCar("Cadillac", "Deville", 1988, 10000, 80000));
-			lot.AddCar(new UsedCar("Chrysler", "Cordoba", 1983, 10000, 90000));
+			lot.AddCar(new Car("Jeep", "Liberty", 2011, 10000m));
+			lot.AddCar(new Car("Dodge", "Dart", 2016, 5000m));
+			lot.AddCar(new UsedCar("Jeep", "Commander", 2019, 20000m, 50000));
+			lot.AddCar(new Car("Dodge", "Durango", 2015, 3000m));
+			lot.AddCar(new Car("Chevy", "Tahoe", 2016, 15000m));
+			lot.AddCar(new UsedCar("Lincoln", "Navigator", 2018, 15000m, 30000));
+			lot.AddCar(new Car("Subaru", "Ascent", 2020, 45000m));
+			lot.AddCar(new UsedCar("Cadillac", "Deville", 1988, 10000m, 80000));
+			lot.AddCar(new UsedCar("Chrysler", "Cordoba", 1983, 10000m, 90000));
 
 			return lot;
 		}

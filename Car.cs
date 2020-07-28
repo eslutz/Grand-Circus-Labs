@@ -53,7 +53,7 @@ namespace Lab_5._3
 
 		public override string ToString()
 		{
-			return $"{Make,-14}{Model,-14}{Year,-8}{Price,-10:C}";
+			return $"{Make,-14}{Model,-14}{Year,-4}{Price,14:C}";
 		}
 	}
 }
