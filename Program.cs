@@ -30,6 +30,7 @@ namespace Lab_5._2
 			while (true)
 			{
 				me.GenerateRoshambo();
+				players[playerChoice].GenerateRoshambo();
 				Console.WriteLine();
 				Console.WriteLine($"{me.Name}: {me.Roshambo}");
 				Console.WriteLine($"{players[playerChoice].Name}: {players[playerChoice].Roshambo}");
