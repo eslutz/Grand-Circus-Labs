@@ -62,16 +62,16 @@ namespace Lab_5._3
 				//If the user selects the second to last option, they want to add a car.
 				else if (option == (lot.LotCount() + 1))
 				{
+					Console.Clear();
 					//Calls method AddCar, passing the current list of cars in the lot.
 					AddACar(lot);
-					Console.Clear();
 				}
 				//Else, user selected the car they are interested in buying.
 				else
 				{
+					Console.Clear();
 					//Calls method BuyCar, passing the current list of cars in the lot and the index of the car the user selected.
 					BuyCar(lot, option - 1);
-					Console.Clear();
 				}
 			} while (keepGoing);
 		}
@@ -83,7 +83,7 @@ namespace Lab_5._3
 			decimal price;
 			int year;
 			string make, model;
-			Console.WriteLine();
+
 			Console.WriteLine("Please provide the following details for the car you would like to add.");
 			Console.Write("Car make: ");
 			make = Console.ReadLine();
@@ -126,14 +126,14 @@ namespace Lab_5._3
 				}
 				//Adds used car object with user entered values to the lot list using AddCar method from CarLot class.
 				lot.AddCar(new UsedCar(make, model, year, price, milage));
-				Console.WriteLine("Thank you.  A used car has been added.");
+				Console.WriteLine("Thank you.  A used car has been added.\n");
 			}
 			//If the car is new.
 			else
 			{
 				//Adds new car object with user entered values to the lot list using AddCar method from CarLot class.
 				lot.AddCar(new Car(make, model, year, price));
-				Console.WriteLine("Thank you.  A new car has been added.");
+				Console.WriteLine("Thank you.  A new car has been added.\n");
 			}
 		}
 
@@ -154,12 +154,12 @@ namespace Lab_5._3
 			{
 				//Removes car from list using RemoveCar method from CarLot class.
 				lot.RemoveCar(index);
-				Console.WriteLine("Excellent choice! Our finance department will be with you shortly.");
+				Console.WriteLine("Excellent choice! Our finance department will be with you shortly.\n");
 			}
 			else
 			{
 				//User backed out of buying the car so do nothing.
-				Console.WriteLine("No problem!  Lets take another look at what we have to offer.");
+				Console.WriteLine("No problem!  Lets take another look at what we have to offer.\n");
 			}
 		}
 	}

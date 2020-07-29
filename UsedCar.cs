@@ -31,7 +31,7 @@ namespace Lab_5._3
 		//Override ToString() do display info about the car.
 		public override string ToString()
 		{
-			return $"{base.ToString()}{"(Used)",8}{Mileage.ToString("N")+" miles",18}";
+			return $"{base.ToString()}{"(Used)",10}{Mileage.ToString("N")+" miles",18}";
 		}
 	}
 }

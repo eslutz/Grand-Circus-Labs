@@ -24,6 +24,8 @@ namespace Lab_5._3
 		//Method to display all cars in the current CarLot object.
 		public void DisplayCars()
 		{
+			Console.WriteLine($"{"",-4}{"Make",-14}{"Model",-14}{"Year",-4}{"Price",14}{"New/Used",10}{"\tMiles",-18}");
+			Console.WriteLine(new string('*',78));
 			for (int index = 0; index < CarLotList.Count; index++)
 			{
 				Console.WriteLine($"{index+1+".",-4}{CarLotList[index]}");
@@ -33,6 +35,8 @@ namespace Lab_5._3
 		//Method to return a single car from the list.
 		public string ViewCar(int index)
 		{
+			Console.WriteLine($"{"Make",-14}{"Model",-14}{"Year",-4}{"Price",14}{"New/Used",10}{"\tMiles",-18}");
+			Console.WriteLine(new string('*', 78));
 			return CarLotList[index].ToString();
 		}
 
