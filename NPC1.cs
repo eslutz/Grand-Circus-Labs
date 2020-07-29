@@ -6,14 +6,14 @@ namespace Lab_5._2
 {
 	class NPC1 : Player
 	{
-		public NPC1() : base("DumbDumb")
+		public NPC1() : base()
 		{
-
+			base.Name = "DumbDumb";
 		}
 
 		public override RPS GenerateRoshambo()
 		{
-			//base.ChangeRoshambo(RPS.rock);
+			base.Roshambo = RPS.rock;
 			return RPS.rock;
 		}
 	}

@@ -6,9 +6,9 @@ namespace Lab_5._2
 {
 	class HumanPlayer : Player
 	{
-		public HumanPlayer(string name) : base(name)
+		public HumanPlayer(string name) : base()
 		{
-
+			base.Name = name;
 		}
 
 		public override RPS GenerateRoshambo()
@@ -34,7 +34,7 @@ namespace Lab_5._2
 			{
 				choice = 2;
 			}
-			base.ChangeRoshambo((RPS)choice);
+			base.Roshambo = (RPS)choice;
 			return (RPS)choice;
 		}
 	}
