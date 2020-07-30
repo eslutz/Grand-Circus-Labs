@@ -34,7 +34,9 @@ namespace Lab_5._2
 				Console.WriteLine();
 				Console.WriteLine($"{me.Name}: {me.Roshambo}");
 				Console.WriteLine($"{players[playerChoice].Name}: {players[playerChoice].Roshambo}");
-				GetWinner(me, players[playerChoice]);
+				Console.WriteLine();
+				me.WinOrLose(GetWinner(me, players[playerChoice]));
+				Console.WriteLine($"That makes it {me.Wins} win(s), {me.Losses} losse(s), and {me.Draw} draw(s) for you!");
 				Console.WriteLine();
 
 				Console.Write("Play again? (y/n): ");
@@ -51,6 +53,7 @@ namespace Lab_5._2
 				}
 			}
 			Console.WriteLine("Thanks for playing!");
+			Console.WriteLine($"As a reminded {me.Name}, you lost {me.Losses} time(s) to {players[playerChoice].Name}!");
 		}
 
 		static List<Player> GetPlayerOptions()
@@ -61,44 +64,25 @@ namespace Lab_5._2
 			return players;
 		}
 
-		static void GetWinner(Player p1, Player p2)
+		static Outcome GetWinner(Player p1, Player p2)
 		{
-			if (p1.Roshambo == RPS.rock && p2.Roshambo == RPS.rock)
+			Outcome result = Outcome.draw;
+			if ((p1.Roshambo == RPS.rock && p2.Roshambo == RPS.rock) || (p1.Roshambo == RPS.paper && p2.Roshambo == RPS.paper) || (p1.Roshambo == RPS.scissors && p2.Roshambo == RPS.scissors))
 			{
 				Console.WriteLine("Draw!");
+				result = Outcome.draw;
 			}
-			if (p1.Roshambo == RPS.rock && p2.Roshambo == RPS.paper)
+			if ((p1.Roshambo == RPS.rock && p2.Roshambo == RPS.paper) || (p1.Roshambo == RPS.paper && p2.Roshambo == RPS.scissors) || (p1.Roshambo == RPS.scissors && p2.Roshambo == RPS.rock))
 			{
 				Console.WriteLine($"{p2.Name} wins!");
+				result = Outcome.lose;
 			}
-			if (p1.Roshambo == RPS.rock && p2.Roshambo == RPS.scissors)
+			if ((p1.Roshambo == RPS.rock && p2.Roshambo == RPS.scissors) || (p1.Roshambo == RPS.paper && p2.Roshambo == RPS.rock) || (p1.Roshambo == RPS.scissors && p2.Roshambo == RPS.paper))
 			{
 				Console.WriteLine($"{p1.Name} wins!");
+				result = Outcome.win;
 			}
-			if (p1.Roshambo == RPS.paper && p2.Roshambo == RPS.rock)
-			{
-				Console.WriteLine($"{p1.Name} wins!");
-			}
-			if (p1.Roshambo == RPS.paper && p2.Roshambo == RPS.paper)
-			{
-				Console.WriteLine("Draw!");
-			}
-			if (p1.Roshambo == RPS.paper && p2.Roshambo == RPS.scissors)
-			{
-				Console.WriteLine($"{p2.Name} wins!");
-			}
-			if (p1.Roshambo == RPS.scissors && p2.Roshambo == RPS.rock)
-			{
-				Console.WriteLine($"{p2.Name} wins!");
-			}
-			if (p1.Roshambo == RPS.scissors && p2.Roshambo == RPS.paper)
-			{
-				Console.WriteLine($"{p1.Name} wins!");
-			}
-			if (p1.Roshambo == RPS.scissors && p2.Roshambo == RPS.scissors)
-			{
-				Console.WriteLine("Draw!");
-			}
+			return result;
 		}
 	}
 }

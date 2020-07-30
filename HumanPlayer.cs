@@ -20,6 +20,7 @@ namespace Lab_5._2
 			{
 				Console.Write("That is not a valid choice.  Try again. ");
 				input = Console.ReadLine().ToLower();
+				isValid = ((input == "1" || input == "rock" || input == "r") || (input == "2" || input == "paper" || input == "p") || (input == "3" || input == "scissors" || input == "s"));
 			}
 			int choice;
 			if (input == "1" || input == "rock" || input == "r")
@@ -36,6 +37,22 @@ namespace Lab_5._2
 			}
 			base.Roshambo = (RPS)choice;
 			return (RPS)choice;
+		}
+
+		public void WinOrLose(Outcome x)
+		{
+			if(x == Outcome.win)
+			{
+				base.Wins++;
+			}
+			if(x == Outcome.lose)
+			{
+				base.Losses++;
+			}
+			if(x == Outcome.draw)
+			{
+				base.Draw++;
+			}
 		}
 	}
 }
