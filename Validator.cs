@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lab_5._2
 {
-	class Validator
+	static class Validator
 	{
 		public static string YesOrNo()
 		{
