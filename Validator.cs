@@ -7,7 +7,6 @@ namespace Lab_5._2
 {
 	class Validator
 	{
-
 		public string YesOrNo()
 		{
 			//Gets the users input.
@@ -66,6 +65,36 @@ namespace Lab_5._2
 			{
 				return playerChoice - 1;
 			}
+		}
+
+		public RPS GetRoshamboInput()
+		{
+			string input = Console.ReadLine().ToLower();
+			//Sets bool value to true if input matches one of the below options.  Otherwise sets to false.
+			bool isValid = ((input == "1" || input == "rock" || input == "r") || (input == "2" || input == "paper" || input == "p") || (input == "3" || input == "scissors" || input == "s"));
+			//Loops through until one of the valid options is picked.
+			while (!isValid)
+			{
+				Console.Write("That is not a valid choice.  Try again. ");
+				input = Console.ReadLine().ToLower();
+				isValid = ((input == "1" || input == "rock" || input == "r") || (input == "2" || input == "paper" || input == "p") || (input == "3" || input == "scissors" || input == "s"));
+			}
+			//Assigns an interger value to the users input.
+			int choice;
+			if (input == "1" || input == "rock" || input == "r")
+			{
+				choice = 0;
+			}
+			else if (input == "2" || input == "paper" || input == "p")
+			{
+				choice = 1;
+			}
+			else
+			{
+				choice = 2;
+			}
+			//Integer value is then casted as a RPS value and returned.
+			return (RPS)choice;
 		}
 	}
 }
