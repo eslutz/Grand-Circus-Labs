@@ -12,7 +12,7 @@ namespace Lab_5._2
 			base.Name = name;
 		}
 
-		//Gets the users input for their move.
+		//Gets the users input for their move and updates the Roshambo field.
 		public override RPS GenerateRoshambo()
 		{
 			Console.Write("Rock, paper, or scissors? ");
