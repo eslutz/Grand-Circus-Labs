@@ -7,6 +7,7 @@ namespace Lab_5._2
 	{
 		static void Main(string[] args)
 		{
+			Validator valid = new Validator();
 			List<Player> players = GetPlayerOptions();
 			Console.WriteLine("Welcome to the Grand Circus Rock Paper Scissors World Chamionship!");
 			Console.WriteLine();
@@ -18,14 +19,8 @@ namespace Lab_5._2
 			{
 				Console.WriteLine($"{index + 1}. {players[index].Name}");
 			}
-			Console.Write("Choose a number for the player you would like to play against. ");
-			bool isValid = int.TryParse(Console.ReadLine(), out int playerChoice);
-			while (!isValid || !(playerChoice > 0 && playerChoice <= players.Count))
-			{
-				Console.Write("That is not a valid choice.  Try again. ");
-				isValid = int.TryParse(Console.ReadLine(), out playerChoice);
-			}
-			playerChoice--;
+			Console.Write("Choose a player you would like to compete against. ");
+			int playerChoice = valid.PickOpponent(players);
 			Console.WriteLine();
 			while (true)
 			{
@@ -40,14 +35,9 @@ namespace Lab_5._2
 				Console.WriteLine();
 
 				Console.Write("Play again? (y/n): ");
-				string yesOrNo = Console.ReadLine().ToLower();
-				while (!(yesOrNo == "yes" || yesOrNo == "y" || yesOrNo == "no" || yesOrNo == "n"))
-				{
-					Console.Write("Invalid input.  Continue? (y/n): ");
-					yesOrNo = Console.ReadLine().ToLower();
-				}
+				string answer = valid.YesOrNo();
 				Console.Clear();
-				if(yesOrNo == "no" || yesOrNo == "n")
+				if(answer == "no" || answer == "n")
 				{
 					break;
 				}
