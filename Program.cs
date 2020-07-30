@@ -7,13 +7,18 @@ namespace Lab_5._2
 	{
 		static void Main(string[] args)
 		{
+			//Declared an object for getting validated input.
 			Validator valid = new Validator();
+			//Declared a list for storing the opponents and called the method to fill it.
 			List<Player> players = GetPlayerOptions();
 			Console.WriteLine("Welcome to the Grand Circus Rock Paper Scissors World Chamionship!");
-			Console.WriteLine();
-			Console.Write("Enter your name: ");
+			
+			//Gets the users name and creates a human player with their name.
+			Console.Write("\nEnter your name: ");
 			string userName = Console.ReadLine();
 			HumanPlayer me = new HumanPlayer(userName);
+
+			//Displays available opponents to play against and gets the users validated input.
 			Console.WriteLine();
 			for (int index = 0; index < players.Count; index++)
 			{
@@ -21,20 +26,27 @@ namespace Lab_5._2
 			}
 			Console.Write("Choose a player you would like to compete against. ");
 			int playerChoice = valid.PickOpponent(players);
+			
+			//Loops through until the user is done playing against their chosen opponent.
 			Console.WriteLine();
 			while (true)
 			{
+				//Gets the users move.
 				me.GenerateRoshambo();
+				//Gets the opponents move.
 				players[playerChoice].GenerateRoshambo();
-				Console.WriteLine();
-				Console.WriteLine($"{me.Name}: {me.Roshambo}");
-				Console.WriteLine($"{players[playerChoice].Name}: {players[playerChoice].Roshambo}");
-				Console.WriteLine();
-				me.WinOrLose(GetWinner(me, players[playerChoice]));
-				Console.WriteLine($"That makes it {me.Wins} win(s), {me.Losses} losse(s), and {me.Draw} draw(s) for you!");
-				Console.WriteLine();
 
-				Console.Write("Play again? (y/n): ");
+				//Displays the picked moves for both players.
+				Console.WriteLine($"\n{me.Name}: {me.Roshambo}");
+				Console.WriteLine($"{players[playerChoice].Name}: {players[playerChoice].Roshambo}");
+				
+				//Determines and outputs the winner and calls the method to tally the users wins and losses.
+				me.WinOrLose(GetWinner(me, players[playerChoice]));
+				//Displays the users wins and losses.
+				Console.WriteLine($"That makes it {me.Wins} win(s), {me.Losses} losse(s), and {me.Draw} draw(s) for you!");
+
+				//Asks if the user wants to play again and gets validated input.
+				Console.Write("\nPlay again? (y/n): ");
 				string answer = valid.YesOrNo();
 				Console.Clear();
 				if(answer == "no" || answer == "n")
@@ -42,6 +54,7 @@ namespace Lab_5._2
 					break;
 				}
 			}
+			//Displays a parting message to the user.
 			Console.WriteLine("Thanks for playing!");
 			Console.WriteLine($"As a reminded {me.Name}, you lost {me.Losses} time(s) to {players[playerChoice].Name}!");
 		}
