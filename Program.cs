@@ -59,6 +59,7 @@ namespace Lab_5._2
 			Console.WriteLine($"As a reminded {me.Name}, you lost {me.Losses} time(s) to {players[playerChoice].Name}!");
 		}
 
+		//Method returns a list filled with players to compete against.
 		static List<Player> GetPlayerOptions()
 		{
 			List<Player> players = new List<Player>();
@@ -67,6 +68,7 @@ namespace Lab_5._2
 			return players;
 		}
 
+		//Method determines the winner of the match and returns the outcome.
 		static Outcome GetWinner(Player p1, Player p2)
 		{
 			Outcome result = Outcome.draw;
