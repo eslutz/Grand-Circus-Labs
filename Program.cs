@@ -7,8 +7,6 @@ namespace Lab_5._2
 	{
 		static void Main(string[] args)
 		{
-			//Declared an object for getting validated input.
-			Validator valid = new Validator();
 			//Declared a list for storing the opponents and called the method to fill it.
 			List<Player> players = GetPlayerOptions();
 			Console.WriteLine("Welcome to the Grand Circus Rock Paper Scissors World Chamionship!");
@@ -25,7 +23,7 @@ namespace Lab_5._2
 				Console.WriteLine($"{index + 1}. {players[index].Name}");
 			}
 			Console.Write("Choose a player you would like to compete against. ");
-			int playerChoice = valid.PickOpponent(players);
+			int playerChoice = Validator.PickOpponent(players);
 			
 			//Loops through until the user is done playing against their chosen opponent.
 			Console.WriteLine();
@@ -47,7 +45,7 @@ namespace Lab_5._2
 
 				//Asks if the user wants to play again and gets validated input.
 				Console.Write("\nPlay again? (y/n): ");
-				string answer = valid.YesOrNo();
+				string answer = Validator.YesOrNo();
 				Console.Clear();
 				if(answer == "no" || answer == "n")
 				{

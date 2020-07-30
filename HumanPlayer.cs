@@ -16,7 +16,7 @@ namespace Lab_5._2
 		public override RPS GenerateRoshambo()
 		{
 			Console.Write("Rock, paper, or scissors? ");
-			RPS choice = new Validator().GetRoshamboInput();
+			RPS choice = Validator.GetRoshamboInput();
 			base.Roshambo = choice;
 			return choice;
 		}

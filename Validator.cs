@@ -7,7 +7,7 @@ namespace Lab_5._2
 {
 	class Validator
 	{
-		public string YesOrNo()
+		public static string YesOrNo()
 		{
 			//Gets the users input.
 			string yesOrNo = Console.ReadLine().ToLower();
@@ -21,7 +21,7 @@ namespace Lab_5._2
 			return yesOrNo;
 		}
 
-		public int PickOpponent(List<Player> players)
+		public static int PickOpponent(List<Player> players)
 		{
 			//Gets input for opponent choice.
 			string input = Console.ReadLine().ToLower();
@@ -67,7 +67,7 @@ namespace Lab_5._2
 			}
 		}
 
-		public RPS GetRoshamboInput()
+		public static RPS GetRoshamboInput()
 		{
 			string input = Console.ReadLine().ToLower();
 			//Sets bool value to true if input matches one of the below options.  Otherwise sets to false.
