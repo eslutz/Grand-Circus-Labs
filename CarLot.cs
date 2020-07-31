@@ -11,9 +11,9 @@ namespace Lab_5._3
 		private List<Car> CarLotList = new List<Car>();
 
 		//Method to add a car or used car object to the list.
-		public void AddCar(Car addMe)
+		public void AddCar(Car addMe, int optionalIndex = 0)
 		{
-			CarLotList.Add(addMe);
+			CarLotList.Insert(optionalIndex, addMe);
 		}
 
 		//Method to remove a car or used car object from the list based on that objects index which is passed in.
@@ -47,35 +47,9 @@ namespace Lab_5._3
 			return CarLotList.Count;
 		}
 
-		//Method to edit a car.
-		public void EditCar(int index)
+		public Car GetCar(int index)
 		{
-			//Sets index argument to zero based index.
-			index--;
-			Console.Write("What would you like to change? (make/model/year/price/used) ");
-			string input = Console.ReadLine().ToLower();
-			while(!(input == "make" || input == "model" || input == "year" || input == "price" || input == "used"))
-			{
-				Console.Write("Invalid input.  Try again. (make/model/year/price/used) ");
-				input = Console.ReadLine().ToLower();
-			}
-			switch (input)
-			{
-				case "make":
-					Console.Write("Enter a new make: ");
-					input = Console.ReadLine();
-					CarLotList[index].Make = input;
-					break;
-				case "model":
-					break;
-				case "year":
-					break;
-				case "price":
-					break;
-				case "used":
-					break;
-			}
-
+			return CarLotList[index];
 		}
 	}
 }

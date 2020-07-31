@@ -22,19 +22,19 @@ namespace Lab_5._3
 		public string Model
 		{
 			get { return _model; }
-			private set { _model = value; }
+			protected set { _model = value; }
 		}
 
 		public int Year
 		{
 			get { return _year; }
-			private set { _year = value; }
+			protected set { _year = value; }
 		}
 
 		public decimal Price
 		{
 			get { return _price; }
-			private set { _price = value; }
+			protected set { _price = value; }
 		}
 
 		//Default constructor.
@@ -59,6 +59,51 @@ namespace Lab_5._3
 		public override string ToString()
 		{
 			return $"{Make,-14}{Model,-14}{Year,-4}{Price,14:C}";
+		}
+
+		//Method to edit a car.
+		public virtual void EditCar()
+		{
+			Console.Write("What would you like to change (make/model/year/price)? ");
+			string input = Console.ReadLine().ToLower();
+			while (!(input == "make" || input == "model" || input == "year" || input == "price" || input == "used"))
+			{
+				Console.Write("Invalid input. What would you like to change (make/model/year/price)? ");
+				input = Console.ReadLine().ToLower();
+			}
+			switch (input)
+			{
+				case "make":
+					Console.Write("Enter a new make: ");
+					input = Console.ReadLine();
+					Make = input;
+					break;
+				case "model":
+					Console.Write("Enter a new model: ");
+					input = Console.ReadLine();
+					Model = input;
+					break;
+				case "year":
+					Console.Write("Enter a new year: ");
+					bool isValid = int.TryParse(Console.ReadLine(), out int year);
+					while (!isValid || !(year >= 1886))
+					{
+						Console.Write($"Sorry, please enter a year after the car was invented (1886). ");
+						isValid = int.TryParse(Console.ReadLine(), out year);
+					}
+					Year = year;
+					break;
+				case "price":
+					Console.Write("Enter a new price: ");
+					isValid = decimal.TryParse(Console.ReadLine(), out decimal price);
+					while (!isValid || !(price >= 0))
+					{
+						Console.Write($"Sorry, please enter non-negitive value. ");
+						isValid = decimal.TryParse(Console.ReadLine(), out price);
+					}
+					Price = price;
+					break;
+			}
 		}
 	}
 }

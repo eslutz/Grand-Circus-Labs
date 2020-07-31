@@ -113,15 +113,60 @@ namespace Lab_5._3
 		{
 			if (lot.LotCount() != 0)
 			{
+				Console.WriteLine();
 				lot.DisplayCars();
-				Console.Write($"Which car do you want to edit? (1 - {lot.LotCount()})");
+				Console.Write($"\nWhich car do you want to edit (1 - {lot.LotCount()})? ");
 				bool isValid = int.TryParse(Console.ReadLine(), out int option);
 				while (!isValid && !(option >= 1 && option <= lot.LotCount()))
 				{
-					Console.Write($"That is not a valid option.  Select 1-{lot.LotCount()}.");
+					Console.Write($"That is not a valid option.  Select 1-{lot.LotCount()}. ");
 					isValid = int.TryParse(Console.ReadLine(), out option);
 				}
-				lot.EditCar(option);
+				lot.GetCar(option-1).EditCar();
+				Console.Clear();
+			}
+			else
+			{
+				Console.WriteLine("There are no cars in this lot.  Please add a car first.");
+			}
+		}
+
+		static void ReplaceACar(CarLot lot)
+		{
+			if (lot.LotCount() != 0)
+			{
+				lot.DisplayCars();
+				Console.Write($"\nWhich car do you want to replace (1 - {lot.LotCount()})? ");
+				bool isValid = int.TryParse(Console.ReadLine(), out int option);
+				while (!isValid && !(option >= 1 && option <= lot.LotCount()))
+				{
+					Console.Write($"That is not a valid option.  Select 1-{lot.LotCount()}. ");
+					isValid = int.TryParse(Console.ReadLine(), out option);
+				}
+				lot.RemoveCar(option - 1);
+				AddACar(lot , option-1);
+				Console.Clear();
+			}
+			else
+			{
+				Console.WriteLine("There are no cars in this lot.  Please add a car first.");
+			}
+		}
+
+		static void DeleteACar(CarLot lot)
+		{
+			if (lot.LotCount() != 0)
+			{
+				lot.DisplayCars();
+				Console.Write($"\nWhich car do you want to delete (1 - {lot.LotCount()})? ");
+				bool isValid = int.TryParse(Console.ReadLine(), out int option);
+				while (!isValid && !(option >= 1 && option <= lot.LotCount()))
+				{
+					Console.Write($"That is not a valid option.  Select 1-{lot.LotCount()}. ");
+					isValid = int.TryParse(Console.ReadLine(), out option);
+				}
+				lot.RemoveCar(option - 1);
+				Console.Clear();
 			}
 			else
 			{
@@ -130,7 +175,7 @@ namespace Lab_5._3
 		}
 
 		//Method to get details from the user of car they want to add.
-		static void AddACar(CarLot lot)
+		static void AddACar(CarLot lot, int optionalIndex = 0)
 		{
 			double milage;
 			decimal price;
@@ -150,8 +195,8 @@ namespace Lab_5._3
 				Console.Write($"Sorry, please enter a year after the car was invented (1886). ");
 				isValid = int.TryParse(Console.ReadLine(), out year);
 			}
-			//Validates that the price is not negative.
 			Console.Write("Car price: ");
+			//Validates that the price is not negative.
 			isValid = decimal.TryParse(Console.ReadLine(), out price);
 			while (!isValid || !(price >= 0))
 			{
@@ -178,14 +223,14 @@ namespace Lab_5._3
 					isValid = double.TryParse(Console.ReadLine(), out milage);
 				}
 				//Adds used car object with user entered values to the lot list using AddCar method from CarLot class.
-				lot.AddCar(new UsedCar(make, model, year, price, milage));
+				lot.AddCar(new UsedCar(make, model, year, price, milage), optionalIndex);
 				Console.WriteLine("Thank you.  A used car has been added.\n");
 			}
 			//If the car is new.
 			else
 			{
 				//Adds new car object with user entered values to the lot list using AddCar method from CarLot class.
-				lot.AddCar(new Car(make, model, year, price));
+				lot.AddCar(new Car(make, model, year, price), optionalIndex);
 				Console.WriteLine("Thank you.  A new car has been added.\n");
 			}
 		}
