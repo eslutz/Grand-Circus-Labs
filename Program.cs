@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
@@ -35,39 +36,55 @@ namespace Lab_5._3
 		static void ShowOptions(CarLot lot)
 		{
 			//Loops until the user quits.
+			string search = "all";
 			bool keepGoing = true;
 			do
 			{
 				Console.WriteLine("Welcome to the Grand Circus Used Car Emporium!\n");
 
 				//Calls DisplayCar method from the CarLot class to show all the cars.
-				lot.DisplayCars();
+				lot.DisplayCars(search);
 				//Adds options to add a car or quit after all the cars are shown.
-				Console.WriteLine($"{lot.LotCount() + 1 + ".",-4}{"Admin (add/edit/replace/delete)"}");
-				Console.WriteLine($"{lot.LotCount() + 2 + ".",-4}{"Quit"}");
+				Console.WriteLine($"{lot.LotCount() + 1 + ".",-4}{"Search"}");
+				Console.WriteLine($"{lot.LotCount() + 2 + ".",-4}{"Admin (add/edit/replace/delete)"}");
+				Console.WriteLine($"{lot.LotCount() + 3 + ".",-4}{"Quit"}");
 
 				//Asks the user which car they want and checks that it is a valid option.
 				Console.Write($"\nWhich car would you like? ");
 				bool isValid = int.TryParse(Console.ReadLine(), out int option);
-				while (!isValid || !(option > 0 && option <= (lot.LotCount() + 2)))
+				while (!isValid || !(option > 0 && option <= (lot.LotCount() + 3)))
 				{
-					Console.Write($"Sorry, that is not a valid option.  Please select 1 - {lot.LotCount() + 2}. ");
+					Console.Write($"Sorry, that is not a valid option.  Please select 1 - {lot.LotCount() + 3}. ");
 					isValid = int.TryParse(Console.ReadLine(), out option);
 				}
 
 				//If the user selects the last option, they want to quit.
-				if (option == (lot.LotCount() + 2))
+				if (option == (lot.LotCount() + 3))
 				{
 					//Sets to false to break out of the loop.
 					keepGoing = false;
 					Console.WriteLine("Thanks for shopping with us.  Have a great day!");
 				}
 				//If the user selects the second to last option, they want to add a car.
+				else if (option == (lot.LotCount() + 2))
+				{
+					Console.Clear();
+					//Calls method EditCars, passing the current list of cars in the lot.
+					EditCars(lot);
+				}
+				//If the user selects the third to last option, they want to search for cars.
 				else if (option == (lot.LotCount() + 1))
 				{
 					Console.Clear();
-					//Calls method AddCar, passing the current list of cars in the lot.
-					EditCars(lot);
+					Console.Write("Enter search criteria (make/year/new/uesd/price/all): ");
+					search = Console.ReadLine().ToLower();
+					while (!(search == "make" || search == "year" || search == "new" || search == "used" || search == "price" || search == "all"))
+					{
+						Console.WriteLine($"Invalid input");
+						Console.Write("Enter search criteria (make/year/new/uesd/price): ");
+						search = Console.ReadLine().ToLower();
+					}
+
 				}
 				//Else, user selected the car they are interested in buying.
 				else
