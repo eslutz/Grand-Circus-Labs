@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Reflection;
+using System.Reflection.Emit;
+using System.Text;
 
 namespace Lab_5._3
 {
@@ -40,7 +43,7 @@ namespace Lab_5._3
 				//Calls DisplayCar method from the CarLot class to show all the cars.
 				lot.DisplayCars();
 				//Adds options to add a car or quit after all the cars are shown.
-				Console.WriteLine($"{lot.LotCount() + 1 + ".",-4}{"Add A Car"}");
+				Console.WriteLine($"{lot.LotCount() + 1 + ".",-4}{"Admin (add/edit/replace/delete)"}");
 				Console.WriteLine($"{lot.LotCount() + 2 + ".",-4}{"Quit"}");
 
 				//Asks the user which car they want and checks that it is a valid option.
@@ -64,7 +67,7 @@ namespace Lab_5._3
 				{
 					Console.Clear();
 					//Calls method AddCar, passing the current list of cars in the lot.
-					AddACar(lot);
+					EditCars(lot);
 				}
 				//Else, user selected the car they are interested in buying.
 				else
@@ -74,6 +77,56 @@ namespace Lab_5._3
 					BuyCar(lot, option - 1);
 				}
 			} while (keepGoing);
+		}
+
+		static void EditCars(CarLot lot)
+		{
+			Console.WriteLine("1. Add a car");
+			Console.WriteLine("2. Edit a car");
+			Console.WriteLine("3. Replace a car");
+			Console.WriteLine("4. Delete a car");
+			Console.Write("Please select an option (1-4): ");
+			bool isValid = int.TryParse(Console.ReadLine(), out int option);
+			while(!isValid && !(option >= 1 && option <= 4))
+			{
+				Console.Write("That is not a valid option.  Select 1-4.");
+				isValid = int.TryParse(Console.ReadLine(), out option);
+			}
+			switch (option)
+			{
+				case 1:
+					AddACar(lot);
+					break;
+				case 2:
+					EditACar(lot);
+					break;
+				case 3:
+					ReplaceACar(lot);
+					break;
+				case 4:
+					DeleteACar(lot);
+					break;
+			}
+		}
+
+		static void EditACar(CarLot lot)
+		{
+			if (lot.LotCount() != 0)
+			{
+				lot.DisplayCars();
+				Console.Write($"Which car do you want to edit? (1 - {lot.LotCount()})");
+				bool isValid = int.TryParse(Console.ReadLine(), out int option);
+				while (!isValid && !(option >= 1 && option <= lot.LotCount()))
+				{
+					Console.Write($"That is not a valid option.  Select 1-{lot.LotCount()}.");
+					isValid = int.TryParse(Console.ReadLine(), out option);
+				}
+				lot.EditCar(option);
+			}
+			else
+			{
+				Console.WriteLine("There are no cars in this lot.  Please add a car first.");
+			}
 		}
 
 		//Method to get details from the user of car they want to add.

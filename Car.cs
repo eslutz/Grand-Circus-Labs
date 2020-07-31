@@ -16,7 +16,7 @@ namespace Lab_5._3
 		public string Make
 		{
 			get { return _make; }
-			private set { _make = value; }
+			protected set { _make = value; }
 		}
 
 		public string Model

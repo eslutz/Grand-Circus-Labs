@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Lab_5._3
@@ -44,6 +45,37 @@ namespace Lab_5._3
 		public int LotCount()
 		{
 			return CarLotList.Count;
+		}
+
+		//Method to edit a car.
+		public void EditCar(int index)
+		{
+			//Sets index argument to zero based index.
+			index--;
+			Console.Write("What would you like to change? (make/model/year/price/used) ");
+			string input = Console.ReadLine().ToLower();
+			while(!(input == "make" || input == "model" || input == "year" || input == "price" || input == "used"))
+			{
+				Console.Write("Invalid input.  Try again. (make/model/year/price/used) ");
+				input = Console.ReadLine().ToLower();
+			}
+			switch (input)
+			{
+				case "make":
+					Console.Write("Enter a new make: ");
+					input = Console.ReadLine();
+					CarLotList[index].Make = input;
+					break;
+				case "model":
+					break;
+				case "year":
+					break;
+				case "price":
+					break;
+				case "used":
+					break;
+			}
+
 		}
 	}
 }
