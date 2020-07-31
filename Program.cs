@@ -79,17 +79,19 @@ namespace Lab_5._3
 			} while (keepGoing);
 		}
 
+		//Method displaying edit options and getting the users input.
 		static void EditCars(CarLot lot)
 		{
 			Console.WriteLine("1. Add a car");
 			Console.WriteLine("2. Edit a car");
 			Console.WriteLine("3. Replace a car");
 			Console.WriteLine("4. Delete a car");
-			Console.Write("Please select an option (1-4): ");
+			Console.WriteLine("5. Back");
+			Console.Write("Please select an option (1-5): ");
 			bool isValid = int.TryParse(Console.ReadLine(), out int option);
-			while(!isValid && !(option >= 1 && option <= 4))
+			while(!isValid && !(option >= 1 && option <= 5))
 			{
-				Console.Write("That is not a valid option.  Select 1-4.");
+				Console.Write("That is not a valid option.  Select 1-5. ");
 				isValid = int.TryParse(Console.ReadLine(), out option);
 			}
 			switch (option)
@@ -106,9 +108,13 @@ namespace Lab_5._3
 				case 4:
 					DeleteACar(lot);
 					break;
+				default:
+					Console.Clear();
+					break;
 			}
 		}
 
+		//Displays cars if there are any and gets users choice of car to edit.
 		static void EditACar(CarLot lot)
 		{
 			if (lot.LotCount() != 0)
@@ -131,6 +137,7 @@ namespace Lab_5._3
 			}
 		}
 
+		//Displays cars if there are any and gets users choice of car to replace.
 		static void ReplaceACar(CarLot lot)
 		{
 			if (lot.LotCount() != 0)
@@ -153,6 +160,7 @@ namespace Lab_5._3
 			}
 		}
 
+		//Displays cars if there are any and gets users choice of car to delete.
 		static void DeleteACar(CarLot lot)
 		{
 			if (lot.LotCount() != 0)

@@ -47,6 +47,7 @@ namespace Lab_5._3
 			return CarLotList.Count;
 		}
 
+		//Method returns the requested car object.
 		public Car GetCar(int index)
 		{
 			return CarLotList[index];
