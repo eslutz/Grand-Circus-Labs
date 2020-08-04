@@ -23,7 +23,7 @@ namespace Lab_6._1
 		}
 
 		//Checks if a number is a prime number
-		public static bool isPrime(int num)
+		private static bool isPrime(int num)
 		{
 			for (int i = 2; i < num; i++)
 			{
