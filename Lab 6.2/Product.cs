@@ -4,16 +4,32 @@ using System.Text;
 
 namespace Lab_6._2
 {
-	enum ProdCategory
+	public enum ProdCategory
 	{
-
+		Action,
+		Comedy,
+		Documentary,
+		Drama,
+		Horror,
+		SciFi,
+		Thriller
 	}
-	class Product
+
+	public class Product
 	{
+		//Stores the list of products.
+		private static List<Product> products = new List<Product>();
+
 		private string _name;
 		private ProdCategory _category;
 		private string _description;
 		private decimal _price;
+
+		//Allows list to be read from outside the class.
+		public static List<Product> Products
+		{
+			get { return products; }
+		}
 
 		public string Name
 		{
@@ -39,6 +55,25 @@ namespace Lab_6._2
 			private set { _price = value; }
 		}
 
+		//Constructor taking in all the paramaters.
+		public Product(string name, ProdCategory cat, decimal price, string description)
+		{
+			Name = name;
+			Category = cat;
+			Price = price;
+			Description = description;
+			products.Add(this);
+		}
 
+		public void DisplayProducts()
+		{
+
+		}
+
+		//Override tostring to display the values of the product.
+		public override string ToString()
+		{
+			return $"{Name, -40}{Category, -12}{Price, 6}{"",2}{Description}";
+		}
 	}
 }
