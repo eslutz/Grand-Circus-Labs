@@ -7,20 +7,20 @@ namespace Lab_6._2
 		static void Main(string[] args)
 		{
 			CreateInventory();
-			string yesOrNo;
+			YesNo yesOrNo;
 			do
 			{
 				NewOrder();
 				Console.Write("\nWould you like to start a new order (y/n)? ");
 
-				yesOrNo = Console.ReadLine().ToLower();
-				while (!(yesOrNo == "yes" || yesOrNo == "y" || yesOrNo == "no" || yesOrNo == "n"))
+				bool isValid = Validator.YesOrNo(Console.ReadLine(), out yesOrNo);
+				while (!isValid)
 				{
 					Console.Write("Invalid input.  Continue? (y/n): ");
-					yesOrNo = Console.ReadLine().ToLower();
+					isValid = Validator.YesOrNo(Console.ReadLine(), out yesOrNo);
 				}
 				Console.Clear();
-			} while (yesOrNo == "yes" || yesOrNo == "y");
+			} while (yesOrNo == YesNo.Yes);
 
 		}
 
@@ -50,7 +50,7 @@ namespace Lab_6._2
 
 		static void NewOrder()
 		{
-			string yesOrNo;
+			YesNo yesOrNo;
 			CustomerOrder currentOrder = new CustomerOrder();
 			do
 			{
@@ -79,14 +79,14 @@ namespace Lab_6._2
 
 
 				Console.Write("\nWould you like to purchase another item (y/n)? ");
-				yesOrNo = Console.ReadLine().ToLower();
-				while (!(yesOrNo == "yes" || yesOrNo == "y" || yesOrNo == "no" || yesOrNo == "n"))
+				isValid = Validator.YesOrNo(Console.ReadLine(), out yesOrNo);
+				while (!isValid)
 				{
 					Console.Write("Invalid input.  Continue? (y/n): ");
-					yesOrNo = Console.ReadLine().ToLower();
+					isValid = Validator.YesOrNo(Console.ReadLine(), out yesOrNo);
 				}
 				Console.Clear();
-			} while (yesOrNo == "yes" || yesOrNo == "y");
+			} while (yesOrNo == YesNo.Yes);
 
 			Console.WriteLine($"Your subtotal is: {currentOrder.SubTotal():C}");
 			Console.WriteLine($"Total Tax: {decimal.Round(currentOrder.Subtotal * .06m, 2):C}");
