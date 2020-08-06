@@ -98,7 +98,7 @@ namespace Lab_6._2
 			{
 				receipt += $"{item.Key.Name,-40}{item.Key.Category,-12}{item.Key.Price,6:C}{item.Value,6}{item.Key.Price * item.Value,12:C}\n";
 			}
-			receipt += $"{new String('-', 30)}\n";
+			receipt += $"\n{new String('-', 30)}\n";
 			receipt += $"{"Subtotal:",-20}{Subtotal:C}\n";
 			receipt += $"{"Total (6% tax):",-20}{Total:C}\n";
 			receipt += $"{"Amount Paid:",-20}{PayementAmount:C}\n";

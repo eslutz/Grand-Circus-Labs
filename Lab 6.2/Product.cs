@@ -65,15 +65,21 @@ namespace Lab_6._2
 			products.Add(this);
 		}
 
-		public void DisplayProducts()
+		public static string DisplayProducts()
 		{
-
+			string allProducts = $"{"Item",-44}{"Category",-12}{"Price",6}{"",2}{"Description"}\n";
+			allProducts += $"{new String('*',118)}\n";
+			for(int index = 0; index < Products.Count; index++)
+			{
+				allProducts += $"{(index + 1)+".",-4}{Products[index]}\n";
+			}
+			return allProducts;
 		}
 
 		//Override tostring to display the values of the product.
 		public override string ToString()
 		{
-			return $"{Name, -40}{Category, -12}{Price, 6}{"",2}{Description}";
+			return $"{Name, -40}{Category, -12}{Price, 6:C}{"",2}{Description}";
 		}
 	}
 }

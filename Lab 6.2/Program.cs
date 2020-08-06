@@ -8,20 +8,62 @@ namespace Lab_6._2
 		{
 			CreateInventory();
 
-			foreach(Product x in Product.Products)
+			string yesOrNo;
+			CustomerOrder currentOrder = new CustomerOrder();
+			do
 			{
-				Console.WriteLine(x);
+				Console.WriteLine("Welcome to the Grand Circus DVD Emporium!\n");
+				Console.WriteLine(Product.DisplayProducts());
+
+				Console.Write($"Which item would you like to buy (1 - {Product.Products.Count})? ");
+				bool isValid = int.TryParse(Console.ReadLine(), out int choice);
+				while (!isValid || !(choice > 0 && choice <= Product.Products.Count))
+				{
+					Console.WriteLine("That is not a valid option.");
+					Console.Write($"Which item would you like to buy (1 - {Product.Products.Count})? ");
+					isValid = int.TryParse(Console.ReadLine(), out choice);
+				}
+				Console.Write("How many of this item would you like? ");
+				isValid = int.TryParse(Console.ReadLine(), out int qty);
+				while (!isValid || !(qty > 0))
+				{
+					Console.WriteLine("That is not a valid option.");
+					Console.Write("You must purchase at least one. ");
+					isValid = int.TryParse(Console.ReadLine(), out qty);
+				}
+				
+				currentOrder.AddToOrder(Product.Products[choice - 1], qty);
+				Console.WriteLine($"You have added {qty} of {Product.Products[choice - 1].Name} to your order for {Product.Products[choice - 1].Price * qty:C}.");
+
+
+				Console.Write("\nWould you like to purchase another item (y/n)? ");
+				yesOrNo = Console.ReadLine().ToLower();
+				while (!(yesOrNo == "yes" || yesOrNo == "y" || yesOrNo == "no" || yesOrNo == "n"))
+				{
+					Console.Write("Invalid input.  Continue? (y/n): ");
+					yesOrNo = Console.ReadLine().ToLower();
+				}
+				Console.Clear();
+			} while (yesOrNo == "yes" || yesOrNo == "y");
+
+			Console.WriteLine($"Your subtotal is: {currentOrder.SubTotal():C}");
+			Console.WriteLine($"Total Tax: {decimal.Round(currentOrder.Subtotal * .06m, 2):C}");
+			Console.WriteLine($"Your grand total is: {currentOrder.GrandTotal():C}");
+
+			Console.Write("\nHow much will you be paying? ");
+			bool paymentValid = decimal.TryParse(Console.ReadLine(), out decimal payment);
+			while (!paymentValid || !(payment >= currentOrder.Total))
+			{
+				Console.WriteLine($"You must enter an amount of at least {currentOrder.Total}.");
+				Console.Write("How much will you be paying? ");
+				paymentValid = decimal.TryParse(Console.ReadLine(), out payment);
 			}
 
-			CustomerOrder newOrder = new CustomerOrder();
-			newOrder.AddToOrder(new Product("Dawn of the Dead", ProdCategory.Horror, 9.99m, "Zombies are going to get you at the mall."), 2);
-			newOrder.AddToOrder(new Product("Aliens", ProdCategory.SciFi, 7.95m, "Aliens are going to get you at during the day."), 1);
+			currentOrder.AmountPaid(payment);
+			Console.WriteLine($"You paid {payment:C}.  Your change is {currentOrder.ChangeDue():C}\n");
 
-			newOrder.SubTotal();
-			newOrder.GrandTotal();
-			newOrder.AmountPaid(30);
-			newOrder.ChangeDue();
-			Console.WriteLine(newOrder.OrderReceipt());
+			Console.WriteLine("Here's your receipt:");
+			Console.WriteLine(currentOrder.OrderReceipt());
 		}
 
 		static void CreateInventory()
