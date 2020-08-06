@@ -13,6 +13,9 @@ namespace Lab_6._2
 
 	public static class Validator
 	{
+		//Validates that the user input is either yes or no.
+		//Returns true if it is and false if it isn't.
+		//Also outputs a YesNo enum value.
 		public static bool YesOrNo(string input, out YesNo output)
 		{
 			input = input.ToLower();

@@ -7,6 +7,7 @@ namespace Lab_6._2
 		static void Main(string[] args)
 		{
 			CreateInventory();
+			//Loops through new orders until the user is done.
 			YesNo yesOrNo;
 			do
 			{
@@ -50,6 +51,7 @@ namespace Lab_6._2
 
 		static void NewOrder()
 		{
+			//Loops through adding items to order until the user is done.
 			YesNo yesOrNo;
 			CustomerOrder currentOrder = new CustomerOrder();
 			do
@@ -57,6 +59,7 @@ namespace Lab_6._2
 				Console.WriteLine("Welcome to the Grand Circus DVD Emporium!\n");
 				Console.WriteLine(Product.DisplayProducts());
 
+				//Gets input for what the user wants to purchase.
 				Console.Write($"Which item would you like to buy (1 - {Product.Products.Count})? ");
 				bool isValid = int.TryParse(Console.ReadLine(), out int choice);
 				while (!isValid || !(choice > 0 && choice <= Product.Products.Count))
@@ -65,6 +68,7 @@ namespace Lab_6._2
 					Console.Write($"Which item would you like to buy (1 - {Product.Products.Count})? ");
 					isValid = int.TryParse(Console.ReadLine(), out choice);
 				}
+				//Gets quantity for item being ordered.
 				Console.Write("How many of this item would you like? ");
 				isValid = int.TryParse(Console.ReadLine(), out int qty);
 				while (!isValid || !(qty > 0))
@@ -73,11 +77,11 @@ namespace Lab_6._2
 					Console.Write("You must purchase at least one. ");
 					isValid = int.TryParse(Console.ReadLine(), out qty);
 				}
-
+				//Adds item and qty. to order and displays the line total.
 				currentOrder.AddToOrder(Product.Products[choice - 1], qty);
 				Console.WriteLine($"You have added {qty} of {Product.Products[choice - 1].Name} to your order for {Product.Products[choice - 1].Price * qty:C}.");
 
-
+				//Asks user if they want to continue.
 				Console.Write("\nWould you like to purchase another item (y/n)? ");
 				isValid = Validator.YesOrNo(Console.ReadLine(), out yesOrNo);
 				while (!isValid)
@@ -88,10 +92,11 @@ namespace Lab_6._2
 				Console.Clear();
 			} while (yesOrNo == YesNo.Yes);
 
+			//Displays subtotal, tax, and grand total.
 			Console.WriteLine($"Your subtotal is: {currentOrder.SubTotal():C}");
 			Console.WriteLine($"Total Tax: {decimal.Round(currentOrder.Subtotal * .06m, 2):C}");
 			Console.WriteLine($"Your grand total is: {currentOrder.GrandTotal():C}");
-
+			//Gets payment amount from user.  Must be at least the grand total.
 			Console.Write("\nHow much will you be paying? $");
 			bool paymentValid = decimal.TryParse(Console.ReadLine(), out decimal payment);
 			while (!paymentValid || !(payment >= currentOrder.Total))
@@ -100,10 +105,11 @@ namespace Lab_6._2
 				Console.Write("How much will you be paying? $");
 				paymentValid = decimal.TryParse(Console.ReadLine(), out payment);
 			}
-			
+			//Displays the change due to the user.
 			currentOrder.AmountPaid(payment);
 			Console.WriteLine($"You paid {payment:C}.  Your change is {currentOrder.ChangeDue():C}\n");
 
+			//Displays the users order receipt.
 			Console.WriteLine("Here's your receipt:");
 			Console.WriteLine(currentOrder.OrderReceipt());
 		}
