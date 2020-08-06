@@ -8,6 +8,15 @@ namespace Lab_6._2.Test
 	public class CustomerOrderTest
 	{
 		[Fact]
+		public void AddToOrderTest()
+		{
+			CustomerOrder newOrder = new CustomerOrder();
+			newOrder.AddToOrder(new Product("Dawn of the Dead", ProdCategory.Horror, 9.99m, "Zombies are going to get you at the mall."), 2);
+
+			Assert.Single(newOrder.Order);
+		}
+
+		[Fact]
 		public void SubtotalTest()
 		{ 
 			CustomerOrder newOrder = new CustomerOrder();
@@ -26,6 +35,15 @@ namespace Lab_6._2.Test
 			newOrder.SubTotal();
 
 			Assert.Equal(29.61m, newOrder.GrandTotal());
+		}
+
+		[Fact]
+		public void AmmountPaidTest()
+		{
+			CustomerOrder newOrder = new CustomerOrder();
+			newOrder.AmountPaid(30);
+
+			Assert.Equal(30, newOrder.PayementAmount);
 		}
 
 		[Fact]

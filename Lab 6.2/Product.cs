@@ -18,7 +18,7 @@ namespace Lab_6._2
 	public class Product
 	{
 		//Stores the list of products.
-		private static List<Product> products = new List<Product>();
+		private static List<Product> _products = new List<Product>();
 
 		private string _name;
 		private ProdCategory _category;
@@ -28,7 +28,7 @@ namespace Lab_6._2
 		//Allows list to be read from outside the class.
 		public static List<Product> Products
 		{
-			get { return products; }
+			get { return _products; }
 		}
 
 		public string Name
@@ -62,7 +62,7 @@ namespace Lab_6._2
 			Category = cat;
 			Price = price;
 			Description = description;
-			products.Add(this);
+			Products.Add(this);
 		}
 
 		public static string DisplayProducts()
