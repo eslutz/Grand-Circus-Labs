@@ -22,31 +22,30 @@ namespace Lab_6._2
 				}
 				Console.Clear();
 			} while (yesOrNo == YesNo.Yes);
-
 		}
 
 		static void CreateInventory()
 		{
 			Product item1 = new Product("Dawn of the Dead", ProdCategory.Horror, 9.99m, "Zombies are going to get you at the mall.");
-			Product item2 = new Product("Aliens", ProdCategory.SciFi, 7.95m, "Zombies are going to get you at during the day.");
-			Product item3 = new Product("Die Hard", ProdCategory.Action, 10.99m, "Zombies are going to get you at during the day.");
-			Product item4 = new Product("Evil Dead", ProdCategory.Horror, 19.99m, "Zombies are going to get you at during the day.");
-			Product item5 = new Product("Back to the Future", ProdCategory.Comedy, 19.95m, "Zombies are going to get you at during the day.");
-			Product item6 = new Product("Bill & Ted's Excellent Adventure", ProdCategory.Comedy, 4.99m, "Zombies are going to get you at during the day.");
-			Product item7 = new Product("Blade Runner", ProdCategory.SciFi, 19.99m, "Zombies are going to get you at during the day.");
-			Product item8 = new Product("The Blues Brothers", ProdCategory.Comedy, 8.99m, "Zombies are going to get you at during the day.");
-			Product item9 = new Product("Caddyshack", ProdCategory.Comedy, 9.95m, "Zombies are going to get you at during the day.");
-			Product item10 = new Product("Dirty Harry", ProdCategory.Thriller, 6.99m, "Zombies are going to get you at during the day.");
-			Product item11 = new Product("The Fifth Element", ProdCategory.SciFi, 16.99m, "Zombies are going to get you at during the day.");
-			Product item12 = new Product("Fury", ProdCategory.Action, 14.95m, "Zombies are going to get you at during the day.");
-			Product item13 = new Product("Gladiator", ProdCategory.Drama, 7.99m, "Zombies are going to get you at during the day.");
-			Product item14 = new Product("Harold and Kumar Go to White Castle", ProdCategory.Comedy, 19.95m, "Zombies are going to get you at during the day.");
-			Product item15 = new Product("Idiocracy", ProdCategory.Documentary, 4.99m, "Zombies are going to get you at during the day.");
-			Product item16 = new Product("Indiana Jones and the Last Crusade", ProdCategory.Action, 10.99m, "Zombies are going to get you at during the day.");
-			Product item17 = new Product("The Martian", ProdCategory.SciFi, 19.99m, "Zombies are going to get you at during the day.");
-			Product item18 = new Product("Napolean Dynamite", ProdCategory.Comedy, 25.99m, "Zombies are going to get you at during the day.");
-			Product item19 = new Product("Serenity", ProdCategory.SciFi, 15.99m, "Zombies are going to get you at during the day.");
-			Product item20 = new Product("Shaun of the Dead", ProdCategory.Comedy, 8.95m, "Zombies are going to get you at during the day.");
+			Product item2 = new Product("Aliens", ProdCategory.SciFi, 7.95m, "Aliens are going to get you in space.");
+			Product item3 = new Product("Die Hard", ProdCategory.Action, 10.99m, "Terrorists are going to get you at the office Christmas party.");
+			Product item4 = new Product("Evil Dead", ProdCategory.Horror, 19.99m, "Deadites are going to get you at the cabin.");
+			Product item5 = new Product("Back to the Future", ProdCategory.Comedy, 19.95m, "Go to the past to fix your parents.");
+			Product item6 = new Product("Bill & Ted's Excellent Adventure", ProdCategory.Comedy, 4.99m, "Go back to the past to pass a test.");
+			Product item7 = new Product("Blade Runner", ProdCategory.SciFi, 19.99m, "Harrison Ford battles androids.");
+			Product item8 = new Product("The Blues Brothers", ProdCategory.Comedy, 8.99m, "They're on a misson from god.");
+			Product item9 = new Product("Caddyshack", ProdCategory.Comedy, 9.95m, "Htting balls all over the place.");
+			Product item10 = new Product("Dirty Harry", ProdCategory.Thriller, 6.99m, "Do you feel lucky?");
+			Product item11 = new Product("The Fifth Element", ProdCategory.SciFi, 16.99m, "Bruce Willis in space with a loud Chris Tucker.");
+			Product item12 = new Product("Fury", ProdCategory.Action, 14.95m, "Brad Pitt in a tank.");
+			Product item13 = new Product("Gladiator", ProdCategory.Drama, 7.99m, "Slice everyone into tiny bits and kill the Emporer.");
+			Product item14 = new Product("Harold and Kumar Go to White Castle", ProdCategory.Comedy, 19.95m, "mmmm White Castle.");
+			Product item15 = new Product("Idiocracy", ProdCategory.Documentary, 4.99m, "The world we live in.");
+			Product item16 = new Product("Indiana Jones and the Last Crusade", ProdCategory.Action, 10.99m, "Harisson Ford + Sean Connery = goodness.");
+			Product item17 = new Product("The Martian", ProdCategory.SciFi, 19.99m, "Saving Private Ryan on Mars.");
+			Product item18 = new Product("Napolean Dynamite", ProdCategory.Comedy, 25.99m, "Knock it off, Napoleon! Make yourself a dang quesadilla!.");
+			Product item19 = new Product("Serenity", ProdCategory.SciFi, 15.99m, "I aim to misbehave.");
+			Product item20 = new Product("Shaun of the Dead", ProdCategory.Comedy, 8.95m, "Zombies are going to get you in London.");
 		}
 
 		static void NewOrder()
