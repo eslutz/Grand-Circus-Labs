@@ -34,6 +34,10 @@ ul{
 	list-style-type: square;
 }
 
+ol{
+	list-style-type: upper-roman;
+}
+
 button {
 	border: none;
 	color: black;
