@@ -18,11 +18,13 @@
 .navmenu a:hover {
   background-color: #2F4F4F;
   color: black;
+  font-weight: bold;
 }
 
 .navmenu a.active {
   background-color: #A9A9A9;
   color: black;
+  font-weight: bold;
 }
 
 .sitebody {
@@ -31,7 +33,7 @@
 }
 
 body {
-	background-color: yellow;
+	background-color: #DCDCDC;
 	margin: 0;
 }
 
