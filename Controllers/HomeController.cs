@@ -25,5 +25,9 @@ namespace Lab_11._2.Controllers
 			return View();
 		}
 
+		public ActionResult TermsAndConditions()
+		{
+			return View();
+		}
 	}
 }
