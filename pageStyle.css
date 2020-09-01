@@ -1,9 +1,12 @@
-.topnav {
+.navmenu {
   background-color: #696969;
   overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
-.topnav a {
+.navmenu a {
   float: left;
   color: #00FF00;
   text-align: center;
@@ -12,22 +15,24 @@
   font-size: 17px;
 }
 
-.topnav a:hover {
+.navmenu a:hover {
   background-color: #2F4F4F;
   color: black;
 }
 
-.topnav a.active {
+.navmenu a.active {
   background-color: #A9A9A9;
   color: black;
 }
 
-header {
-	position: fixed;
+.sitebody {
+  padding: 16px;
+  margin-top: 40px;
 }
 
 body {
 	background-color: yellow;
+	margin: 0;
 }
 
 h1 {
