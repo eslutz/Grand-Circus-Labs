@@ -22,7 +22,11 @@
   color: black;
 }
 
-body{
+header {
+	position: fixed;
+}
+
+body {
 	background-color: yellow;
 }
 
