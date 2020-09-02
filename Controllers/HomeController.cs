@@ -35,11 +35,36 @@ namespace Lab_11._2.Controllers
 			}
 			else
 			{
+				List<string> invalidInputs = new List<string>();
+				string invalidInputResults = "";
+				if (!(validName.IsMatch(firstname) && validName.IsMatch(lastname)))
+				{
+					invalidInputs.Add("name");
+				}
+				if (!validEmail.IsMatch(email))
+				{
+					invalidInputs.Add("email");
+				}
+				if (!validPhonenumber.IsMatch(phonenumber))
+				{
+					invalidInputs.Add("phone number");
+				}
+
+				if(invalidInputs.Count == 1)
+				{
+					invalidInputResults += invalidInputs[0];
+				}
+				else if (invalidInputs.Count == 2)
+				{
+					invalidInputResults += $"{invalidInputs[0]} and {invalidInputs[1]}";
+				}
+				else if (invalidInputs.Count == 3)
+				{
+					invalidInputResults += $"{invalidInputs[0]}, {invalidInputs[1]}, and {invalidInputs[2]}";
+				}
 				ViewBag.ValidRegister = "You have <b>FAILED</b> to sucessfully register!";
-				ViewBag.Message = "Please go back and <a href=\"/Home/Register\">try again!</a>";
+				ViewBag.Message = $"You incorrectly entered your {invalidInputResults}.<br />Please go back and <a href=\"/Home/Register\">try again!</a>";
 			}
-
-
 
 			return View();
 		}
