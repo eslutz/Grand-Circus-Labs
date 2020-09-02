@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab_11._3.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -6,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 
-namespace Lab_11._2.Controllers
+namespace Lab_11._3.Controllers
 {
 	public class HomeController : Controller
 	{
@@ -34,8 +35,20 @@ namespace Lab_11._2.Controllers
 
 			if (allgood)
 			{
+				TheUser user = new TheUser()
+				{
+					FirstName = firstname,
+					LastName = lastname,
+					Gender = gender,
+					Birthday = birthday,
+					Email = email,
+					PhoneNumber = phonenumber,
+					State = state,
+					Password = password
+				};
+
 				ViewBag.ValidRegister = "You have <b>sucessfully</b> registered!";
-				ViewBag.Message = $"Welcome <b>{firstname} {lastname}</b> with a b-day on <b>{birthday.ToShortDateString()}</b>!<br />We'll spam you constantly at <b>{email}</b> and text you at <b>{phonenumber}</b>.<br />We're also going to show up at your home in <b>{state}</b>.<br />On a final note, I know your password is <b>{password}</b> so ha!";
+				return View(user);
 			}
 			else
 			{
@@ -58,7 +71,7 @@ namespace Lab_11._2.Controllers
 					invalidInputs.Add("passwords");
 				}
 
-				if(invalidInputs.Count == 1)
+				if (invalidInputs.Count == 1)
 				{
 					invalidInputResults += invalidInputs[0];
 				}
@@ -70,15 +83,14 @@ namespace Lab_11._2.Controllers
 				{
 					invalidInputResults += $"{invalidInputs[0]}, {invalidInputs[1]}, and {invalidInputs[2]}";
 				}
-				else if(invalidInputs.Count == 4)
+				else if (invalidInputs.Count == 4)
 				{
 					invalidInputResults += $"{invalidInputs[0]}, {invalidInputs[1]}, {invalidInputs[2]}, and {invalidInputs[3]}";
 				}
 				ViewBag.ValidRegister = "You have <b>FAILED</b> to sucessfully register!";
 				ViewBag.Message = $"You incorrectly entered your {invalidInputResults}.<br />Please go back and <a href=\"/Home/Register\">try again!</a>";
+				return View();
 			}
-
-			return View();
 		}
 
 		public ActionResult TermsAndConditions()

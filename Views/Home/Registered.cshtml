@@ -1,4 +1,4 @@
-﻿
+﻿@model Lab_11._3.Models.TheUser
 @{
 	ViewBag.Title = "Registered";
 }
@@ -6,3 +6,13 @@
 <h2>@Html.Raw(ViewBag.ValidRegister)</h2>
 
 @Html.Raw(ViewBag.Message)
+
+@if (String.IsNullOrEmpty(ViewBag.Message))
+{
+	<p>
+		"Welcome <b>@Model.FirstName @Model.LastName</b> with a b-day on <b>@Model.Birthday.ToShortDateString()</b>!
+		<br />We'll spam you constantly at <b>@Model.Email</b> and text you at <b>@Model.PhoneNumber</b>.
+		<br />We're also going to show up at your home in <b>@Model.State</b>.
+		<br />On a final note, I know your password is <b>@Model.Password</b> so ha!"
+	</p>
+}
