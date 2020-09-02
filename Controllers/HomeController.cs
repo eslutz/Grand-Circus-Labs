@@ -15,6 +15,7 @@ namespace Lab_11._2.Controllers
 			return View();
 		}
 
+		[HttpGet]
 		public ActionResult Register()
 		{
 			ViewBag.Message = "Welcome to the registration page.";
@@ -22,6 +23,7 @@ namespace Lab_11._2.Controllers
 			return View();
 		}
 
+		[HttpPost]
 		public ActionResult Registered(string firstname, string lastname, DateTime birthday, string email, string phonenumber, string state, string password)
 		{
 			Regex validName = new Regex(@"^[A-Z][A-Za-z]{0,29}$");
