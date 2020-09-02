@@ -21,7 +21,13 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li>@Html.ActionLink("Home", "Index", "Home")</li>
-					<li>@Html.ActionLink("Register", "Register", "Home")</li>
+					<li>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Register</a>
+						<ul class="dropdown-menu">
+							<li>@Html.ActionLink("New Registration", "Register", "Home")</li>
+							<li>@Html.ActionLink("Terms & Conditions", "TermsAndConditions", "Home")</li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
