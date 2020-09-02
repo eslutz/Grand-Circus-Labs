@@ -26,3 +26,10 @@ textarea {
 td {
     padding: 5px;
 }
+
+fieldset {
+    background: #F5F5F5;
+    border: ridge;
+    width: 500px;
+    border-radius: 10px;
+}

@@ -24,13 +24,15 @@ namespace Lab_11._2.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Registered(string firstname, string lastname, DateTime birthday, string email, string phonenumber, string state, string password)
+		public ActionResult Registered(string firstname, string lastname, string gender, DateTime birthday, string email, string phonenumber, string state, string password, string repassword)
 		{
 			Regex validName = new Regex(@"^[A-Z][A-Za-z]{0,29}$");
 			Regex validEmail = new Regex(@"^.{5,30}@\w{5,10}\.\w{2,3}$");
 			Regex validPhonenumber = new Regex(@"^\({0,1}\d{3}\){0,1}[-.]\d{3}[-.]\d{4}$");
+			bool passwordMatch = (password == repassword);
+			bool allgood = passwordMatch && (validName.IsMatch(firstname) && validName.IsMatch(lastname) && validEmail.IsMatch(email) && validPhonenumber.IsMatch(phonenumber));
 
-			if (validName.IsMatch(firstname) && validName.IsMatch(lastname) && validEmail.IsMatch(email) && validPhonenumber.IsMatch(phonenumber))
+			if (allgood)
 			{
 				ViewBag.ValidRegister = "You have <b>sucessfully</b> registered!";
 				ViewBag.Message = $"Welcome <b>{firstname} {lastname}</b> with a b-day on <b>{birthday.ToShortDateString()}</b>!<br />We'll spam you constantly at <b>{email}</b> and text you at <b>{phonenumber}</b>.<br />We're also going to show up at your home in <b>{state}</b>.<br />On a final note, I know your password is <b>{password}</b> so ha!";
@@ -51,6 +53,10 @@ namespace Lab_11._2.Controllers
 				{
 					invalidInputs.Add("phone number");
 				}
+				if (!passwordMatch)
+				{
+					invalidInputs.Add("passwords");
+				}
 
 				if(invalidInputs.Count == 1)
 				{
@@ -63,6 +69,10 @@ namespace Lab_11._2.Controllers
 				else if (invalidInputs.Count == 3)
 				{
 					invalidInputResults += $"{invalidInputs[0]}, {invalidInputs[1]}, and {invalidInputs[2]}";
+				}
+				else if(invalidInputs.Count == 4)
+				{
+					invalidInputResults += $"{invalidInputs[0]}, {invalidInputs[1]}, {invalidInputs[2]}, and {invalidInputs[3]}";
 				}
 				ViewBag.ValidRegister = "You have <b>FAILED</b> to sucessfully register!";
 				ViewBag.Message = $"You incorrectly entered your {invalidInputResults}.<br />Please go back and <a href=\"/Home/Register\">try again!</a>";
