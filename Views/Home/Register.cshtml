@@ -6,20 +6,20 @@
 <h2>@ViewBag.Message</h2>
 <br />
 <h3>You better fill out the form if you want coffee!</h3>
-<br /><br />
-	  <form action="/Home/Registered">
-	  	<label for="firstname">First name:</label><br />
-	  	<input type="text" name="firstname" /><br />
-	  	<label for="lastname">Last name:</label><br />
-	  	<input type="text" name="lastname" /><br />
-	  	<label for="birthday">Birthday:</label><br />
-	  	<input type="date" name="birthday" /><br />
-	  	<label for="email">Email:</label><br />
-	  	<input type="text" name="email" /><br />
-	  	<label for="phonenumber">Phone Number:</label><br />
-	  	<input type="text" name="phonenumber" /><br />
-	  	<label for="state">State:</label><br />
-	  	<select name="state">
+<br />
+	<form action="/Home/Registered">
+		<label for="firstname">First name:</label><br />
+		<input type="text" name="firstname" required /><br />
+		<label for="lastname">Last name:</label><br />
+		<input type="text" name="lastname" required /><br />
+		<label for="birthday">Birthday:</label><br />
+		<input type="date" name="birthday" required /><br />
+		<label for="email">Email:</label><br />
+		<input type="text" name="email" required /><br />
+		<label for="phonenumber">Phone Number:</label><br />
+		<input type="text" name="phonenumber" required /><br />
+		<label for="state">State:</label><br />
+		<select name="state">
 	  		<option value="AL">Alabama</option>
 	  		<option value="AK">Alaska</option>
 	  		<option value="AZ">Arizona</option>
@@ -71,10 +71,10 @@
 	  		<option value="WV">West Virginia</option>
 	  		<option value="WI">Wisconsin</option>
 	  		<option value="WY">Wyoming</option>
-	  	</select><br />
-	  	<label for="password">Password:</label><br />
-	  	<input type="password" name="password" /><br /><br />
-	  	<p><input type="checkbox" required name="terms" /> I have no choice but to accept these <a href="/Home/TermsAndConditions" target="_blank">absurd terms and conditions</a>.</p>
-	  	<input type="submit" value="Submit" />
-	  </form>
+		</select><br />
+		<label for="password">Password:</label><br />
+		<input type="password" name="password" required /><br /><br />
+		<p><input type="checkbox" name="terms" required /> I have no choice but to accept these <a href="/Home/TermsAndConditions" target="_blank">absurd terms and conditions</a>.</p>
+		<input type="submit" value="Submit" />
+	</form>
 <br />
