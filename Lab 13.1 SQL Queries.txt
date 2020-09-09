@@ -18,3 +18,13 @@
 9.	update Orders set ShipRegion = 'EuroZone' where ShipCountry = 'France'
 
 10.	delete from [Order Details] where Quantity = 1
+
+11.	select avg(Quantity) as 'Average', max(Quantity) as 'Max', min(Quantity) as 'Min' from [Order Details]
+
+12.	select avg(Quantity) as 'Average', max(Quantity) as 'Max', min(Quantity) as 'Min' from [Order Details] group by OrderID
+
+13.	select CustomerID from Orders where OrderID = 10290
+
+14.	select * from Orders join Customers on Orders.CustomerID = Customers.CustomerID
+
+15.	select ShipCity, ShipCountry from Orders join Employees on Orders.EmployeeID = Employees.EmployeeID where Employees.City = 'London'
