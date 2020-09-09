@@ -7,3 +7,14 @@
 4.	select top (100) * from Orders
 
 5.	select * from Orders where ShipPostalCode = '1010' or ShipPostalCode = '3012' or ShipPostalCode = '12209' or ShipPostalCode = '05023'
+
+6.	select * from Orders where ShipRegion is not null
+
+7.	select * from Customers order by Country, City
+
+8.	insert into Customers (CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax)
+	values ('ABCDE', 'Dunder Mifflin', 'Dwight Schrute', 'Asst to the Regional Manager', null, 'Scranton', null, null, 'USA', null, null)
+
+9.	update Orders set ShipRegion = 'EuroZone' where ShipCountry = 'France'
+
+10.	delete from [Order Details] where Quantity = 1
