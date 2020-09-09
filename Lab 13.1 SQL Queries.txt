@@ -28,3 +28,9 @@
 14.	select * from Orders join Customers on Orders.CustomerID = Customers.CustomerID
 
 15.	select ShipCity, ShipCountry from Orders join Employees on Orders.EmployeeID = Employees.EmployeeID where Employees.City = 'London'
+
+16.	select ShipName from Orders join [Order Details] on Orders.OrderID = [Order Details].OrderID where Discount != 0
+
+17.	select FirstName from Employees where ReportsTo is null
+
+18.	select FirstName from Employees where ReportsTo in (select EmployeeID from Employees where FirstName = 'Andrew')
