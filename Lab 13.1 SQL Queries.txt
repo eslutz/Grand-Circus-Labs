@@ -1,0 +1,9 @@
+1.	select * from Customers
+
+2.	select distinct Country from Customers
+
+3.	select * from Customers where CustomerID like 'BL%'
+
+4.	select top (100) * from Orders
+
+5.	select * from Orders where ShipPostalCode = '1010' or ShipPostalCode = '3012' or ShipPostalCode = '12209' or ShipPostalCode = '05023'
