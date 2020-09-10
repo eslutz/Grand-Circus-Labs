@@ -1,11 +1,32 @@
 ﻿@model Product
 @{
     ViewData["Title"] = "Product Info";
+    string price = $"{Model.Price:C}";
 }
 
-<h1>Product Info</h1>
+<style>
+	table, th, td {
+		border: 1px solid black;
+	}
+</style>
 
-<h2>@Model.Name</h2>
-<b>@Model.Category</b><br />
-<b>@Model.Description</b><br />
-<b>@Model.Price</b>
+<h1>Product Info</h1>
+<br />
+<table style="padding: 5px">
+	<tr>
+		<td>Name:</td>
+		<td>@Model.Name</td>
+	</tr>
+	<tr>
+		<td >Category:</td>
+		<td>@Model.Category</td>
+	</tr>
+	<tr>
+		<td >Description:</td>
+		<td>@Model.Description</td>
+	</tr>
+	<tr>
+		<td >Price:</td>
+		<td>@price</td>
+	</tr>
+</table>
