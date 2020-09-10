@@ -34,3 +34,25 @@
 17.	select FirstName from Employees where ReportsTo is null
 
 18.	select FirstName from Employees where ReportsTo in (select EmployeeID from Employees where FirstName = 'Andrew')
+
+EXTENDEND CHALLENGE
+
+1.	select * from Customers
+
+2.	select * from Customers where City = 'London' or City = 'Paris'
+
+3.	select distinct City from Customers where City is not null
+
+4.	select FirstName from Employees order by FirstName
+
+5.	n/a
+
+6.	n/a
+
+7.	select * from Employees where Notes like '% BA %'
+
+8.	select OrderID, (sum(Quantity) * sum( UnitPrice)) from [Order Details] group by OrderID
+
+9.	select * from Employees where HireDate >= '1994-01-01' and HireDate <= CURRENT_TIMESTAMP
+
+10.	select EmployeeID, DATEDIFF(year, HireDate, CURRENT_TIMESTAMP)  from Employees
