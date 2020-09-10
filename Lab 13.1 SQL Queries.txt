@@ -32,7 +32,7 @@
 16.	select ShipName from Orders
 	join [Order Details] on Orders.OrderID = [Order Details].OrderID
 	join Products on [Order Details].ProductID = Products.ProductID
-	where Discontinued =1
+	where Discontinued = 1
 
 17.	select FirstName from Employees where ReportsTo is null
 
