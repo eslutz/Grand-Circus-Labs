@@ -9,6 +9,6 @@
 <ul>
 	@foreach (Product product in Model)
 	{
-		<li><a href="/Products/ProductInfo?@product.ID">@product.Name</a></li>
+		<li><a href="/Products/ProductInfo?productID=@product.ID">@product.Name</a></li>
 	}
 </ul>
