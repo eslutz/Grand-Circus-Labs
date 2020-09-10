@@ -56,3 +56,20 @@ EXTENDEND CHALLENGE
 9.	select * from Employees where HireDate >= '1994-01-01' and HireDate <= CURRENT_TIMESTAMP
 
 10.	select EmployeeID, DATEDIFF(year, HireDate, CURRENT_TIMESTAMP)  from Employees
+
+11.	select * from Products order by (UnitsInStock + UnitsOnOrder) asc
+	select * from Products order by (UnitsInStock + UnitsOnOrder) desc
+
+12.	select * from Products where UnitsInStock < 6
+
+13.	select * from Products where Discontinued = 1
+
+14.	select * from Products where ProductName like '%Tofu%'
+
+15.	select * from Products where UnitPrice = (select max(UnitPrice) from Products)
+
+16.	select * from Employees where HireDate > '1993-01-01'
+
+17.	select * from Employees where TitleOfCourtesy = 'Ms.' or TitleOfCourtesy = 'Mrs.'
+
+18.	select * from Employees where HomePhone like '(206)%'
