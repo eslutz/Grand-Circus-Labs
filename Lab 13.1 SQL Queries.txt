@@ -51,7 +51,7 @@ EXTENDEND CHALLENGE
 
 7.	select * from Employees where Notes like '% BA %'
 
-8.	select OrderID, (sum(Quantity) * sum( UnitPrice)) from [Order Details] group by OrderID
+8.	select OrderID, (sum(Quantity) * sum( UnitPrice)) as 'Order Total Price' from [Order Details] group by OrderID
 
 9.	select * from Employees where HireDate >= '1994-01-01' and HireDate <= CURRENT_TIMESTAMP
 
