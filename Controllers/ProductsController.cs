@@ -16,12 +16,22 @@ namespace Lab_13._2.Controllers
 		{
 			IDbConnection database = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=CoffeeShop;user id=CoffeeShopUser;password=password");
 			database.Open();
-			List<Product> products = database.Query<Product>("select * from Product order by Category desc, Name").AsList<Product>();
+			List<string> productCategories = database.Query<string>("select distinct Category from Product order by Category desc").AsList<string>();
+			database.Close();
+
+			return View(productCategories);
+		}
+	
+		public IActionResult Products(string category)
+		{
+			IDbConnection database = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=CoffeeShop;user id=CoffeeShopUser;password=password");
+			database.Open();
+			List<Product> products = database.Query<Product>($"select * from Product where Category = {category} order by Name").AsList<Product>();
 			database.Close();
 
 			return View(products);
 		}
-	
+
 		public IActionResult ProductInfo(int productID)
 		{
 			IDbConnection database = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=CoffeeShop;user id=CoffeeShopUser;password=password");
