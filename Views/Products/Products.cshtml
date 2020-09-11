@@ -1,7 +1,15 @@
-﻿
+﻿@model List<Product>
 @{
-    ViewData["Title"] = "Products";
+	ViewData["Title"] = "Products";
 }
 
-<h1>Products</h1>
-
+<h1>Available Products</h1>
+<br />
+<h2>Click on a product for details.</h2>
+<br />
+<ul>
+	@foreach (Product product in Model)
+	{
+		<li><a href="/Products/ProductInfo?productID=@product.ID">@product.Name</a></li>
+	}
+</ul>

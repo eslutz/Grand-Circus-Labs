@@ -26,7 +26,7 @@ namespace Lab_13._2.Controllers
 		{
 			IDbConnection database = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=CoffeeShop;user id=CoffeeShopUser;password=password");
 			database.Open();
-			List<Product> products = database.Query<Product>($"select * from Product where Category = {category} order by Name").AsList<Product>();
+			List<Product> products = database.Query<Product>($"select * from Product where Category = '{category}' order by Name").AsList<Product>();
 			database.Close();
 
 			return View(products);

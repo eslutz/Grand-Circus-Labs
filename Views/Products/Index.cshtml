@@ -1,6 +1,6 @@
 ﻿@model List<string>
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Product Categories";
 }
 
 <h1>Available Product Categories</h1>
@@ -10,6 +10,6 @@
 <ul>
 	@foreach (string category in Model)
 	{
-		<li><a href="/Products/ProductInfo?category=@category">@category</a></li>
+		<li><a href="/Products/Products?category=@category">@category</a></li>
 	}
 </ul>
