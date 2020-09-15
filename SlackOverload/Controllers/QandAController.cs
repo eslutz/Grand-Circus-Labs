@@ -11,12 +11,24 @@ using System.Data.SqlClient;
 
 namespace SlackOverload.Controllers
 {
-    //dude
+    
     public class QandAController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
+
+        public IActionResult Question()
+        {
+
+        }
+
+        public IActionResult Answer()
+        {
+
+        }
     }
+
+
 }
