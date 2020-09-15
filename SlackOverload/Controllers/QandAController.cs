@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 namespace SlackOverload.Controllers
 {
-    //dude
+    //Hi Manny!!!!
     public class QandAController : Controller
     {
         public IActionResult Index()
