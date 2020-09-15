@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 
 namespace SlackOverload.Controllers
 {
+    //dude
     public class QandAController : Controller
     {
         public IActionResult Index()
