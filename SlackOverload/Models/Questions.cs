@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Dapper.Contrib.Extensions;
 
 namespace SlackOverload.Models
@@ -40,7 +41,26 @@ namespace SlackOverload.Models
             IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
             db.Delete(new Questions() {id = id });
         }
+
+        public static List<Questions> Read()
+        {
+            IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
+            List<Questions> questions = db.GetAll<Questions>().ToList();
+            return questions;
+        }
+
+        public static List<Questions> Read(string search)
+        {
+            IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
+            List<Questions> questions = db.Query<Questions>($"select id, title from Questions where Details like '%{search}%'").AsList();
+            return questions;
+        }
+
+        public static Questions Read(long id)
+        {
+            IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
+            Questions question = db.Get<Questions>(id);
+            return question;
+        }
     }
-
-
 }

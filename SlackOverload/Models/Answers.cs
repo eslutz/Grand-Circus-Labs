@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Dapper.Contrib.Extensions;
 
 namespace SlackOverload.Models
@@ -10,11 +13,52 @@ namespace SlackOverload.Models
     public class Answers
     {
         [Key]
-        public int id { get; set; }
+        public long id { get; set; }
         public string Username { get; set; }
         public string Detail { get; set; }
-        public int QuestionID { get; set; }
+        public long QuestionID { get; set; }
         public DateTime Posted { get; set; }
         public int Upvotes { get; set; }
+
+        public static void Create(string username, string detail, long questionID)
+        {
+            Answers answer = new Answers() { Username = username, Detail = detail, QuestionID = questionID, Posted = DateTime.Now, Upvotes = 0 };
+            IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
+            db.Insert(answer);
+        }
+
+        public static void Update(long id, string username, string detail, long questionID, int upvotes )
+        {
+            Answers answer = new Answers() {id = id, Username = username, Detail = detail, QuestionID = questionID, Posted = DateTime.Now, Upvotes = upvotes };
+            IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
+            db.Update(answer);
+        }
+
+        public static void Delete(long id)
+        {
+            IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
+            db.Delete(new Answers() { id = id });
+        }
+
+        public static List<Answers> Read()
+        {
+            IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
+            List<Answers> answers = db.GetAll<Answers>().ToList();
+            return answers;
+        }
+
+        public static List<Answers> Read(string search)
+        {
+            IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
+            List<Answers> answers = db.Query<Answers>($"select id, title from Answers where Details like '%{search}%'").AsList();
+            return answers;
+        }
+
+        public static Answers Read(long id)
+        {
+            IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
+            Answers answer = db.Get<Answers>(id);
+            return answer;
+        }
     }
 }
