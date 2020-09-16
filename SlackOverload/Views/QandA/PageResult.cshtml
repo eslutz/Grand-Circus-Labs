@@ -41,7 +41,7 @@
 	foreach (Answers answer in answers)
 	{
 		<p>@answer.Details</p>
-		<a href="#">I like it!</a>
+		<a href="/QandA/Upvote?id=@answer.id">I like it!</a>
 		<table>
 			<tr>
 				<td>Posted:</td>
@@ -52,6 +52,7 @@
 				<td>@answer.Upvotes</td>
 			</tr>
 		</table>
+        <a href="/QandA/EditAnswer?id=@answer.id">Edit Answer</a>
 		<hr />
 	}
 }

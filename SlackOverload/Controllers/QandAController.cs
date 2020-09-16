@@ -68,15 +68,22 @@ namespace SlackOverload.Controllers
 			return View("Question", question);
 		}
 
-		public IActionResult SaveAnswer(long id, string username, string details, long questionID, int upvotes)
+		public IActionResult SaveAnswer(long id, string username, string details, long questionID, int upvotes, string submit)
 		{
-			if (id >= 1)
+			if (submit == "Delete")
 			{
-				Answers.Update(id, username, details, questionID, upvotes);
+				Answers.Delete(id);
 			}
 			else
 			{
-				Answers.Create(username, details, questionID);
+				if (id >= 1)
+				{
+					Answers.Update(id, username, details, questionID, upvotes);
+				}
+				else
+				{
+					Answers.Create(username, details, questionID);
+				}
 			}
 			Questions question = Questions.Read(questionID);
 			return View("PageResult", question);
@@ -85,8 +92,18 @@ namespace SlackOverload.Controllers
 		public IActionResult EditAnswer(long id)
 		{
 			ViewBag.PageName = "Edit an Answer";
-			List<Answers> answer = Answers.Read(id);
+			Answers answer = Answers.ReadSingle(id);
 			return View("Answer", answer);
+		}
+
+		public IActionResult Upvote(long id)
+        {
+			Answers answer = Answers.ReadSingle(id);
+
+			Answers.Update(id);
+			Questions question = Questions.Read(answer.QuestionID);
+			return View("PageResult", question);
+
 		}
 	}
 }

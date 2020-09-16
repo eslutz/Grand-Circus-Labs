@@ -72,5 +72,24 @@ namespace SlackOverload.Models
 			List<Answers> answers = db.Query<Answers>($"select * from Answers where QuestionID = {id}").AsList();
 			return answers;
 		}
+
+		public static Answers ReadSingle(long id)
+		{
+			IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
+			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
+			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			Answers answer = db.Get<Answers>(id);
+			return answer;
+		}
+
+		public static void Update(long id)
+		{
+			Answers answer = Answers.ReadSingle(id);
+			answer.Upvotes = answer.Upvotes + 1;
+			IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
+			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
+			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			db.Update(answer);
+		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿@model List<Answers>
+﻿@model Answers
 @{
 	ViewData["Title"] = "Answer";
 }
@@ -10,14 +10,16 @@
 		
 		<tr>
 			<td><label name="details" title="Details" value="details">Answer:</label></td>
-			<td><textarea name="details">@Model?[0].Details</textarea></td>
+			<td><textarea name="details">@Model?.Details</textarea></td>
 		</tr>
 		
 		
 	</table>
 	<input type="hidden" name="username" value="testuser" />
-	<input type="hidden" name="id" value="@Model?[0].id" />
+	<input type="hidden" name="id" value="@Model?.id" />
 	<input type="hidden" name="questionID" value="@ViewBag.questionID" />
 	<br />
 	<input type="submit" value="Save" />
+	<input type="submit" value="Delete" />
+
 </form>
