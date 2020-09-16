@@ -21,6 +21,7 @@ namespace SlackOverload.Controllers
 
 		public IActionResult Question() //add or edit question
 		{
+			ViewBag.PageName = "Add a Question";
 			return View();
 		}
 
@@ -49,6 +50,13 @@ namespace SlackOverload.Controllers
 			ViewBag.Message = "Your entry has been saved!";
 			List<Questions> blogs = Questions.Read();
 			return View("Index", blogs);
+		}
+
+		public IActionResult Edit(long id)
+		{
+			ViewBag.PageName = "Edit a Question";
+			Questions question = Questions.Read(id);
+			return View("Question", question);
 		}
 	}
 }
