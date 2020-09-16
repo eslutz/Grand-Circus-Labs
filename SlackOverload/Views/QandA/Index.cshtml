@@ -3,60 +3,40 @@
 	ViewData["Title"] = "Questions";
 }
 
-    <div class="jumbotron" style="background-color:lightblue">
-        <h1>Dev.Build SlackOverload Question Forum</h1>
+<div class="jumbotron" style="background-color:lightblue">
+    <h1>Dev.Build SlackOverload Question Forum</h1>
+    <br />
+    <form method="get" action="/QandA">
+        <label name="search" value="Search"><b>Search the Forum:</b></label>
         <br />
-        <b style="color:chartreuse">@ViewBag.Message</b>
-        <form method="get" action="/QandA">
-            <label name="search" value="Search"><b>Search the Forum:</b></label>
-            <br />
-            <select name="scope">
-                <option>Questions</option>
-                <option>Answers</option>
-                <option value="Q/A">Questions and Answers</option>
-            </select>
-            <select name="field">
-                <option>Details</option>
-                <option>Title</option>
-                <option>Category</option>
-                <option>Username</option>
-                <option>Tags</option>
-                <option>All</option>
-            </select>
-            <input type="text" name="search" />
-            <input type="submit" value="Search" />
-        </form>
-    </div>
+        <select name="scope">
+            <option>Questions</option>
+            <option>Answers</option>
+            <option value="Q/A">Questions and Answers</option>
+        </select>
+        <select name="field">
+            <option>Details</option>
+            <option>Title</option>
+            <option>Category</option>
+            <option>Username</option>
+            <option>Tags</option>
+            <option>All</option>
+        </select>
+        <input type="text" name="search" />
+        <input type="submit" value="Search" />
+    </form>
+</div>
 
-@*<h1>Dev.Build SlackOverload Question Forum</h1>
-<br />
-<b style="color:chartreuse">@ViewBag.Message</b>
-<form method="get" action="/QandA">
-	<label name="search" value="Search">Search:</label>
-	<select name="scope">
-		<option>Questions</option>
-		<option>Answers</option>
-		<option value="Q/A">Questions and Answers</option>
-	</select>
-	<select name="field">
-		<option>Details</option>
-		<option>Title</option>
-		<option>Category</option>
-		<option>Username</option>
-		<option>Tags</option>
-		<option>All</option>
-	</select>
-	<input type="text" name="search" />
-	<input type="submit" value="Go" />
-</form>*@
-<br />
-<h2>Click below to view a Question and provide feedback:</h2>
-<ul>
-	@foreach (Questions question in Model)
-	{
-		<li><a href=" /QandA/PageResult?id=@question.id">@question.Title</a></li>
-	}
-</ul>
-<br />
-<h3>Have a Question for the Forum?</h3>
-<a href="/QandA/Question/">Add New Question</a>
+<div class="jumbotron" style="background-color:white">
+	<b style="color:chartreuse">@ViewBag.Message</b>
+	<h2>Click below to view a Question and provide feedback:</h2>
+	<ul>
+		@foreach (Questions question in Model)
+		{
+			<li><a href=" /QandA/PageResult?id=@question.id">@question.Title</a></li>
+		}
+	</ul>
+	<br />
+	<h3>Have a Question for the Forum?</h3>
+	<a href="/QandA/Question/">Add New Question</a>
+</div>

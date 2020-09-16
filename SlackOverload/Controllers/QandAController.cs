@@ -35,5 +35,20 @@ namespace SlackOverload.Controllers
 
 			return View(question);
 		}
+
+		public IActionResult SaveQuestion(long id, string username, string title, string details, string category, string tags, int status)
+		{
+			if (id >= 1)
+			{
+				Questions.Update(id, username, title, details, category, tags, status);
+			}
+			else
+			{
+				Questions.Create(username, title, details, category, tags);
+			}
+			ViewBag.Message = "Your entry has been saved!";
+			List<Questions> blogs = Questions.Read();
+			return View("Index", blogs);
+		}
 	}
 }

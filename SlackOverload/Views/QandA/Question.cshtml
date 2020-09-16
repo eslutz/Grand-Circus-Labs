@@ -3,5 +3,23 @@
 	ViewData["Title"] = "Question";
 }
 
-<h1>Question</h1>
+<h1>@ViewBag.PageName</h1>
 
+<form method="post" action="/QandA/SaveQuestion">
+	<label name="title" title="Title" value="title">Title:</label><br />
+	<input type="text" name="title" value="@Model?.Title" /><br />
+	<label name="details" title="Details" value="details">Content:</label><br />
+	<textarea name="details">@Model?.Details</textarea><br />
+	<label name="category" title="Category" value="category">Category:</label><br />
+	<input type="text" name="category" value="@Model?.Category" /><br />
+	<label name="tags" title="Tags" value="tags">Tags:</label><br />
+	<input type="text" name="tags" value="@Model?.Tags" /><br />
+	@if (Model?.id > 0)
+	{
+		<label name="status" title="Status" value="status">Check here if your question has been answered: </label>
+		<input type="checkbox" name="status" />
+	}
+	<input type="hidden" name="username" value="testuser" />
+	<input type="hidden" name="id" value="@Model?.id" />
+	<input type="submit" value="Save" />
+</form>
