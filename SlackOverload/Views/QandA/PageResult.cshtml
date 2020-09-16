@@ -55,7 +55,7 @@
 		<hr />
 	}
 }
-@if(Model.Status == 1)
+@if(Model.Status == 0)
 {
-	<a href="/QandA/Answer">Add an answer</a>
+	<a href="/QandA/Answer?questionID=@Model.id">Add an answer</a>
 }

@@ -1,4 +1,4 @@
-﻿@model Questions
+﻿@model List<Answers>
 @{
 	ViewData["Title"] = "Answer";
 }
@@ -7,25 +7,17 @@
 
 <form method="post" action="/QandA/SaveAnswer">
 	<table style="border: 0px">
+		
 		<tr>
-			<td><label name="title" title="Title" value="title">Title:</label></td>
-			<td><input type="text" name="title" value="@Model?.Title" /></td>
+			<td><label name="details" title="Details" value="details">Answer:</label></td>
+			<td><textarea name="details">@Model?[0].Details</textarea></td>
 		</tr>
-		<tr>
-			<td><label name="details" title="Details" value="details">Question:</label></td>
-			<td><textarea name="details">@Model?.Details</textarea></td>
-		</tr>
-		<tr>
-			<td><label name="category" title="Category" value="category">Category:</label></td>
-			<td><input type="text" name="category" value="@Model?.Category" /></td>
-		</tr>
-		<tr>
-			<td><label name="tags" title="Tags" value="tags">Tags:</label></td>
-			<td><input type="text" name="tags" value="@Model?.Tags" /></td>
-		</tr>
+		
+		
 	</table>
 	<input type="hidden" name="username" value="testuser" />
-	<input type="hidden" name="id" value="@Model?.id" />
+	<input type="hidden" name="id" value="@Model?[0].id" />
+	<input type="hidden" name="questionID" value="@ViewBag.questionID" />
 	<br />
 	<input type="submit" value="Save" />
 </form>

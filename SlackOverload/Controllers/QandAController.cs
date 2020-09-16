@@ -25,8 +25,9 @@ namespace SlackOverload.Controllers
 			return View();
 		}
 
-		public IActionResult Answer() //add or edit answer
+		public IActionResult Answer(long questionID) //add or edit answer
 		{
+			ViewBag.questionID = questionID;
 			ViewBag.PageName = "Add an Answer";
 			return View();
 		}
@@ -77,15 +78,15 @@ namespace SlackOverload.Controllers
 			{
 				Answers.Create(username, details, questionID);
 			}
-			List<Answers> answers = Answers.Read();
-			return View("Index", answers);
+			Questions question = Questions.Read(questionID);
+			return View("PageResult", question);
 		}
 
 		public IActionResult EditAnswer(long id)
 		{
 			ViewBag.PageName = "Edit an Answer";
-			Questions question = Questions.Read(id);
-			return View("Answer", question);
+			List<Answers> answer = Answers.Read(id);
+			return View("Answer", answer);
 		}
 	}
 }
