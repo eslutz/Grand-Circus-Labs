@@ -1,7 +1,22 @@
-﻿@model Questions
+﻿@model List<Questions>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "SlackOverload";
 }
 
-<h1>Index</h1>
+<b style="color:red">@ViewBag.Message</b>
+<form method="GET" action="/QandA/Index/">
+    <input type="text" name="search" />
+    <input type="submit" value="Go" />
+</form>
 
+<h1>Welcome to Dev.Build Slack Overload</h1>
+
+<ul>
+    @foreach (Questions question in Model)
+    {
+        <li><a href=" /QandA/PageResult?id=@question.id">@question.Title</a></li>
+
+    }
+</ul>
+
+<a href="/QandA/Question/">Add New Question</a>

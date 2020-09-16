@@ -15,21 +15,21 @@ namespace SlackOverload.Models
         [Key]
         public long id { get; set; }
         public string Username { get; set; }
-        public string Detail { get; set; }
+        public string Details { get; set; }
         public long QuestionID { get; set; }
         public DateTime Posted { get; set; }
         public int Upvotes { get; set; }
 
-        public static void Create(string username, string detail, long questionID)
+        public static void Create(string username, string Details, long questionID)
         {
-            Answers answer = new Answers() { Username = username, Detail = detail, QuestionID = questionID, Posted = DateTime.Now, Upvotes = 0 };
+            Answers answer = new Answers() { Username = username, Details = Details, QuestionID = questionID, Posted = DateTime.Now, Upvotes = 0 };
             IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
             db.Insert(answer);
         }
 
-        public static void Update(long id, string username, string detail, long questionID, int upvotes )
+        public static void Update(long id, string username, string Details, long questionID, int upvotes )
         {
-            Answers answer = new Answers() {id = id, Username = username, Detail = detail, QuestionID = questionID, Posted = DateTime.Now, Upvotes = upvotes };
+            Answers answer = new Answers() {id = id, Username = username, Details = Details, QuestionID = questionID, Posted = DateTime.Now, Upvotes = upvotes };
             IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
             db.Update(answer);
         }
