@@ -1,0 +1,86 @@
+﻿@model Questions
+@{
+    ViewData["Title"] = Model.Title;
+    List<Answers> answers = Answers.Read(Model.id);
+}
+
+<h1>@Model.Title</h1>
+
+<p>
+    @Model.Detail
+</p>
+
+<br />
+<table>
+    <tr>
+        <td>
+            Originally Posted:
+        </td>
+        <td>
+            @Model.Username
+            <br />
+            @Model.Posted
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Category:
+        </td>
+        <td>
+            @Model.Category
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Tags:
+        </td>
+        <td>
+            @Model.Tags
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Status:
+        </td>
+        <td>
+            @if(Model.Status == 1)
+            {
+                <p>Open</p>
+            }
+            else
+            {
+                <p>Closed</p>
+            }
+        </td>
+    </tr>
+</table>
+@if(answers.Count != 0)
+{
+    <h2>Answers:</h2>
+    foreach(Answers answer in answers)
+    {
+        <p>
+            @answer.Detail
+        </p>
+        <table>
+            <tr>
+                <td>
+                    Originally Posted:
+                </td>
+                <td>
+                    @answer.Username
+                    <br />
+                    @answer.Posted
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Upvotes:
+                </td>
+                <td>
+                    @answer.Upvotes
+                </td>
+            </tr>
+        </table>
+    }
+}

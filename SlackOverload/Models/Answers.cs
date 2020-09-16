@@ -54,11 +54,12 @@ namespace SlackOverload.Models
             return answers;
         }
 
-        public static Answers Read(long id)
+        public static List<Answers> Read(long id)
         {
             IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");
-            Answers answer = db.Get<Answers>(id);
-            return answer;
+            List<Answers> answers = db.Query<Answers>($"select * from Answers where QuestionID = {id}").AsList();
+            return answers;
         }
+
     }
 }
