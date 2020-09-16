@@ -50,27 +50,72 @@ namespace SlackOverload.Models
 
 		public static List<Questions> Read()
 		{
-			IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
+			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
 			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
-			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
 			List<Questions> questions = db.GetAll<Questions>().ToList();
 			return questions;
 		}
 
-		public static List<Questions> Read(string search)
+		public static List<Questions> Read(string scope, string field, string search)
 		{
-			IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
+			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
 			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
-			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
-			List<Questions> questions = db.Query<Questions>($"select id, title from Questions where Details like '%{search}%'").AsList();
+			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			List<Questions> questions;
+			if (scope == "Questions")
+			{
+				if(field == "All")
+				{
+					questions = db.Query<Questions>($"select id, title from Questions where Details like '%{search}%' or Title like '%{search}%' or Category like '%{search}%' or Username like '%{search}%' or Tags like '%{search}%'").AsList();
+				}
+				else
+				{
+					questions = db.Query<Questions>($"select id, title from Questions where {field} like '%{search}%'").AsList();
+				}
+			}
+			else if(scope == "Answers")
+			{
+				if(field == "Title" || field == "Category" || field == "Tags")
+				{
+					questions = new List<Questions>();
+				}
+				else if(field == "All")
+				{
+					questions = db.Query<Questions>($"select distinct Questions.id, title from Questions join Answers on Questions.id = Answers.QuestionID where Answers.Details like '%{search}%' or Answers.Username like '%{search}%'").AsList();
+				}
+				else
+				{
+					questions = db.Query<Questions>($"select distinct Questions.id, title from Questions join Answers on Questions.id = Answers.QuestionID where Answers.{field} like '%{search}%'").AsList();
+				}
+			}
+			else if(scope == "Q/A")
+			{
+				if (field == "Title" || field == "Category" || field == "Tags")
+				{
+					questions = db.Query<Questions>($"select distinct Questions.id, title from Questions join Answers on Questions.id = Answers.QuestionID where Questions.{field} like '%{search}%'").AsList();
+				}
+				else if(field == "All")
+				{
+					questions = db.Query<Questions>($"select distinct Questions.id, title from Questions join Answers on Questions.id = Answers.QuestionID where Questions.Details like '%{search}%' or Questions.Username like '%{search}%' or Answers.Details like '%{search}%' or Answers.Username like '%{search}%'").AsList();
+				}
+				else
+				{
+					questions = db.Query<Questions>($"select distinct Questions.id, title from Questions join Answers on Questions.id = Answers.QuestionID where Questions.{field} like '%{search}%' or Answers.{field} like '%{search}%'").AsList();
+				}
+			}
+			else
+			{
+				questions = db.GetAll<Questions>().ToList();
+			}
 			return questions;
 		}
 
 		public static Questions Read(long id)
 		{
-			IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
+			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
 			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
-			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
 			Questions question = db.Get<Questions>(id);
 			return question;
 		}

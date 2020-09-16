@@ -13,9 +13,9 @@ namespace SlackOverload.Controllers
 {
 	public class QandAController : Controller
 	{
-		public IActionResult Index(string search)
+		public IActionResult Index(string scope, string field, string search)
 		{
-			List<Questions> questions = Questions.Read(search);
+			List<Questions> questions = Questions.Read(scope, field, search);
 			return View(questions);
 		}
 

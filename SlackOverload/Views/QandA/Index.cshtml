@@ -8,6 +8,19 @@
 <b style="color:chartreuse">@ViewBag.Message</b>
 <form method="get" action="/QandA">
 	<label name="search" value="Search">Search:</label>
+	<select name="scope">
+		<option>Questions</option>
+		<option>Answers</option>
+		<option value="Q/A">Questions and Answers</option>
+	</select>
+	<select name="field">
+		<option>Details</option>
+		<option>Title</option>
+		<option>Category</option>
+		<option>Username</option>
+		<option>Tags</option>
+		<option>All</option>
+	</select>
 	<input type="text" name="search" />
 	<input type="submit" value="Go" />
 </form>
