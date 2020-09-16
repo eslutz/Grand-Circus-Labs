@@ -2,12 +2,6 @@
 GO
 /****** Object:  Database [SlackOverload]    Script Date: 9/15/2020 9:20:52 PM ******/
 CREATE DATABASE [SlackOverload]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'SlackOverload', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\SlackOverload.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'SlackOverload_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\SlackOverload_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT
 GO
 ALTER DATABASE [SlackOverload] SET COMPATIBILITY_LEVEL = 150
 GO

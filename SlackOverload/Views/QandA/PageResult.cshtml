@@ -1,89 +1,60 @@
 ﻿@model Questions
 @{
-    ViewData["Title"] = Model.Title;
-    List<Answers> answers = Answers.Read(Model.id);
+	ViewData["Title"] = Model.Title;
+	List<Answers> answers = Answers.Read(Model.id);
 }
 
-<h1>@Model.Title</h1>
-
-<p>
-    @Model.Details
-</p>
-
-<br />
+<h3>@Model.Title:</h3>
+<p>@Model.Details</p>
 <table>
-    <tr>
-        <td>
-            Originally Posted:
-        </td>
-        <td>
-            @Model.Username
-            <br />
-            @Model.Posted
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Category:
-        </td>
-        <td>
-            @Model.Category
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Tags:
-        </td>
-        <td>
-            @Model.Tags
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Status:
-        </td>
-        <td>
-            @if(Model.Status == 1)
-            {
-                <p>Open</p>
-            }
-            else
-            {
-                <p>Closed</p>
-            }
-        </td>
-    </tr>
+	<tr>
+		<td>Posted:</td>
+		<td>@Model.Username @Model.Posted</td>
+	</tr>
+	<tr>
+		<td>Category:</td>
+		<td>@Model.Category</td>
+	</tr>
+	<tr>
+		<td>Tags:</td>
+		<td>@Model.Tags</td>
+	</tr>
+	<tr>
+		<td>Status:</td>
+		<td>
+			@if (Model.Status == 1)
+			{
+				<text>Open</text>
+			}
+			else
+			{
+				<text>Closed</text>
+			}
+		</td>
+	</tr>
 </table>
-@if(answers.Count != 0)
+<hr />
+@if (answers.Count != 0)
 {
-    <h2>Answers:</h2>
-    foreach(Answers answer in answers)
-    {
-        <p>
-            @answer.Details
-        </p>
-        <table>
-            <tr>
-                <td>
-                    Originally Posted:
-                </td>
-                <td>
-                    @answer.Username
-                    <br />
-                    @answer.Posted
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Upvotes:
-                </td>
-                <td>
-                    @answer.Upvotes
-                </td>
-                <td>
-                    <a href="#" >I like it!</a>
-                </td>
-            </tr>
-        </table>
-    }
+	<h3>Answers:</h3>
+	foreach (Answers answer in answers)
+	{
+		<p>@answer.Details</p>
+		<a href="#">I like it!</a>
+		<table>
+			<tr>
+				<td>Posted:</td>
+				<td>@answer.Username @answer.Posted</td>
+			</tr>
+			<tr>
+				<td>Upvotes:</td>
+				<td>@answer.Upvotes</td>
+			</tr>
+		</table>
+		<hr />
+	}
+}
+@if(Model.Status == 1)
+{
+	<a href="/QandA/Answer">Add an answer</a>
 }
