@@ -27,6 +27,7 @@ namespace SlackOverload.Controllers
 
 		public IActionResult Answer() //add or edit answer
 		{
+			ViewBag.PageName = "Add an Answer";
 			return View();
 		}
 
@@ -55,15 +56,36 @@ namespace SlackOverload.Controllers
 				Questions.Create(username, title, details, category, tags);
 			}
 			ViewBag.Message = "Your entry has been saved!";
-			List<Questions> blogs = Questions.Read();
-			return View("Index", blogs);
+			List<Questions> questions = Questions.Read();
+			return View("Index", questions);
 		}
 
-		public IActionResult Edit(long id)
+		public IActionResult EditQuestion(long id)
 		{
 			ViewBag.PageName = "Edit a Question";
 			Questions question = Questions.Read(id);
 			return View("Question", question);
+		}
+
+		public IActionResult SaveAnswer(long id, string username, string details, long questionID, int upvotes)
+		{
+			if (id >= 1)
+			{
+				Answers.Update(id, username, details, questionID, upvotes);
+			}
+			else
+			{
+				Answers.Create(username, details, questionID);
+			}
+			List<Answers> answers = Answers.Read();
+			return View("Index", answers);
+		}
+
+		public IActionResult EditAnswer(long id)
+		{
+			ViewBag.PageName = "Edit an Answer";
+			Questions question = Questions.Read(id);
+			return View("Answer", question);
 		}
 	}
 }

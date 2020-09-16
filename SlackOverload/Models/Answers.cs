@@ -20,18 +20,18 @@ namespace SlackOverload.Models
 		public DateTime Posted { get; set; }
 		public int Upvotes { get; set; }
 
-		public static void Create(string username, string Details, long questionID)
+		public static void Create(string username, string details, long questionID)
 		{
-			Answers answer = new Answers() { Username = username, Details = Details, QuestionID = questionID, Posted = DateTime.Now, Upvotes = 0 };
+			Answers answer = new Answers() { Username = username, Details = details, QuestionID = questionID, Posted = DateTime.Now, Upvotes = 0 };
 			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
 			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
 			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
 			db.Insert(answer);
 		}
 
-		public static void Update(long id, string username, string Details, long questionID, int upvotes )
+		public static void Update(long id, string username, string details, long questionID, int upvotes )
 		{
-			Answers answer = new Answers() {id = id, Username = username, Details = Details, QuestionID = questionID, Posted = DateTime.Now, Upvotes = upvotes };
+			Answers answer = new Answers() {id = id, Username = username, Details = details, QuestionID = questionID, Posted = DateTime.Now, Upvotes = upvotes };
 			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
 			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
 			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
