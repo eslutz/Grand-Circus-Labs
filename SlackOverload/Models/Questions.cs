@@ -24,7 +24,7 @@ namespace SlackOverload.Models
 
 		public static void Create(string username, string title, string details, string category, string tags)
 		{
-			Questions question = new Questions() { Username = username, Title = title, Details = details, Category = category, Tags = tags, Posted = DateTime.Now, Status = 1 };
+			Questions question = new Questions() { Username = username, Title = title, Details = details, Category = category, Tags = tags, Posted = DateTime.Now, Status = 0 };
 			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
 			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
 			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***

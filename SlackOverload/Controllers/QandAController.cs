@@ -37,11 +37,18 @@ namespace SlackOverload.Controllers
 			return View(question);
 		}
 
-		public IActionResult SaveQuestion(long id, string username, string title, string details, string category, string tags, int status)
+		public IActionResult SaveQuestion(long id, string username, string title, string details, string category, string tags, string status)
 		{
 			if (id >= 1)
 			{
-				Questions.Update(id, username, title, details, category, tags, status);
+				if(status == "on")
+				{
+					Questions.Update(id, username, title, details, category, tags, 1);
+				}
+				else
+				{
+					Questions.Update(id, username, title, details, category, tags, 0);
+				}
 			}
 			else
 			{
