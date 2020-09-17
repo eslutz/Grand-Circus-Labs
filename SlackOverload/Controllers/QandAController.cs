@@ -97,13 +97,21 @@ namespace SlackOverload.Controllers
 		}
 
 		public IActionResult Upvote(long id)
-        {
+		{
 			Answers answer = Answers.ReadSingle(id);
 
-			Answers.Update(id);
+			Answers.Update(id, "upvote");
 			Questions question = Questions.Read(answer.QuestionID);
 			return View("PageResult", question);
+		}
 
+		public IActionResult Downvote(long id)
+		{
+			Answers answer = Answers.ReadSingle(id);
+
+			Answers.Update(id, "downvote");
+			Questions question = Questions.Read(answer.QuestionID);
+			return View("PageResult", question);
 		}
 	}
 }
