@@ -5,7 +5,7 @@
 
 <h1>@ViewBag.PageName:</h1>
 
-<form method="post" action="/QandA/SaveQuestion">
+<form method="get" action="/QandA/SaveQuestion">
 	<table style="border: 0px">
 		<tr>
 			<td><label name="title" title="Title" value="title">Title:</label></td>
@@ -32,5 +32,5 @@
 	<input type="hidden" name="username" value="testuser" />
 	<input type="hidden" name="id" value="@Model?.id" />
 	<br />
-	<input type="submit" value="Save" />
+	<input type="submit" name="submit" value="Save" /> <input type="submit" name="submit" value="Delete" />
 </form>

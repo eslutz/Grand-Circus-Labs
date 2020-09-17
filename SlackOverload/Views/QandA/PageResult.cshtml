@@ -6,7 +6,6 @@
 
 <h3>@Model.Title:</h3>
 <p>@Model.Details</p>
-<a href="/QandA/EditQuestion?id=@Model.id">Edit Question</a>
 <table>
 	<tr>
 		<td>Posted:</td>
@@ -34,6 +33,7 @@
 		</td>
 	</tr>
 </table>
+<a href="/QandA/EditQuestion?id=@Model.id">Edit Question</a>
 <hr />
 @if (answers.Count != 0)
 {

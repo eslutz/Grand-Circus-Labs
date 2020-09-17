@@ -39,9 +39,13 @@ namespace SlackOverload.Controllers
 			return View(question);
 		}
 
-		public IActionResult SaveQuestion(long id, string username, string title, string details, string category, string tags, string status)
+		public IActionResult SaveQuestion(long id, string username, string title, string details, string category, string tags, string status, string submit)
 		{
-			if (id >= 1)
+			if (submit == "Delete")
+			{
+				Questions.Delete(id);
+			}
+			else if (id >= 1)
 			{
 				if(status == "on")
 				{
