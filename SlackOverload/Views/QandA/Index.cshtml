@@ -29,15 +29,16 @@
 </div>
 
 <div class="jumbotron" style="background-color:white">
-	<b style="color:chartreuse">@ViewBag.Message</b>
-	<h2>Click below to view a Question and provide feedback:</h2>
-	<ul>
-		@foreach (Questions question in Model)
-		{
-			<li><a href=" /QandA/PageResult?id=@question.id">@question.Title</a></li>
-		}
-	</ul>
-	<br />
-	<h3>Have a Question for the Forum?</h3>
-	<a href="/QandA/Question/">Add New Question</a>
+    <b style="color:chartreuse">@ViewBag.Message</b>
+    <h2>Click below to view a Question and provide feedback:</h2>
+    <ul>
+        @foreach (Questions question in Model)
+        {
+            <li><a href=" /QandA/PageResult?id=@question.id">@question.Title</a></li>
+        }
+    </ul>
+    <br />
+    <h3>Have a Question for the Forum?</h3>
+    <button class="btn-info" onclick="location.href = '/QandA/Question/';">Add New Question</button>
+    <!--<a href="/QandA/Question/">Add New Question</a>-->
 </div>
