@@ -7,8 +7,10 @@
 	<h1>Dev.Build SlackOverload</h1>
 	<p class="lead"><b>Push Button. Get Answers.</b></p>
 
-	<p><a href="/QandA/"class="btn btn-primary btn-lg">Ask or Answer a Question &raquo;</a></p>
-	<br />
-	<p><a href="/Home/Registration/" class="btn btn-primary btn-lg">Register Here &raquo;</a></p>
+	<form method="get" action="/QandA/">
+		<label name="username">Enter username:</label>
+		<input type ="text" name="username" required />
+		<input type ="submit" value="login" />
+	</form>
 
 </div>

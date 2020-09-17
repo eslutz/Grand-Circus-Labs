@@ -13,9 +13,11 @@ namespace SlackOverload.Controllers
 {
 	public class QandAController : Controller
 	{
-		public IActionResult Index(string scope, string field, string search)
+		public IActionResult Index(string scope, string field, string search, string username)
 		{
 			List<Questions> questions = Questions.Read(scope, field, search);
+			HttpContext.Response.Cookies.Append("username", username);
+			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View(questions);
 		}
 
@@ -123,32 +125,6 @@ namespace SlackOverload.Controllers
 		}
 
 
-		//public IActionResult SaveAnswer(long id, string username, string details, long questionID, int upvotes, string submit)
-		//{
-		//	if (submit == "Delete")
-		//	{
-		//		Answers.Delete(id);
-		//	}
-		//	else
-		//	{
-		//		if (id >= 1)
-		//		{
-		//			Answers.Update(id, username, details, questionID, upvotes);
-		//		}
-		//		else
-		//		{
-		//			Answers.Create(username, details, questionID);
-		//		}
-		//	}
-		//	Questions question = Questions.Read(questionID);
-		//	return View("PageResult", question);
-		//}
-
-		//public IActionResult EditAnswer(long id)
-		//{
-		//	ViewBag.PageName = "Edit an Answer";
-		//	Answers answer = Answers.ReadSingle(id);
-		//	return View("Answer", answer);
-		//}
+		
 	}
 }
