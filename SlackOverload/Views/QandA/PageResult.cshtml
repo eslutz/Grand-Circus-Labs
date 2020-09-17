@@ -38,6 +38,7 @@
     <button class="btn-dark" style="background-color:navy" onclick="location.href = '/QandA/EditQuestion?id=@Model.id';">Edit Question</button>
     <!--<a href="/QandA/EditQuestion?id=@Model.id">Edit Question</a>-->
 }
+<button class="btn-info" onclick="location.href = '/QandA/?username=@ViewBag.username';">Back to Questions</button>
 <hr />
 @if (answers.Count != 0)
 {
@@ -66,7 +67,8 @@
         }
     }
 }
-    @if (Model.Status == 0)
-    {
-        <button class="btn-info" onclick="location.href = '/QandA/Answer?questionID=@Model.id';">Add an answer</button>
-    }
+@if (Model.Status == 0)
+{
+    <button class="btn-info" onclick="location.href = '/QandA/Answer?questionID=@Model.id';">Add an answer</button>
+}
+
