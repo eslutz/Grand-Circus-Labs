@@ -12,7 +12,7 @@ using SlackOverload.Models;
 namespace SlackOverload.Controllers
 {
 	public class QandAController : Controller
-	{
+	{		
 		public IActionResult Index(string scope, string field, string search, string username)
 		{
 			List<Questions> questions = Questions.Read(scope, field, search);

@@ -24,6 +24,7 @@ namespace SlackOverload.Controllers
 
 		public IActionResult Index()
 		{
+			HttpContext.Response.Cookies.Delete("username");
 			return View();
 		}
 
