@@ -33,8 +33,11 @@
         </td>
     </tr>
 </table>
-<button class="btn-dark" style="background-color:navy" onclick="location.href = '/QandA/EditQuestion?id=@Model.id';">Edit Question</button>
-<!--<a href="/QandA/EditQuestion?id=@Model.id">Edit Question</a>-->
+@if (ViewBag.username == Model.Username)
+{
+    <button class="btn-dark" style="background-color:navy" onclick="location.href = '/QandA/EditQuestion?id=@Model.id';">Edit Question</button>
+    <!--<a href="/QandA/EditQuestion?id=@Model.id">Edit Question</a>-->
+}
 <hr />
 @if (answers.Count != 0)
 {
@@ -42,7 +45,8 @@
     foreach (Answers answer in answers)
     {
         <p>@answer.Details</p>
-        <button class="btn-success" style="background-color:forestgreen" onclick="location.href = '/QandA/Upvote?id=@answer.id';">Like</button><button class="btn-danger" onclick="location.href = '/QandA/Downvote?id=@answer.id';">Dislike</button>
+        <button class="btn-success" style="background-color:forestgreen" onclick="location.href = '/QandA/Upvote?id=@answer.id';">Like</button>
+        <button class="btn-danger" onclick="location.href = '/QandA/Downvote?id=@answer.id';">Dislike</button>
         //<a href="/QandA/Upvote?id=@answer.id">I like it!</a> <a href="/QandA/Downvote?id=@answer.id">I dislike it!</a>
         <table>
             <tr>
@@ -54,12 +58,15 @@
                 <td>@answer.Upvotes</td>
             </tr>
         </table>
-        <button class="btn-dark" style="background-color:navy" onclick="location.href = '/QandA/EditAnswer?answerID=@answer.id';">Edit Answer</button>
-        //<a href="/QandA/EditAnswer?answerID=@answer.id">Edit Answer</a>
-        <hr />
+        @if (ViewBag.username == answer.Username)
+        {
+            <button class="btn-dark" style="background-color:navy" onclick="location.href = '/QandA/EditAnswer?answerID=@answer.id';">Edit Answer</button>
+            //<a href="/QandA/EditAnswer?answerID=@answer.id">Edit Answer</a>
+            <hr />
+        }
     }
 }
-@if (Model.Status == 0)
-{
-    <button class="btn-info" onclick="location.href = '/QandA/Answer?questionID=@Model.id';">Add an answer</button>
-}
+    @if (Model.Status == 0)
+    {
+        <button class="btn-info" onclick="location.href = '/QandA/Answer?questionID=@Model.id';">Add an answer</button>
+    }

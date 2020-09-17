@@ -24,13 +24,14 @@ namespace SlackOverload.Controllers
 		public IActionResult PageResult(long id) //display questions and associated answers
 		{
 			Questions question = Questions.Read(id);
-
+			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View(question);
 		}
 
 		public IActionResult Question() //add or edit question
 		{
 			ViewBag.PageName = "Add a Question";
+			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View();
 		}
 
@@ -57,6 +58,7 @@ namespace SlackOverload.Controllers
 			}
 			ViewBag.Message = "Your entry has been saved!";
 			List<Questions> questions = Questions.Read();
+			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View("Index", questions);
 		}
 
@@ -64,6 +66,7 @@ namespace SlackOverload.Controllers
 		{
 			ViewBag.PageName = "Edit a Question";
 			Questions question = Questions.Read(id);
+			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View("Question", question);
 		}
 
@@ -73,6 +76,7 @@ namespace SlackOverload.Controllers
 
 			Answers.Update(id, "upvote");
 			Questions question = Questions.Read(answer.QuestionID);
+			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View("PageResult", question);
 		}
 
@@ -82,6 +86,7 @@ namespace SlackOverload.Controllers
 
 			Answers.Update(id, "downvote");
 			Questions question = Questions.Read(answer.QuestionID);
+			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View("PageResult", question);
 		}
 
@@ -91,6 +96,7 @@ namespace SlackOverload.Controllers
 		public IActionResult Answer(long questionID) //add or edit answer
 		{
 			ViewBag.questionID = questionID;
+			ViewBag.username = HttpContext.Request.Cookies["username"];
 			ViewBag.PageName = "Add an Answer";
 			return View();
 		}
@@ -113,6 +119,7 @@ namespace SlackOverload.Controllers
 				Answers.Delete(answerID);
 			}
 			Questions question = Questions.Read(questionID);
+			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View("PageResult", question);
 		}
 
@@ -120,6 +127,7 @@ namespace SlackOverload.Controllers
 		{
 			ViewBag.PageName = "Edit an Answer";
 			Answers answer = Answers.ReadSingle(answerID);
+			ViewBag.username = HttpContext.Request.Cookies["username"];
 			ViewBag.questionID = answer.QuestionID;
 			return View("Answer", answer);
 		}

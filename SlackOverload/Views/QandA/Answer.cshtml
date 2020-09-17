@@ -12,7 +12,7 @@
 			<td><textarea name="details">@Model?.Details</textarea></td>
 		</tr>
 	</table>
-	<input type="hidden" name="username" value="testuser" />
+	<input type="hidden" name="username" value="@ViewBag.username" />
 	<input type="hidden" name="answerID" value="@Model?.id" />
 	<input type="hidden" name="questionID" value="@ViewBag.questionID" />
 	<input type="hidden" name="upvotes" value="@Model?.Upvotes" />
