@@ -73,21 +73,24 @@ namespace SlackOverload.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Upvote(long id, string Up)
+		public IActionResult Upvote(long id, string vote)
 		{
 			Answers answer = Answers.ReadSingle(id);
 			Questions question;
-			if( Up == "Like")
-            {
+			if (vote == "Like")
+			{
 				Answers.Update(id, "upvote");
 				question = Questions.Read(answer.QuestionID);
 			}
-            else
-            {
+			else if (vote == "Dislike")
+			{
 				Answers.Update(id, "downvote");
 				question = Questions.Read(answer.QuestionID);
 			}
-
+			else
+			{
+				question = Questions.Read(answer.QuestionID);
+			}
 			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View("PageResult", question);
 		}

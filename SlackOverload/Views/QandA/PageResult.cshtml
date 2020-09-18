@@ -50,10 +50,9 @@
         <p>@answer.Details</p>
         <form method="post" action="/QandA/Upvote/">
             <input type="hidden" name="id" value="@answer.id" />
-            <input type="submit" value="Like" class="btn-success" style="background-color:forestgreen" name="Up" />
-            <input type="submit" value="Dislike" class="btn-danger" name="Up" />
+            <input type="submit" value="Like" class="btn-success" style="background-color:forestgreen" name="vote" />
+            <input type="submit" value="Dislike" class="btn-danger" name="vote" />
         </form>
-
         <table>
             <tr>
                 <td>Posted:</td>
