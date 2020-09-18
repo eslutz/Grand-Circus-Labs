@@ -1,73 +1,84 @@
 ﻿@model Questions
 @{
-	ViewData["Title"] = Model.Title;
-	List<Answers> answers = Answers.Read(Model.id);
+    ViewData["Title"] = Model.Title;
+    List<Answers> answers = Answers.Read(Model.id);
 }
 
 <h3>@Model.Title:</h3>
 <p>@Model.Details</p>
 <table>
-	<tr>
-		<td>Posted:</td>
-		<td>@Model.Username @Model.Posted</td>
-	</tr>
-	<tr>
-		<td>Category:</td>
-		<td>@Model.Category</td>
-	</tr>
-	<tr>
-		<td>Tags:</td>
-		<td>@Model.Tags</td>
-	</tr>
-	<tr>
-		<td>Status:</td>
-		<td>
-			@if (Model.Status == 0)
-			{
-				<text>Open</text>
-			}
-			else
-			{
-				<text>Closed</text>
-			}
-		</td>
-	</tr>
+    <tr>
+        <td>Posted:</td>
+        <td>@Model.Username @Model.Posted</td>
+    </tr>
+    <tr>
+        <td>Category:</td>
+        <td>@Model.Category</td>
+    </tr>
+    <tr>
+        <td>Tags:</td>
+        <td>@Model.Tags</td>
+    </tr>
+    <tr>
+        <td>Status:</td>
+        <td>
+            @if (Model.Status == 0)
+            {
+                <text>Open</text>
+            }
+            else
+            {
+                <text>Closed</text>
+            }
+        </td>
+    </tr>
 </table>
 @if (ViewBag.username == Model.Username && Model.Status == 0)
 {
-	<button class="btn-dark" style="background-color:navy" onclick="location.href = '/QandA/EditQuestion?id=@Model.id';">Edit Question</button>
+    <form method="post" action="/QandA/EditQuestion/">
+        <input type="hidden" name="id" value="@Model.id" />
+        <input type="submit" value="Edit Question" class="btn-dark" style="background-color:navy" />
+    </form>
 }
-<br /><br />
+<br />
+<br />
 @if (answers.Count != 0)
 {
-	<h3>Answers:</h3>
-	foreach (Answers answer in answers)
-	{
-		<p>@answer.Details</p>
-		<button class="btn-success" style="background-color:forestgreen" onclick="location.href = '/QandA/Upvote?id=@answer.id';">Like</button>
-		<button class="btn-danger" onclick="location.href = '/QandA/Downvote?id=@answer.id';">Dislike</button>
-		<table>
-			<tr>
-				<td>Posted:</td>
-				<td>@answer.Username @answer.Posted</td>
-			</tr>
-			<tr>
-				<td>Upvotes:</td>
-				<td>@answer.Upvotes</td>
-			</tr>
-		</table>
-		@if (ViewBag.username == answer.Username && Model.Status == 0)
-		{
-			<button class="btn-dark" style="background-color:navy" onclick="location.href = '/QandA/EditAnswer?answerID=@answer.id';">Edit Answer</button>
-		}
-		<hr />
-	}
+    <h3>Answers:</h3>
+    foreach (Answers answer in answers)
+    {
+        <p>@answer.Details</p>
+        <form method="post" action="/QandA/Upvote/">
+            <input type="hidden" name="id" value="@answer.id" />
+            <input type="submit" value="Like" class="btn-success" style="background-color:forestgreen" name="Up" />
+            <input type="submit" value="Dislike" class="btn-danger" name="Up" />
+        </form>
+
+        <table>
+            <tr>
+                <td>Posted:</td>
+                <td>@answer.Username @answer.Posted</td>
+            </tr>
+            <tr>
+                <td>Upvotes:</td>
+                <td>@answer.Upvotes</td>
+            </tr>
+        </table>
+        @if (ViewBag.username == answer.Username && Model.Status == 0)
+        {
+            <form method="post" action="/QandA/EditAnswer/">
+                <input type="hidden" name="answerID" value="@answer.id" />
+                <input type="submit" value="Edit Answer" class="btn-dark" style="background-color:navy" />
+            </form>
+        }
+        <hr />
+    }
 }
 <br />
 @if (Model.Status == 0)
 {
-	<form method="post" action="/QandA/Answer">
-		<input type="hidden" name="questionID" value="@Model.id" />
-		<input type="submit" value="Add an Answer" class="btn-info" />
-	</form>
+    <form method="post" action="/QandA/Answer">
+        <input type="hidden" name="questionID" value="@Model.id" />
+        <input type="submit" value="Add an Answer" class="btn-info" />
+    </form>
 }

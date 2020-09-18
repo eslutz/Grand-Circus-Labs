@@ -35,6 +35,7 @@ namespace SlackOverload.Controllers
 			return View();
 		}
 
+		[HttpPost]
 		public IActionResult SaveQuestion(long id, string username, string title, string details, string category, string tags, string status, string submit)
 		{
 			if (submit == "Delete")
@@ -62,6 +63,7 @@ namespace SlackOverload.Controllers
 			return View("Index", questions);
 		}
 
+		[HttpPost]
 		public IActionResult EditQuestion(long id)
 		{
 			ViewBag.PageName = "Edit a Question";
@@ -70,22 +72,22 @@ namespace SlackOverload.Controllers
 			return View("Question", question);
 		}
 
-		public IActionResult Upvote(long id)
+		[HttpPost]
+		public IActionResult Upvote(long id, string Up)
 		{
 			Answers answer = Answers.ReadSingle(id);
+			Questions question;
+			if( Up == "Like")
+            {
+				Answers.Update(id, "upvote");
+				question = Questions.Read(answer.QuestionID);
+			}
+            else
+            {
+				Answers.Update(id, "downvote");
+				question = Questions.Read(answer.QuestionID);
+			}
 
-			Answers.Update(id, "upvote");
-			Questions question = Questions.Read(answer.QuestionID);
-			ViewBag.username = HttpContext.Request.Cookies["username"];
-			return View("PageResult", question);
-		}
-
-		public IActionResult Downvote(long id)
-		{
-			Answers answer = Answers.ReadSingle(id);
-
-			Answers.Update(id, "downvote");
-			Questions question = Questions.Read(answer.QuestionID);
 			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View("PageResult", question);
 		}
@@ -99,6 +101,7 @@ namespace SlackOverload.Controllers
 			return View();
 		}
 
+		[HttpPost]
 		public IActionResult SaveAnswer(long answerID, string username, string details, long questionID, int upvotes, string submit)
 		{
 			if (submit == "Save")
@@ -121,6 +124,7 @@ namespace SlackOverload.Controllers
 			return View("PageResult", question);
 		}
 
+		[HttpPost]
 		public IActionResult EditAnswer(long answerID)
 		{
 			ViewBag.PageName = "Edit an Answer";
