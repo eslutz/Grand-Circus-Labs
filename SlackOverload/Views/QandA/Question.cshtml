@@ -9,15 +9,15 @@
 	<table style="border: 0px">
 		<tr>
 			<td><label name="title" title="Title" value="title">Title:</label></td>
-			<td><input type="text" name="title" value="@Model?.Title" /></td>
+			<td><input type="text" name="title" value="@Model?.Title" required /></td>
 		</tr>
 		<tr>
 			<td><label name="details" title="Details" value="details">Question:</label></td>
-			<td><textarea name="details">@Model?.Details</textarea></td>
+			<td><textarea name="details" required >@Model?.Details</textarea></td>
 		</tr>
 		<tr>
 			<td><label name="category" title="Category" value="category">Category:</label></td>
-			<td><input type="text" name="category" value="@Model?.Category" /></td>
+			<td><input type="text" name="category" value="@Model?.Category" required /></td>
 		</tr>
 		<tr>
 			<td><label name="tags" title="Tags" value="tags">Tags:</label></td>
