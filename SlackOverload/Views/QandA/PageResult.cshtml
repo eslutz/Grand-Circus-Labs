@@ -37,9 +37,7 @@
 {
 	<button class="btn-dark" style="background-color:navy" onclick="location.href = '/QandA/EditQuestion?id=@Model.id';">Edit Question</button>
 }
-<!--<br /><br />
-<button class="btn-link" onclick="location.href = '/QandA/?username=@ViewBag.username';">Back to Questions</button>-->
-<hr />
+<br /><br />
 @if (answers.Count != 0)
 {
 	<h3>Answers:</h3>
@@ -48,7 +46,6 @@
 		<p>@answer.Details</p>
 		<button class="btn-success" style="background-color:forestgreen" onclick="location.href = '/QandA/Upvote?id=@answer.id';">Like</button>
 		<button class="btn-danger" onclick="location.href = '/QandA/Downvote?id=@answer.id';">Dislike</button>
-		//<a href="/QandA/Upvote?id=@answer.id">I like it!</a> <a href="/QandA/Downvote?id=@answer.id">I dislike it!</a>
 		<table>
 			<tr>
 				<td>Posted:</td>
@@ -62,10 +59,8 @@
 		@if (ViewBag.username == answer.Username && Model.Status == 0)
 		{
 			<button class="btn-dark" style="background-color:navy" onclick="location.href = '/QandA/EditAnswer?answerID=@answer.id';">Edit Answer</button>
-			//<a href="/QandA/EditAnswer?answerID=@answer.id">Edit Answer</a>
-			<hr />
 		}
-		<br />
+		<hr />
 	}
 }
 <br />
