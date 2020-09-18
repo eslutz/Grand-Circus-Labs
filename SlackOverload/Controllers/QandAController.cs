@@ -6,6 +6,7 @@ namespace SlackOverload.Controllers
 {
 	public class QandAController : Controller
 	{
+		[HttpPost]
 		public IActionResult SaveUser(string username)
 		{
 			HttpContext.Response.Cookies.Append("username", username);
