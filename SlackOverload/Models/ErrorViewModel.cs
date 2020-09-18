@@ -1,5 +1,3 @@
-using System;
-
 namespace SlackOverload.Models
 {
 	public class ErrorViewModel

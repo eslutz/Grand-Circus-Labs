@@ -32,9 +32,9 @@
 	<input type="hidden" name="username" value="@ViewBag.username" />
 	<input type="hidden" name="id" value="@Model?.id" />
 	<br />
-	<input type="submit" name="submit" value="Save" /> 
+	<input type="submit" name="submit" value="Save" class="btn-outline-success" /> 
 	@if (!string.IsNullOrEmpty(Model?.Title))
     {
-	<input type="submit" name="submit" value="Delete" />
+	<input type="submit" name="submit" value="Delete" class="btn-outline-danger" />
     }
 </form>

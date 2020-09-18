@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SlackOverload.Models;
-using Dapper.Contrib.Extensions;
-using System.Data;
-using Dapper;
-using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace SlackOverload.Controllers
 {

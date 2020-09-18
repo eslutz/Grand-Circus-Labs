@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Dapper.Contrib.Extensions;
-using Dapper;
-using System.Data;
-using System.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Mvc;
 using SlackOverload.Models;
+using System.Collections.Generic;
 
 namespace SlackOverload.Controllers
 {
 	public class QandAController : Controller
-	{		
+	{
 		public IActionResult Index(string scope, string field, string search, string username)
 		{
 			List<Questions> questions = Questions.Read(scope, field, search);
@@ -43,7 +36,7 @@ namespace SlackOverload.Controllers
 			}
 			else if (id >= 1)
 			{
-				if(status == "on")
+				if (status == "on")
 				{
 					Questions.Update(id, username, title, details, category, tags, 1);
 				}
@@ -90,9 +83,6 @@ namespace SlackOverload.Controllers
 			return View("PageResult", question);
 		}
 
-
-
-
 		public IActionResult Answer(long questionID) //add or edit answer
 		{
 			ViewBag.questionID = questionID;
@@ -103,9 +93,9 @@ namespace SlackOverload.Controllers
 
 		public IActionResult SaveAnswer(long answerID, string username, string details, long questionID, int upvotes, string submit)
 		{
-			if(submit == "Save")
+			if (submit == "Save")
 			{
-				if(answerID >= 1)
+				if (answerID >= 1)
 				{
 					Answers.Update(answerID, username, details, questionID, upvotes);
 				}
@@ -131,8 +121,5 @@ namespace SlackOverload.Controllers
 			ViewBag.questionID = answer.QuestionID;
 			return View("Answer", answer);
 		}
-
-
-		
 	}
 }
