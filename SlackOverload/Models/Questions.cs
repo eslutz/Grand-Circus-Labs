@@ -118,5 +118,6 @@ namespace SlackOverload.Models
 			Questions question = db.Get<Questions>(id);
 			return question;
 		}
+
 	}
 }

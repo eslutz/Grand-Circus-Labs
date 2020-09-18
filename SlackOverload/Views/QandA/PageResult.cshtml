@@ -33,7 +33,7 @@
         </td>
     </tr>
 </table>
-@if (ViewBag.username == Model.Username && Model.Status == 0)
+@if ((ViewBag.username == Model.Username && Model.Status == 0) || (ViewBag.username == "admin" || ViewBag.username == "Admin"))
 {
     <form method="post" action="/QandA/EditQuestion/">
         <input type="hidden" name="id" value="@Model.id" />
@@ -63,7 +63,7 @@
                 <td>@answer.Upvotes</td>
             </tr>
         </table>
-        @if (ViewBag.username == answer.Username && Model.Status == 0)
+        @if ((ViewBag.username == answer.Username && Model.Status == 0) || (ViewBag.username == "admin" || ViewBag.username == "Admin"))
         {
             <form method="post" action="/QandA/EditAnswer/">
                 <input type="hidden" name="answerID" value="@answer.id" />
