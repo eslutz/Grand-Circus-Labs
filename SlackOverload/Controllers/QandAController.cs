@@ -6,10 +6,15 @@ namespace SlackOverload.Controllers
 {
 	public class QandAController : Controller
 	{
-		public IActionResult Index(string scope, string field, string search, string username)
+		public IActionResult SaveUser(string username)
+		{
+			HttpContext.Response.Cookies.Append("username", username);
+			return Redirect("/QandA");
+		}
+
+		public IActionResult Index(string scope, string field, string search)
 		{
 			List<Questions> questions = Questions.Read(scope, field, search);
-			HttpContext.Response.Cookies.Append("username", username);
 			ViewBag.username = HttpContext.Request.Cookies["username"];
 			return View(questions);
 		}

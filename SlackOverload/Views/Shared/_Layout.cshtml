@@ -27,7 +27,7 @@
 						@if (!string.IsNullOrEmpty(@ViewBag.username))
 						{
 							<li class="nav-item">
-								<a class="nav-link text-dark" href="/QandA/Index?username=@ViewBag.username">Questions</a>
+								<a class="nav-link text-dark" asp-area="" asp-controller="QandA" asp-action="Index">Questions</a>
 							</li>
 						}
 					</ul>
