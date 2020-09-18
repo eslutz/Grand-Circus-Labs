@@ -66,5 +66,8 @@
 <br />
 @if (Model.Status == 0)
 {
-	<button class="btn-info" onclick="location.href = '/QandA/Answer?questionID=@Model.id';">Add an answer</button>
+	<form method="post" action="/QandA/Answer">
+		<input type="hidden" name="questionID" value="@Model.id" />
+		<input type="submit" value="Add an Answer" class="btn-info" />
+	</form>
 }

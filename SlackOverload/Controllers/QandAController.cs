@@ -26,6 +26,7 @@ namespace SlackOverload.Controllers
 			return View(question);
 		}
 
+		[HttpPost]
 		public IActionResult Question() //add or edit question
 		{
 			ViewBag.PageName = "Add a Question";
@@ -88,6 +89,7 @@ namespace SlackOverload.Controllers
 			return View("PageResult", question);
 		}
 
+		[HttpPost]
 		public IActionResult Answer(long questionID) //add or edit answer
 		{
 			ViewBag.questionID = questionID;
