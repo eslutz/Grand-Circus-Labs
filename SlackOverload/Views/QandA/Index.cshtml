@@ -1,15 +1,15 @@
 ﻿@model List<Questions>
 @{
 	ViewData["Title"] = "Questions";
+	List<string> categories = Questions.ReadCategories();
 }
 
 <div class="jumbotron" style="background-color:lightblue">
 	<h1>Dev.Build SlackOverload Question Forum</h1>
 	<br />
 	<b>Welcome, @ViewBag.username</b>
-	
 	<form method="get" action="/QandA">
-		<label name="search" value="Search"><b>Search the Forum:</b></label>
+		<label name="search" title="Search" value="search"><b>Search the Forum:</b></label>
 		<br />
 		<select name="scope">
 			<option>Questions</option>
@@ -29,13 +29,33 @@
 	</form>
 </div>
 
-<div class="jumbotron" style="background-color:white">
+<div class="jumbotron-fluid" style="background-color:white">
 	<b style="color:chartreuse">@ViewBag.Message</b>
 	<h2>Click below to view a Question and provide feedback:</h2>
+	<br />
+	<form method="get" action="/QandA">
+		<label name="view" title="View" value="view">View:</label>
+		<select name="view">
+			<option>All</option>
+			@foreach(String category in categories)
+			{
+				<option>@category</option>
+			}
+		</select>
+		<input type="submit" value="Go" />
+	</form>
+	<br />
 	<ul>
 		@foreach (Questions question in Model)
 		{
-			<li><a href=" /QandA/PageResult?id=@question.id">@question.Title</a></li>
+			if (String.IsNullOrEmpty(ViewBag.category) || ViewBag.category == "All")
+			{
+				<li><a href=" /QandA/PageResult?id=@question.id">@question.Title</a></li>
+			}
+			else if (ViewBag.category == question.Category)
+			{
+				<li><a href=" /QandA/PageResult?id=@question.id">@question.Title</a></li>
+			}
 		}
 	</ul>
 	<br />

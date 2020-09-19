@@ -25,8 +25,8 @@ namespace SlackOverload.Models
 		{
 			Questions question = new Questions() { Username = username, Title = title, Details = details, Category = category, Tags = tags, Posted = DateTime.Now, Status = 0 };
 			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
-			IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
-			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
+			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
 			db.Insert(question);
 		}
 
@@ -34,24 +34,24 @@ namespace SlackOverload.Models
 		{
 			Questions question = new Questions() { id = id, Username = username, Title = title, Details = details, Category = category, Tags = tags, Posted = DateTime.Now, Status = status };
 			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
-			IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
-			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
+			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
 			db.Update(question);
 		}
 
 		public static void Delete(long id)
 		{
 			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
-			IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
-			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
+			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
 			db.Delete(new Questions() { id = id });
 		}
 
 		public static List<Questions> Read()
 		{
 			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
-			IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
-			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
+			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
 			List<Questions> questions = db.GetAll<Questions>().ToList();
 			return questions;
 		}
@@ -59,8 +59,8 @@ namespace SlackOverload.Models
 		public static List<Questions> Read(string scope, string field, string search)
 		{
 			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
-			IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
-			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
+			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
 			List<Questions> questions;
 			if (scope == "Questions")
 			{
@@ -113,11 +113,24 @@ namespace SlackOverload.Models
 		public static Questions Read(long id)
 		{
 			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
-			IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
-			//IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
+			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
 			Questions question = db.Get<Questions>(id);
 			return question;
 		}
 
+		public static List<string> ReadCategories()
+		{
+			//IDbConnection db = new SqlConnection("Server=BW18Q13\\SQLEXPRESS;Database=SlackOverload;user id=test;password=password");               //***Manny***
+			//IDbConnection db = new SqlConnection("Server=CXJSN13\\SQLEXPRESS;Database=SlackOverload;user id=da;password=P@$$word!@#;");             //***Adam***
+			IDbConnection db = new SqlConnection("Server=BCKW433\\SQLEXPRESS;Database=SlackOverload;user id=SlackOverloadUser;password=password");  //***Eric***
+			List<Questions> questions = db.Query<Questions>($"select distinct Category from Questions").AsList();
+			List<string> categories = new List<string>();
+			foreach(Questions question in questions)
+			{
+				categories.Add(question.Category);
+			}
+			return categories;
+		}
 	}
 }

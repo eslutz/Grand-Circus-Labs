@@ -13,10 +13,11 @@ namespace SlackOverload.Controllers
 			return Redirect("/QandA");
 		}
 
-		public IActionResult Index(string scope, string field, string search)
+		public IActionResult Index(string scope, string field, string search, string view)
 		{
 			List<Questions> questions = Questions.Read(scope, field, search);
 			ViewBag.username = HttpContext.Request.Cookies["username"];
+			ViewBag.category = view;
 			return View(questions);
 		}
 
