@@ -1,0 +1,37 @@
+﻿@model CardHand
+@{
+	ViewData["Title"] = "DeckOfCards";
+}
+
+<h1>Lets Draw Cards</h1>
+<table>
+	<tr>
+		@foreach (CardDetail card in Model.Cards)
+		{
+			<td><img src="@card.Image" /></td>
+		}
+	</tr>
+	<tr>
+		@foreach (CardDetail card in Model.Cards)
+		{
+			<td align="center">@card.Value of @card.Suit</td>
+		}
+	</tr>
+</table>
+<b>Remaining Cards: </b>@Model.Remaining
+<hr />
+@if (Model.Remaining == 0)
+{
+	<strong>YOU ARE OUT OF CARDS!</strong>
+}
+else
+{
+	if (Model.Remaining - 5 <= 0)
+	{
+		<strong>YOU DO NOT HAVE ENOUGH CARDS TO DRAW A FULL HAND!</strong>
+	}
+	<form method="post" action="/Home/DeckOfCards">
+		<input type="submit" name="drawAgain" title="Draw Again" value="Draw Again" />
+		<input type="hidden" name="deck_id" value="@Model.Deck_ID" />
+	</form>
+}

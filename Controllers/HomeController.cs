@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Lab_15._1.Models;
+using System.Net.Http;
 
 namespace Lab_15._1.Controllers
 {
@@ -21,6 +22,26 @@ namespace Lab_15._1.Controllers
 		public IActionResult Index()
 		{
 			return View();
+		}
+
+		public async Task<IActionResult> DeckOfCards(string drawAgain, string deck_id)
+		{
+			HttpClient client = new HttpClient();
+			client.BaseAddress = new Uri("https://deckofcardsapi.com");
+			var response = await client.GetAsync("/api/deck/new/shuffle");
+			CardHand hand;
+			if (string.IsNullOrEmpty(drawAgain))
+			{
+				CardDeck deck = await response.Content.ReadAsAsync<CardDeck>();
+				response = await client.GetAsync($"/api/deck/{deck.Deck_ID}/draw/?count=5");
+				hand = await response.Content.ReadAsAsync<CardHand>();
+			}
+			else
+			{
+				response = await client.GetAsync($"/api/deck/{deck_id}/draw/?count=5");
+				hand = await response.Content.ReadAsAsync<CardHand>();
+			}
+			return View(hand);
 		}
 
 		public IActionResult Privacy()
