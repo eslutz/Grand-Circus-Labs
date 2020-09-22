@@ -11,5 +11,18 @@ namespace Lab_15._2.Controllers
 	[ApiController]
 	public class MoviesController : ControllerBase
 	{
+		[HttpGet]
+		public List<TheMovie> Movie()
+		{
+			List<TheMovie> movies = TheMovie.Read();
+			return movies;
+		}
+
+		[HttpGet("Category/{category}")]
+		public List<TheMovie> Movie(string category)
+		{
+			List<TheMovie> movies = TheMovie.Read(category);
+			return movies;
+		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Lab_15._2
 {
 	[Table("Movie")]
-	public class Movie
+	public class TheMovie
 	{
 		public long ID { get; set; }
 		public string Title { get; set; }
@@ -19,27 +20,34 @@ namespace Lab_15._2
 
 		private static string connection = "Server=BCKW433\\SQLEXPRESS;Database=Movie;user id=MovieUser;password=ILikeMovies";
 		//Create
-		public static Movie Create(string title, string category, int releaseYear, int runtime)
+		public static TheMovie Create(string title, string category, int releaseYear, int runtime)
 		{
-			Movie movie = new Movie() { Title = title, Category = category, ReleaseYear = releaseYear, Runtime = runtime };
+			TheMovie movie = new TheMovie() { Title = title, Category = category, ReleaseYear = releaseYear, Runtime = runtime };
 			IDbConnection database = new SqlConnection(connection);
-			long id = database.Insert<Movie>(movie);
+			long id = database.Insert<TheMovie>(movie);
 			movie.ID = id;
 			return movie;
 		}
 
 		//Read
-		public static Movie Read(long id)
+		public static TheMovie Read(long id)
 		{
 			IDbConnection database = new SqlConnection(connection);
-			Movie movie = database.Get<Movie>(id);
+			TheMovie movie = database.Get<TheMovie>(id);
 			return movie;
 		}
 
-		public static List<Movie> Read()
+		public static List<TheMovie> Read(string category)
 		{
 			IDbConnection database = new SqlConnection(connection);
-			List<Movie> movies = database.GetAll<Movie>().ToList();
+			List<TheMovie> movies = database.Query<TheMovie>($"select * from Movie where Category = '{category}'").ToList();
+			return movies;
+		}
+
+		public static List<TheMovie> Read()
+		{
+			IDbConnection database = new SqlConnection(connection);
+			List<TheMovie> movies = database.GetAll<TheMovie>().ToList();
 			return movies;
 		}
 
@@ -54,7 +62,7 @@ namespace Lab_15._2
 		public static void Delete(long id)
 		{
 			IDbConnection database = new SqlConnection(connection);
-			database.Delete(new Movie() { ID = id });
+			database.Delete(new TheMovie() { ID = id });
 		}
 	}
 }
