@@ -18,6 +18,13 @@ namespace Lab_15._2.Controllers
 			return movies;
 		}
 
+		[HttpGet("Category")]
+		public List<string> MovieCategories()
+		{
+			List<string> categories = TheMovie.ReadCategories();
+			return categories;
+		}
+
 		[HttpGet("Category/{category}")]
 		public List<TheMovie> Movie(string category)
 		{
@@ -41,9 +48,13 @@ namespace Lab_15._2.Controllers
 		{
 			Random rand = new Random();
 			List<TheMovie> movies = TheMovie.Read(category);
-			int randomPick = rand.Next(0, movies.Count);
-			long movieID = movies[randomPick].ID;
-			TheMovie movie = TheMovie.Read(movieID);
+			TheMovie movie = null;
+			if (movies.Count != 0)
+			{
+				int randomPick = rand.Next(0, movies.Count);
+				long movieID = movies[randomPick].ID;
+				movie = TheMovie.Read(movieID);
+			}
 			return movie;
 		}
 	}

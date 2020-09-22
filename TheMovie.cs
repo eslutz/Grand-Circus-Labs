@@ -44,6 +44,18 @@ namespace Lab_15._2
 			return movies;
 		}
 
+		public static List<string> ReadCategories()
+		{
+			IDbConnection database = new SqlConnection(connection);
+			List<TheMovie> movies = database.Query<TheMovie>($"select distinct Category from Movie").AsList();
+			List<string> categories = new List<string>();
+			foreach (TheMovie movie in movies)
+			{
+				categories.Add(movie.Category);
+			}
+			return categories;
+		}
+
 		public static List<TheMovie> Read()
 		{
 			IDbConnection database = new SqlConnection(connection);
