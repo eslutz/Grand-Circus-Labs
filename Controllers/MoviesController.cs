@@ -37,10 +37,14 @@ namespace Lab_15._2.Controllers
 		}
 
 		[HttpGet("Random/{category}")]
-		public List<TheMovie> RandomMovie(string category)
+		public TheMovie RandomMovie(string category)
 		{
+			Random rand = new Random();
 			List<TheMovie> movies = TheMovie.Read(category);
-			return movies;
+			int randomPick = rand.Next(0, movies.Count);
+			long movieID = movies[randomPick].ID;
+			TheMovie movie = TheMovie.Read(movieID);
+			return movie;
 		}
 	}
 }
