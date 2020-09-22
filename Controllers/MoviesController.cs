@@ -24,5 +24,23 @@ namespace Lab_15._2.Controllers
 			List<TheMovie> movies = TheMovie.Read(category);
 			return movies;
 		}
+
+		[HttpGet("Random")]
+		public TheMovie RandomMovie()
+		{
+			Random rand = new Random();
+			List<TheMovie> movies = TheMovie.Read();
+			int randomPick = rand.Next(0, movies.Count);
+			long movieID = movies[randomPick].ID;
+			TheMovie movie = TheMovie.Read(movieID);
+			return movie;
+		}
+
+		[HttpGet("Random/{category}")]
+		public List<TheMovie> RandomMovie(string category)
+		{
+			List<TheMovie> movies = TheMovie.Read(category);
+			return movies;
+		}
 	}
 }
