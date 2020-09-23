@@ -105,7 +105,7 @@ namespace Lab_15._2.Controllers
 			return movies;
 		}
 
-		[HttpGet("search/{title}")]
+		[HttpGet("Search/{title}")]
 		public List<TheMovie> MovieTitleSearch(string title)
 		{
 			List<TheMovie> movies = TheMovie.ReadTitleSearch(title);
