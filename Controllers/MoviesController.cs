@@ -11,6 +11,8 @@ namespace Lab_15._2.Controllers
 	[ApiController]
 	public class MoviesController : ControllerBase
 	{
+		private static Random rand = new Random();
+
 		[HttpGet]
 		public List<TheMovie> Movie()
 		{
@@ -35,7 +37,6 @@ namespace Lab_15._2.Controllers
 		[HttpGet("Random")]
 		public TheMovie RandomMovie()
 		{
-			Random rand = new Random();
 			List<TheMovie> movies = TheMovie.Read();
 			int randomPick = rand.Next(0, movies.Count);
 			long movieID = movies[randomPick].ID;
@@ -43,10 +44,50 @@ namespace Lab_15._2.Controllers
 			return movie;
 		}
 
+		[HttpGet("Random/List")]
+		public List<TheMovie> RandomMovies()
+		{
+			List<TheMovie> movies = TheMovie.Read();
+			int listLength = rand.Next(0, movies.Count);
+			List<TheMovie> randomMovieList = new List<TheMovie>();
+			for (int x = 0; x < listLength; x++)
+			{
+				int randomPick = rand.Next(0, movies.Count);
+				while (randomMovieList.Any(x => x.ID == movies[randomPick].ID))
+				{
+					randomPick = rand.Next(0, movies.Count);
+				}
+				long movieID = movies[randomPick].ID;
+				randomMovieList.Add(TheMovie.Read(movieID));
+			}
+			return randomMovieList;
+		}
+
+		[HttpGet("Random/List/{listLength}")]
+		public List<TheMovie> RandomMovies(int listLength)
+		{
+			List<TheMovie> movies = TheMovie.Read();
+			List<TheMovie> randomMovieList = new List<TheMovie>();
+			if(listLength >= movies.Count)
+			{
+				listLength = movies.Count;
+			}
+			for(int x = 0; x < listLength; x++)
+			{
+				int randomPick = rand.Next(0, movies.Count);
+				while (randomMovieList.Any(x => x.ID == movies[randomPick].ID))
+				{
+					randomPick = rand.Next(0, movies.Count);
+				}
+				long movieID = movies[randomPick].ID;
+				randomMovieList.Add(TheMovie.Read(movieID));
+			}
+			return randomMovieList;
+		}
+
 		[HttpGet("Random/{category}")]
 		public TheMovie RandomMovie(string category)
 		{
-			Random rand = new Random();
 			List<TheMovie> movies = TheMovie.Read(category);
 			TheMovie movie = null;
 			if (movies.Count != 0)
