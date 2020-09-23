@@ -36,7 +36,7 @@ namespace Lab_15._3
 		{
 			Employee employee = new Employee()
 			{
-				FirstName = "test",
+				FirstName = firstname,
 				LastName = lastname,
 				Title = null,
 				TitleOfCourtesy = null,

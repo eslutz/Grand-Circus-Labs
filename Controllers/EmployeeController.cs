@@ -35,7 +35,6 @@ namespace Lab_15._3.Controllers
 			if (country == null)
 			{
 				employees = Employee.Read(_database).OrderBy(x => x.Country).ToList();
-
 			}
 			else
 			{
