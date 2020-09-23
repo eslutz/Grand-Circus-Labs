@@ -56,6 +56,13 @@ namespace Lab_15._2
 			return categories;
 		}
 
+		public static List<TheMovie> ReadTitle(string title)
+		{
+			IDbConnection database = new SqlConnection(connection);
+			List<TheMovie> movies = database.Query<TheMovie>($"select * from Movie where Title = '{title}'").AsList();
+			return movies;
+		}
+
 		public static List<TheMovie> Read()
 		{
 			IDbConnection database = new SqlConnection(connection);

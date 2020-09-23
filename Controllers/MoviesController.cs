@@ -68,6 +68,7 @@ namespace Lab_15._2.Controllers
 		{
 			List<TheMovie> movies = TheMovie.Read();
 			List<TheMovie> randomMovieList = new List<TheMovie>();
+			//If user enters a length greater than the number of movies that exists, then displays all the movies.
 			if(listLength >= movies.Count)
 			{
 				listLength = movies.Count;
@@ -97,6 +98,13 @@ namespace Lab_15._2.Controllers
 				movie = TheMovie.Read(movieID);
 			}
 			return movie;
+		}
+
+		[HttpGet("{title}")]
+		public List<TheMovie> MovieTitleSearch(string title)
+		{
+			List<TheMovie> movies = TheMovie.ReadTitle(title);
+			return movies;
 		}
 	}
 }
