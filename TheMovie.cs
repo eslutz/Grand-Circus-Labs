@@ -1,11 +1,9 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Lab_15._2
 {
@@ -60,6 +58,13 @@ namespace Lab_15._2
 		{
 			IDbConnection database = new SqlConnection(connection);
 			List<TheMovie> movies = database.Query<TheMovie>($"select * from Movie where Title = '{title}'").AsList();
+			return movies;
+		}
+
+		public static List<TheMovie> ReadTitleSearch(string title)
+		{
+			IDbConnection database = new SqlConnection(connection);
+			List<TheMovie> movies = database.Query<TheMovie>($"select * from Movie where Title like '%{title}%'").AsList();
 			return movies;
 		}
 

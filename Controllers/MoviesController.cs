@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Lab_15._2.Controllers
 {
@@ -69,11 +67,11 @@ namespace Lab_15._2.Controllers
 			List<TheMovie> movies = TheMovie.Read();
 			List<TheMovie> randomMovieList = new List<TheMovie>();
 			//If user enters a length greater than the number of movies that exists, then displays all the movies.
-			if(listLength >= movies.Count)
+			if (listLength >= movies.Count)
 			{
 				listLength = movies.Count;
 			}
-			for(int x = 0; x < listLength; x++)
+			for (int x = 0; x < listLength; x++)
 			{
 				int randomPick = rand.Next(0, movies.Count);
 				while (randomMovieList.Any(x => x.ID == movies[randomPick].ID))
@@ -101,9 +99,16 @@ namespace Lab_15._2.Controllers
 		}
 
 		[HttpGet("{title}")]
-		public List<TheMovie> MovieTitleSearch(string title)
+		public List<TheMovie> MovieTitleLookup(string title)
 		{
 			List<TheMovie> movies = TheMovie.ReadTitle(title);
+			return movies;
+		}
+
+		[HttpGet("search/{title}")]
+		public List<TheMovie> MovieTitleSearch(string title)
+		{
+			List<TheMovie> movies = TheMovie.ReadTitleSearch(title);
 			return movies;
 		}
 	}
