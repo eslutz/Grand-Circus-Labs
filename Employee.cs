@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lab_15._3
 {
+	[Table("Employees")]
 	public class Employee
 	{
 		[Key]
@@ -26,31 +28,26 @@ namespace Lab_15._3
 		public string ReportsTo { get; set; }
 		public string PhotoPath { get; set; }
 
+		//Returns a list of all employees
 		public static List<Employee> Read(IDbConnection database)
 		{
 			List<Employee> employees = database.GetAll<Employee>().ToList();
 			return employees;
 		}
 
-		public static long Create(IDbConnection database, string lastname, string firstname)
+		//Adds a new employee to the database and returns their employee ID
+		public static long Create(IDbConnection database, Employee employee)
 		{
-			Employee employee = new Employee()
+			//Database reqquire a min DateTime value of 1/1/1753 12:00:00 AM
+			//If date is set before then, increases date to minimum requirement
+			if (employee.BirthDate < DateTime.Parse("1/1/1753 12:00:00 AM"))
 			{
-				FirstName = firstname,
-				LastName = lastname,
-				Title = null,
-				TitleOfCourtesy = null,
-				BirthDate = DateTime.Now,
-				HireDate = DateTime.Now,
-				Address = null,
-				City = null,
-				Region = null,
-				Country = null,
-				HomePhone = null,
-				Extension = null,
-				ReportsTo = null,
-				PhotoPath = null
-			};
+				employee.BirthDate = DateTime.Parse("1/1/1753 12:00:00 AM");
+			}
+			if (employee.HireDate < DateTime.Parse("1/1/1753 12:00:00 AM"))
+			{
+				employee.HireDate = DateTime.Parse("1/1/1753 12:00:00 AM");
+			}
 			long id = database.Insert<Employee>(employee);
 			return id;
 		}

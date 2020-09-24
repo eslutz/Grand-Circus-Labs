@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace Lab_15._3.Controllers
 {
@@ -44,9 +46,10 @@ namespace Lab_15._3.Controllers
 		}
 
 		[HttpPost("AddEmployee")]
-		public long AddEmployee(string lastname, string firstname)
+		[Consumes("application/json")]
+		public long AddEmployee([FromBody] Employee employee)
 		{
-			long employeeID = Employee.Create(_database, lastname, firstname);
+			long employeeID = Employee.Create(_database, employee);
 			return employeeID;
 		}
 	}
