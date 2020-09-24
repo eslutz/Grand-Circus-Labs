@@ -45,25 +45,13 @@ namespace Lab_15._3
 
         public static List<Product> CheckStockUnder(IDbConnection _db, int UnitsInStock)
         {
-
             List<Product> products = (List<Product>)_db.Query<Product>($"SELECT * FROM Products WHERE UnitsInStock <= {UnitsInStock}");
             return products;
-
         }
         public static List<Product> UpdateStock(IDbConnection _db, Product product)
         {
             List<Product> products = (List<Product>)_db.Query<Product>($"UPDATE Products SET UnitsInStock = {product.UnitsInStock} WHERE ProductId = {product.ProductID}");
             return products;
-
-
         }
-
-
-
-        //public static List<Product> AddProduct(IDbConnection _db, string ProductName, int itemCount)
-        //{
-        //    List<Product> products = (List<Product>)_db.Query<Product>($"INSERT INTO Products(ProductName, UnitsInStock)VALUES('{ProductName}', {itemCount})");
-        //    return products;
-        //}
     }
 }

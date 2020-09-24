@@ -35,7 +35,7 @@ namespace Lab_15._3.Controllers
 			return products;
 		}
 
-		[HttpPost("Stock/UpdateStock/")]
+		[HttpPost("Stock/UpdateStock")]
 		public List<Product> UpdateStock([FromBody] Product product)
 		{
 			List<Product> products = Product.UpdateStock(_db, product);

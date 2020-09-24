@@ -37,6 +37,12 @@ namespace Northwind_API
             return regionlist;
         }
 
+        public static List<Customers> GetNullRegionCustomers(IDbConnection db)
+        {
+            List<Customers> regionlist = db.Query<Customers>($"SELECT * FROM Customers WHERE Region IS NULL").ToList();
+            return regionlist;
+        }
+
         public static void AddCustomer(IDbConnection db, Customers cust)
         {
             db.Insert<Customers>(cust);
