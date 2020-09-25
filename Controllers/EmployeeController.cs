@@ -18,7 +18,7 @@ namespace Lab_15._3.Controllers
 			_logger = logger;
 			_database = database;
 		}
-
+		
 		//Default route returns list of all employees by default
 		[HttpGet]
 		public List<Employee> Get()

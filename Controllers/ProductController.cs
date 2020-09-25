@@ -35,10 +35,11 @@ namespace Lab_15._3.Controllers
 		}
 
 		[HttpPost("Stock/UpdateStock")]
-		public List<Product> UpdateStock([FromBody] Product product)
+		[Consumes("application/json")]
+		public Product UpdateStock([FromBody] Product product)
 		{
-			List<Product> products = Product.UpdateStock(_db, product);
-			return products;
+			Product updatedProduct = Product.UpdateStock(_db, product);
+			return updatedProduct;
 		}
 	}
 }

@@ -10,17 +10,16 @@ namespace Lab_15._3
 	public class Product
 	{
 		[Key]
-		public int ProductID { get; set; }
+		public string ProductID { get; set; }
 		public string ProductName { get; set; }
 		public int SupplierId { get; set; }
 		public int CategoryID { get; set; }
-		public int QuanitityPerUnit { get; set; }
+		public int QuantityPerUnit { get; set; }
 		public decimal UnitPrice { get; set; }
-		public int UnitsInStock { get; set; }
+		public string UnitsInStock { get; set; }
 		public int UnitsOnOrder { get; set; }
 		public int ReorderLevel { get; set; }
 		public int Discontinued { get; set; }
-
 
 		public static List<Product> Read(IDbConnection _db)
 		{
@@ -45,10 +44,12 @@ namespace Lab_15._3
 			List<Product> products = (List<Product>)_db.Query<Product>($"SELECT * FROM Products WHERE UnitsInStock <= {UnitsInStock}");
 			return products;
 		}
-		public static List<Product> UpdateStock(IDbConnection _db, Product product)
+
+		public static Product UpdateStock(IDbConnection _db, Product product)
 		{
-			List<Product> products = (List<Product>)_db.Query<Product>($"UPDATE Products SET UnitsInStock = {product.UnitsInStock} WHERE ProductId = {product.ProductID}");
-			return products;
+			_db.Query<Product>($"UPDATE Products SET UnitsInStock = {product.UnitsInStock} WHERE ProductId = {product.ProductID}");
+			Product updatedProduct = _db.Get<Product>(product.ProductID);
+			return updatedProduct;
 		}
 	}
 }
