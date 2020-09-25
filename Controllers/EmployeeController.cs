@@ -1,12 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 
 namespace Lab_15._3.Controllers
 {
@@ -14,9 +10,12 @@ namespace Lab_15._3.Controllers
 	[ApiController]
 	public class EmployeeController : ControllerBase
 	{
+		private readonly ILogger<EmployeeController> _logger;
 		private IDbConnection _database;
-		public EmployeeController(IDbConnection database)
+
+		public EmployeeController(ILogger<EmployeeController> logger, IDbConnection database)
 		{
+			_logger = logger;
 			_database = database;
 		}
 
@@ -45,6 +44,7 @@ namespace Lab_15._3.Controllers
 			return employees;
 		}
 
+		//Employee/AddEmployee creates a new employee and returns their ID
 		[HttpPost("AddEmployee")]
 		[Consumes("application/json")]
 		public long AddEmployee([FromBody] Employee employee)

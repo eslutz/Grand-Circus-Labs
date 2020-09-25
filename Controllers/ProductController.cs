@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Data;
@@ -15,8 +14,8 @@ namespace Lab_15._3.Controllers
 
 		public ProductController(ILogger<ProductController> logger, IDbConnection db)
 		{
-			_db = db;
 			_logger = logger;
+			_db = db;
 		}
 
 		//Returns All Products
