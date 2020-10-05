@@ -14,7 +14,7 @@ namespace Lab_15._3
 		public string ProductName { get; set; }
 		public int SupplierId { get; set; }
 		public int CategoryID { get; set; }
-		public int QuantityPerUnit { get; set; }
+		public string QuantityPerUnit { get; set; }
 		public decimal UnitPrice { get; set; }
 		public string UnitsInStock { get; set; }
 		public int UnitsOnOrder { get; set; }
