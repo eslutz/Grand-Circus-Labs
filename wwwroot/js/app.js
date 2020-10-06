@@ -29,7 +29,7 @@ function calcAverageProductPrice(products) {
         }
         averageProductPrice = averageProductPrice / products.length;
     }
-    return "$" + averageProductPrice;
+    return "$" + averageProductPrice.toFixed(2);
 }
 function getAveragePrice() {
     var products = [
@@ -40,5 +40,24 @@ function getAveragePrice() {
     ];
     var averagePrice = calcAverageProductPrice(products);
     console.log(averagePrice);
+}
+function calcInventoryValue(inventory) {
+    var totalValue = 0;
+    if (!(inventory === undefined || inventory === null || inventory.length == 0)) {
+        for (var _i = 0, inventory_1 = inventory; _i < inventory_1.length; _i++) {
+            var product = inventory_1[_i];
+            totalValue += product.product.price * product.quantity;
+        }
+    }
+    return "$" + totalValue.toFixed(2);
+}
+function getTotalValue() {
+    var inventory = [
+        { product: { name: "motor", price: 10.00 }, quantity: 10 },
+        { product: { name: "sensor", price: 12.50 }, quantity: 4 },
+        { product: { name: "LED", price: 1.00 }, quantity: 20 }
+    ];
+    var totalValue = calcInventoryValue(inventory);
+    console.log(totalValue);
 }
 //# sourceMappingURL=app.js.map

@@ -1,7 +1,7 @@
 ﻿//Tallest Mountian
 interface Mountian {
 	name: String,
-	height: Number
+	height: number
 }
 
 function findNameOfTallestMountian(mountians: Mountian[]) {
@@ -41,7 +41,7 @@ function calcAverageProductPrice(products: Product[]) {
 		}
 		averageProductPrice = averageProductPrice / products.length;
 	}
-	return `$${averageProductPrice}`;
+	return `$${averageProductPrice.toFixed(2)}`;
 }
 
 function getAveragePrice() {
@@ -53,4 +53,30 @@ function getAveragePrice() {
 	];
 	let averagePrice = calcAverageProductPrice(products);
 	console.log(averagePrice);
+}
+
+//Inventory
+interface Inventory {
+	product: Product,
+	quantity: number
+}
+
+function calcInventoryValue(inventory: Inventory[]) {
+	let totalValue = 0;
+	if (!(inventory === undefined || inventory === null || inventory.length == 0)) {
+		for (let product of inventory) {
+			totalValue += product.product.price * product.quantity;
+		}
+	}
+	return `$${totalValue.toFixed(2)}`;
+}
+
+function getTotalValue() {
+	let inventory: Inventory[] = [
+		{ product: { name: "motor", price: 10.00 }, quantity: 10 },
+		{ product: { name: "sensor", price: 12.50 }, quantity: 4 },
+		{ product: { name: "LED", price: 1.00 }, quantity: 20 }
+	];
+	let totalValue = calcInventoryValue(inventory);
+	console.log(totalValue);
 }
