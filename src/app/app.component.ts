@@ -6,5 +6,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ToDo';
+	title = 'Things To Do';
+	
+	toDoList: ToDo[] = [
+		{theItem: "Default Item 1", done: false},
+		{theItem: "Default Item 2", done: false},
+		{theItem: "Default Item 3", done: true}
+	];
+
+	addItem = function(newItem: string) {
+		this.toDoList.push({theItem: newItem, done: false});
+	}
+
+	completeItem = function(completed: ToDo) {
+			completed.done = true;
+	}
+
+	deleteItem = function(remove: ToDo){
+		delete this.toDoList[this.toDoList.indexOf(remove)];
+	}
+}
+
+interface ToDo {
+	theItem: string;
+	done: boolean;
 }
