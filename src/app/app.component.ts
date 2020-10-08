@@ -22,8 +22,8 @@ export class AppComponent {
 			completed.done = true;
 	}
 
-	deleteItem = function(remove: ToDo){
-		delete this.toDoList[this.toDoList.indexOf(remove)];
+	deleteItem = function(remove: ToDo) {
+		this.toDoList.splice(this.toDoList.indexOf(remove), 1);
 	}
 }
 

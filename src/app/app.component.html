@@ -13,6 +13,6 @@
 	</tr>
 </table>
 <br />
-<input type="text" #userinput (keyup.enter)="addItem(userinput.value); userinput.value=''" (blur)="addItem(userinput.value); userinput.value=''">
+<input type="text" #userinput (keyup.enter)="addItem(userinput.value); userinput.value=''">
 <br />
 <button (click)="addItem(userinput.value); userinput.value=''">Add ToDo</button>
