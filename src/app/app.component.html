@@ -4,13 +4,13 @@
 	<table>
 		<ol>
 			<div *ngFor="let item of toDoList">
-				<tr>
-					<li>
+				<li>
+					<tr>
 						<td><button class="complete" *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button></td>
 						<td class="task"><span [ngClass]="{'completed' : item.completed == true}">{{item.task}}</span></td>
 						<td><button class="remove" (click)="removeTask(item)"><b>X</b></button></td>
-					</li>
-				</tr>
+					</tr>
+				</li>
 			</div>
 		</ol>
 	</table>
