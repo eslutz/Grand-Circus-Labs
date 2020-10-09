@@ -1,3 +1,50 @@
+fieldset.lineItUp {
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    font-family: sans-serif;
+    font-weight: 300;
+    background-color: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #bbb;
+}
+
+td.task {
+    width: 100%;
+}
+
+input.bigText {
+    width: 99%;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #eee;
+}
+
+button.complete {
+    background-color: transparent;
+    border-color: #ff69b4;
+    border-radius: 5px;
+    border-style: solid;
+    color: #ff69b4;
+}
+
+button.remove {
+    background-color: transparent;
+    border: none;
+}
+
+button.bigButton {
+    color: white;
+    background-color: #ff1493;
+    border-color: #ff1493;
+    border-style: solid;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+}
+
 .completed {
     text-decoration: line-through;
 }

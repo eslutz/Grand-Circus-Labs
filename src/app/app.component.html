@@ -1,20 +1,21 @@
-  
-<h1>{{title}}</h1>
-<br />
-<!--<input type="text" #filter (keyup.enter)="filterTask(filter.value); filter.value=''" placeholder="Add your to-dos">-->
-<table>
-	<tr>
+<fieldset class="lineItUp">
+	<h1>{{title}}</h1>
+	<!--<input class="bigText" type="text" #filter (keyup.enter)="filterTask(filter.value); filter.value=''" placeholder="Add your to-dos">-->
+	<table>
+		<ol>
 			<div *ngFor="let item of toDoList">
-			<td style="width: 75px;">
-				<button *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button>
-			</td>
-			<td><span [ngClass]="{'completed' : item.completed == true}">{{item.task}}</span></td>
-			<td><button (click)="removeTask(item)">X</button></td>
-		</div>
-	</tr>
-</table>
-<br />
-<h3 *ngIf="allTasksComplete()">Congrats on Completing All Your Tasks</h3>
-<input type="text" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-dos">
-<br />
-<button (click)="addTask(newTask.value); newTask.value=''">Add</button>
+				<tr>
+					<li>
+						<td><button class="complete" *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button></td>
+						<td class="task"><span [ngClass]="{'completed' : item.completed == true}">{{item.task}}</span></td>
+						<td><button class="remove" (click)="removeTask(item)"><b>X</b></button></td>
+					</li>
+				</tr>
+			</div>
+		</ol>
+	</table>
+	<b *ngIf="allTasksComplete()">Congrats on Completing All Your Tasks</b>
+	<input type="text" class="bigText" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-dos">
+	<br />
+	<button class="bigButton" (click)="addTask(newTask.value); newTask.value=''">Add</button>
+</fieldset>

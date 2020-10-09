@@ -9,9 +9,12 @@ export class AppComponent {
 	title = 'Things To Do';
 	
 	toDoList: ToDo[] = [
-		{task: "Default Item 1", completed: false},
-		{task: "Default Item 2", completed: false},
-		{task: "Default Item 3", completed: true}
+		{task: "Get a good nights sleep", completed: false},
+		{task: "Walk the dogs", completed: true},
+		{task: "Create a to do list program", completed: false},
+		{task: "Pay bills", completed: false},
+		{task: "Make dinner", completed: true},
+		{task: "RELAX!!!", completed: false}
 	];
 
 	addTask(newItem: string) {
