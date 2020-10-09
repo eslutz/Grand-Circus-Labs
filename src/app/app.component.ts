@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	title = 'Things To Do';
+	title = "Things To Do";
+	subtitle = "A place to remember what you're supposed to be doing.";
 	
 	toDoList: ToDo[] = [
 		{task: "Get a good nights sleep", completed: false},
