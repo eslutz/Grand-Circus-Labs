@@ -5,14 +5,14 @@
 	<tr>
 			<div *ngFor="let item of toDoList">
 			<td style="width: 75px;">
-				<button *ngIf="item.done==false" (click)="completeItem(item)">Complete</button>
+				<button *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button>
 			</td>
-			<td>{{item.theItem}}</td>
-			<td><button (click)="deleteItem(item)">X</button></td>
+			<td><span [ngClass]="{'completed' : item.completed == true}">{{item.task}}</span></td>
+			<td><button (click)="deleteTask(item)">X</button></td>
 		</div>
 	</tr>
 </table>
 <br />
-<input type="text" #userinput (keyup.enter)="addItem(userinput.value); userinput.value=''">
+<input type="text" #userinput (keyup.enter)="addTask(userinput.value); userinput.value=''">
 <br />
-<button (click)="addItem(userinput.value); userinput.value=''">Add ToDo</button>
+<button (click)="addTask(userinput.value); userinput.value=''">Add ToDo</button>

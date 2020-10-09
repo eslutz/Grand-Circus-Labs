@@ -9,25 +9,25 @@ export class AppComponent {
 	title = 'Things To Do';
 	
 	toDoList: ToDo[] = [
-		{theItem: "Default Item 1", done: false},
-		{theItem: "Default Item 2", done: false},
-		{theItem: "Default Item 3", done: true}
+		{task: "Default Item 1", completed: false},
+		{task: "Default Item 2", completed: false},
+		{task: "Default Item 3", completed: true}
 	];
 
-	addItem = function(newItem: string) {
-		this.toDoList.push({theItem: newItem, done: false});
+	addTask = function(newItem: string) {
+		this.toDoList.push({task: newItem, completed: false});
 	}
 
-	completeItem = function(completed: ToDo) {
-			completed.done = true;
+	completeTask = function(completeMe: ToDo) {
+			completeMe.completed = true;
 	}
 
-	deleteItem = function(remove: ToDo) {
+	deleteTask = function(remove: ToDo) {
 		this.toDoList.splice(this.toDoList.indexOf(remove), 1);
 	}
 }
 
 interface ToDo {
-	theItem: string;
-	done: boolean;
+	task: string;
+	completed: boolean;
 }
