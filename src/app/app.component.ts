@@ -22,7 +22,7 @@ export class AppComponent {
 			completeMe.completed = true;
 	}
 
-	deleteTask(remove: ToDo) {
+	removeTask(remove: ToDo) {
 		this.toDoList.splice(this.toDoList.indexOf(remove), 1);
 	}
 
@@ -35,6 +35,9 @@ export class AppComponent {
 		}
 	}
 
+	// filterTask(filter: string) {
+	// 	return this.toDoList.filter(x => x.task.includes(filter));
+	// }
 }
 
 interface ToDo {

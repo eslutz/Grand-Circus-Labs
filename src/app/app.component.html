@@ -1,6 +1,7 @@
   
 <h1>{{title}}</h1>
 <br />
+<!--<input type="text" #filter (keyup.enter)="filterTask(filter.value); filter.value=''" placeholder="Add your to-dos">-->
 <table>
 	<tr>
 			<div *ngFor="let item of toDoList">
@@ -8,12 +9,12 @@
 				<button *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button>
 			</td>
 			<td><span [ngClass]="{'completed' : item.completed == true}">{{item.task}}</span></td>
-			<td><button (click)="deleteTask(item)">X</button></td>
+			<td><button (click)="removeTask(item)">X</button></td>
 		</div>
 	</tr>
 </table>
 <br />
 <h3 *ngIf="allTasksComplete()">Congrats on Completing All Your Tasks</h3>
-<input type="text" #userinput (keyup.enter)="addTask(userinput.value); userinput.value=''">
+<input type="text" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-dos">
 <br />
-<button (click)="addTask(userinput.value); userinput.value=''">Add ToDo</button>
+<button (click)="addTask(newTask.value); newTask.value=''">Add</button>
