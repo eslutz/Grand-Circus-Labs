@@ -13,6 +13,7 @@
 	</tr>
 </table>
 <br />
+<h3 *ngIf="allTasksComplete()">Congrats on Completing All Your Tasks</h3>
 <input type="text" #userinput (keyup.enter)="addTask(userinput.value); userinput.value=''">
 <br />
 <button (click)="addTask(userinput.value); userinput.value=''">Add ToDo</button>

@@ -14,17 +14,27 @@ export class AppComponent {
 		{task: "Default Item 3", completed: true}
 	];
 
-	addTask = function(newItem: string) {
+	addTask(newItem: string) {
 		this.toDoList.push({task: newItem, completed: false});
 	}
 
-	completeTask = function(completeMe: ToDo) {
+	completeTask(completeMe: ToDo) {
 			completeMe.completed = true;
 	}
 
-	deleteTask = function(remove: ToDo) {
+	deleteTask(remove: ToDo) {
 		this.toDoList.splice(this.toDoList.indexOf(remove), 1);
 	}
+
+	allTasksComplete(){
+		if (this.toDoList.length == 0 || this.toDoList.filter(x => x.completed == true).length == this.toDoList.length) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 }
 
 interface ToDo {
