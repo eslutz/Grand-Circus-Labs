@@ -11,7 +11,7 @@
 
 					<td class="task">
 
-						<input type="text" [ngClass]="{'completed' : item.completed == true}" value={{item.task}} #editTask (keyup.esc)="$event.target.blur();resetTask(index)" (keyup.enter)="$event.target.blur();updateTask(editTask.value, index)" (blur)="updateTask(editTask.value, index)"/>
+						<input type="text" [ngClass]="{'completed' : item.completed == true}" value={{item.task}} #editTask (keyup.enter)="$event.target.blur();updateTask(editTask.value, index)" (blur)="updateTask(editTask.value, index)"/>
 					
 					</td>
 
@@ -20,7 +20,7 @@
 		</div>
 	</table>
 	<b *ngIf="allTasksComplete()">Congrats on Completing All Your Tasks</b>
-	<input contenteditable="true" type="text" class="bigText" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-dos" />
+	<input type="text" class="bigText" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-dos" />
 	<br />
 	<button class="bigButton" (click)="addTask(newTask.value); newTask.value=''">Add</button>
 </fieldset>
