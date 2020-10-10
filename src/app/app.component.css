@@ -27,13 +27,22 @@ h1 {
     line-height: 10px;
 }
 
-input.bigText {
+input {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
     width: 99%;
+    border-style: none;
+}
+
+input.bigText {
     border-radius: 5px;
     border-style: solid;
     border-color: #eee;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+   
+}
+
+input.completed {
+    text-decoration: line-through;
 }
 
 button.complete {
@@ -59,6 +68,3 @@ button.bigButton {
     text-align: center;
 }
 
-.completed {
-    text-decoration: line-through;
-}

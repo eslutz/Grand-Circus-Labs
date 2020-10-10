@@ -19,8 +19,12 @@ export class AppComponent {
 		{task: "RELAX!!!", completed: false}
 	];
 
-	addTask(newItem: string) {
-		this.toDoList.push({task: newItem, completed: false});
+	addTask(newTask: string) {
+		this.toDoList.push({task: newTask, completed: false});
+	}
+
+	updateTask(editTask: string, index: number) {
+		this.toDoList[index].task = editTask;
 	}
 
 	completeTask(completeMe: ToDo) {
