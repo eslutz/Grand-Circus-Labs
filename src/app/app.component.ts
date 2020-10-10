@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
 	title = "Things To Do";
 	subtitle = "A place to remember what you're supposed to be doing.";
+	filter = undefined;
 	
 	toDoList: ToDo[] = [
 		{task: "Get a good nights sleep", completed: false},
@@ -39,9 +40,19 @@ export class AppComponent {
 		}
 	}
 
-	// filterTask(filter: string) {
-	// 	return this.toDoList.filter(x => x.task.includes(filter));
-	// }
+	assignFilter(filter: string) {
+		this.filter = filter;
+	}
+
+	filterTasks() {
+		if (this.filter == undefined || this.filter == null || this.filter == "")  {
+			return this.toDoList;
+		}
+		else {
+			let regex = new RegExp(this.filter, "i");
+			return this.toDoList.filter(x => regex.test(x.task));
+		}
+	}
 }
 
 interface ToDo {

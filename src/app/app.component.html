@@ -1,10 +1,11 @@
 <fieldset class="lineItUp">
 	<h1>{{title}}</h1>
 	<div>{{subtitle}}</div>
-	<!--<input class="bigText" type="text" #filter (keyup.enter)="filterTask(filter.value); filter.value=''" placeholder="Add your to-dos">-->
+	<br />
+	<input class="bigText" type="text" #filter (keyup)="assignFilter(filter.value)" placeholder="Filter your to-dos" />
 	<table>
 		<ol>
-			<div *ngFor="let item of toDoList">
+			<div *ngFor="let item of filterTasks()">
 				<li>
 					<tr>
 						<td><button class="complete" *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button></td>
@@ -16,7 +17,7 @@
 		</ol>
 	</table>
 	<b *ngIf="allTasksComplete()">Congrats on Completing All Your Tasks</b>
-	<input type="text" class="bigText" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-dos">
+	<input type="text" class="bigText" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-dos" />
 	<br />
 	<button class="bigButton" (click)="addTask(newTask.value); newTask.value=''">Add</button>
 </fieldset>
