@@ -32,6 +32,8 @@ input.bigText {
     border-radius: 5px;
     border-style: solid;
     border-color: #eee;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
 }
 
 button.complete {

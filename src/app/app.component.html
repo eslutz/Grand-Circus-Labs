@@ -4,17 +4,14 @@
 	<br />
 	<input class="bigText" type="text" #filter (keyup)="assignFilter(filter.value)" placeholder="Filter your to-dos" />
 	<table>
-		<ol>
-			<div *ngFor="let item of filterTasks()">
-				<li>
-					<tr>
-						<td><button class="complete" *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button></td>
-						<td class="task"><span [ngClass]="{'completed' : item.completed == true}">{{item.task}}</span></td>
-						<td><button class="remove" (click)="removeTask(item)"><b>X</b></button></td>
-					</tr>
-				</li>
-			</div>
-		</ol>
+		<div *ngFor="let item of filterTasks(); index as index">
+				<tr>
+					<td>{{index + 1}}.</td>
+					<td><button class="complete" *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button></td>
+					<td class="task"><span [ngClass]="{'completed' : item.completed == true}">{{item.task}}</span></td>
+					<td><button class="remove" (click)="removeTask(item)"><b>X</b></button></td>
+				</tr>
+		</div>
 	</table>
 	<b *ngIf="allTasksComplete()">Congrats on Completing All Your Tasks</b>
 	<input type="text" class="bigText" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-dos" />
