@@ -1,0 +1,26 @@
+<fieldset class="lineItUp">
+	<h1>{{title}}</h1>
+	<div>{{subtitle}}</div>
+	<br />
+	<input type="text" class="bigText" #filter (keyup)="assignFilter(filter.value)" placeholder="Filter your to-dos" />
+	<table>
+		<div *ngFor="let item of filterTasks(); index as index">
+				<tr>
+					<td>{{index + 1}}.</td>
+					<td><button class="complete" *ngIf="item.completed==false" (click)="completeTask(item)">Complete</button></td>
+
+					<td class="task">
+
+						<input type="text" [ngClass]="{'completed' : item.completed == true}" value={{item.task}} #editTask (keyup.enter)="$event.target.blur();updateTask(editTask.value, index)" (blur)="updateTask(editTask.value, index)"/>
+					
+					</td>
+
+					<td><button class="remove" (click)="removeTask(item)"><b>X</b></button></td>
+				</tr>
+		</div>
+	</table>
+	<b *ngIf="allTasksComplete()">Congrats on Completing All Your Tasks</b>
+	<input type="text" class="bigText" #newTask (keyup.enter)="addTask(newTask.value); newTask.value=''" placeholder="Add your to-dos" />
+	<br />
+	<button class="bigButton" (click)="addTask(newTask.value); newTask.value=''">Add</button>
+</fieldset>
