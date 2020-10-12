@@ -1,1 +1,7 @@
-<p>post-form works!</p>
+<div class="newPost">
+<h2>Title</h2>
+<input [(ngModel)]="newTitle" type="text" />
+<h2>Thought</h2>
+<input [(ngModel)]="newThought" type="text" />
+<button (click)="addPost()">Add Post</button>
+</div>
