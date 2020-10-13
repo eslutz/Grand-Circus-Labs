@@ -1,9 +1,9 @@
 <div class="newpost">
-    <table class="width">
+    <table style="width: 100%; border: none;">
         <tr>Title</tr>
-        <tr><input class="width" [(ngModel)]="newTitle" type="text" /></tr>
+        <tr><input class="width" style="height: 30px;" [(ngModel)]="newTitle" type="text" /></tr>
         <tr>Thought</tr>
-        <tr><textarea  style="width: 100%;" rows="4" [(ngModel)]="newThought"></textarea></tr>
+        <tr><textarea  class="width" rows="4" [(ngModel)]="newThought"></textarea></tr>
         <tr><button class="addpost" (click)="addPost()">Add Post</button></tr>
     </table>
 </div>

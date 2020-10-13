@@ -19,5 +19,7 @@ export class PostFormComponent implements OnInit {
   addPost() {
     let newPost: Post = {title: this.newTitle, thought: this.newThought};
     this.callParent.emit(newPost);
+    this.newTitle="";
+    this.newThought="";
   }
 }

@@ -18,6 +18,7 @@ export class AppComponent {
   
   generateNewPost(post: Post) {
     this.allPosts.push(post);
+    this.isHidden = !this.isHidden;
   }
 
   removeThought(post: Post) {

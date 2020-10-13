@@ -24,13 +24,12 @@
     width: 100%;
 }
 
-table.width {
+.width {
+    font-family: 'Dosis', sans-serif;
     width: 99%;
-}
-
-input.width {
-    width: 99%;
-    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
     border-radius: 5px;
 }
 
