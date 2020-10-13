@@ -1,7 +1,9 @@
-<div class="newPost">
-<h2>Title</h2>
-<input [(ngModel)]="newTitle" type="text" />
-<h2>Thought</h2>
-<input [(ngModel)]="newThought" type="text" />
-<button (click)="addPost()">Add Post</button>
+<div class="newpost">
+    <table class="width">
+        <tr>Title</tr>
+        <tr><input class="width" [(ngModel)]="newTitle" type="text" /></tr>
+        <tr>Thought</tr>
+        <tr><textarea  style="width: 100%;" rows="4" [(ngModel)]="newThought"></textarea></tr>
+        <tr><button class="addpost" (click)="addPost()">Add Post</button></tr>
+    </table>
 </div>

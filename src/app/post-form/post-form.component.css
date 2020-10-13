@@ -1,12 +1,46 @@
-.newPost {
-    margin-top: auto;
-    margin-bottom: auto;
+.newpost {
+    font-family: 'Dosis', sans-serif;
+    font-size: 18px;
+    width: 45%;
     margin-left: auto;
     margin-right: auto;
-    position:relative;
-    z-index:10;
-    display:none;
-    background: black;
-    border-radius:10px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5px;
     background-color: #B1DDEA;
+    padding: 25px;
+}
+
+.addpost {
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
+    padding: 15px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: white;
+    width: 100%;
+}
+
+table.width {
+    width: 99%;
+}
+
+input.width {
+    width: 99%;
+    height: 30px;
+    border-radius: 5px;
+}
+
+button.width {
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+tr {
+    font-size: 20px;
+    height: 35px;
 }

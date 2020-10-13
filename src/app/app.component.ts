@@ -8,7 +8,7 @@ import { Post } from './interface/post';
 })
 export class AppComponent {
   title = "Creed Thoughts";
-  newPost: Post;
+  isHidden = true;
   allPosts: Post[] = [
     { title: "BOBODY", thought: "What does the first B stand for?" },
     { title: "Cults", thought: "I’ve been involved in a number of cults, both as a leader and a follower. You have more fun as a follower. But you make more money as a leader." },
@@ -17,10 +17,14 @@ export class AppComponent {
   ];
   
   generateNewPost(post: Post) {
-    this.newPost = post;
+    this.allPosts.push(post);
   }
 
   removeThought(post: Post) {
     this.allPosts.splice(this.allPosts.indexOf(post), 1);
+  }
+
+  unhide() {
+    this.isHidden = !this.isHidden;
   }
 }
