@@ -19,4 +19,8 @@ export class AppComponent {
   generateNewPost(post: Post) {
     this.newPost = post;
   }
+
+  removeThought(post: Post) {
+    this.allPosts.splice(this.allPosts.indexOf(post), 1);
+  }
 }

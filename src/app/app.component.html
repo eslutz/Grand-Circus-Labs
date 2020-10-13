@@ -3,7 +3,7 @@
 	<button (callParent)="generateNewPost($event)" class="newpost">New Thought</button>
 	<div class="postBody">
 		<div class="posts" *ngFor="let post of allPosts">
-			<app-post [currentPost]=post></app-post>
+			<app-post [currentPost]=post (callParent)="removeThought($event)"></app-post>
 			<hr />
 		</div>
 	</div>

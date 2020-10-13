@@ -5,7 +5,7 @@
             <p class="thought">{{currentPost.thought}}</p>
         </td>
         <td>
-            <button class="delete" (click)="$event.target.blur();deleteThought()">
+            <button class="delete" (click)="$event.target.blur();deleteThought(currentPost)">
                 <span class="material-icons">delete</span>
             </button>
         </td>

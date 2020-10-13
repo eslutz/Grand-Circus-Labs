@@ -10,7 +10,8 @@ p.thought {
 }
 
 button.delete {
-    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
     background-color: transparent;
     border: none;
 }

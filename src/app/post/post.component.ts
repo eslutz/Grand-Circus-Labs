@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Post } from '../interface/post';
 
 @Component({
@@ -8,8 +8,13 @@ import { Post } from '../interface/post';
 })
 export class PostComponent implements OnInit {
   @Input() currentPost: Post;
+  @Output() callParent = new EventEmitter<Post>();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteThought(deleteMe: Post) {
+    this.callParent.emit(deleteMe);
   }
 }
