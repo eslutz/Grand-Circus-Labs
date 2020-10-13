@@ -1,9 +1,11 @@
-<div class="newpost">
-    <table style="width: 100%; border: none;">
-        <tr>Title</tr>
-        <tr><input class="width" style="height: 30px;" [(ngModel)]="newTitle" type="text" /></tr>
-        <tr>Thought</tr>
-        <tr><textarea  class="width" rows="4" [(ngModel)]="newThought"></textarea></tr>
-        <tr><button class="addpost" (click)="addPost()">Add Post</button></tr>
-    </table>
+<div id="overlay">
+    <div class="newpost">
+        <table style="width: 100%; border: none;">
+            <tr>Title</tr>
+            <tr><input class="width" style="height: 30px;" [(ngModel)]="newTitle" type="text" /></tr>
+            <tr>Thought</tr>
+            <tr><textarea  class="width" rows="4" [(ngModel)]="newThought"></textarea></tr>
+            <tr><button class="addpost" (click)="addPost()">Add Post</button></tr>
+        </table>
+    </div>
 </div>
