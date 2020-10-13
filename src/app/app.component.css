@@ -1,10 +1,12 @@
 .center {
+    font-family: 'Homemade Apple', cursive;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
 }
 
 .postBody {
+    margin-top: 10px;
     border-style: solid;
     border-color: black;
     border-width: 1px;
@@ -13,11 +15,21 @@
     width: 99%;
 }
 
+.posts {
+    width: 80%;
+    font-family: 'Dosis', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .newpost {
+    font-family: 'Dosis', sans-serif;
+    font-size: 18px;
+    padding: 15px;
     border-style: solid;
     border-color: black;
     border-width: 1px;
     border-radius: 5px;
     background-color: white;
-    width: 100%;
+    width: 99%;
 }

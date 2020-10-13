@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PassThrough } from 'stream';
 import { Post } from '../interface/post';
 
 @Component({

@@ -1,0 +1,16 @@
+p.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0%
+}
+
+p.thought {
+    font-size: 18px;
+    margin: 0%
+}
+
+button.delete {
+    height: auto;
+    background-color: transparent;
+    border: none;
+}
