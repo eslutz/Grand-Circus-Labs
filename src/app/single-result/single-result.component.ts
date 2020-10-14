@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Children, Result } from '../interfaces/results';
 
 @Component({
   selector: 'app-single-result',
@@ -6,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./single-result.component.css']
 })
 export class SingleResultComponent implements OnInit {
-
+  @Input() currentChild: Children;
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

@@ -1,1 +1,4 @@
-<p>results works!</p>
+<H1>Pauper's Reddit</H1>
+<div *ngFor="let child of source.data.children">
+	<app-single-result [currentChild]="child"></app-single-result>
+</div>
