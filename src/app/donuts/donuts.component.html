@@ -1,1 +1,6 @@
-<p>donuts works!</p>
+<h1>All the Donuts!</h1>
+<ul>
+  <div *ngFor="let d of donuts.results">
+    <li><a routerLink="/DonutDetails" [queryParams]="{ url: 'd.ref' }">{{d.name}}</a></li>
+  </div>
+</ul>
