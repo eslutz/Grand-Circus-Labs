@@ -1,6 +1,6 @@
-<h1>All the Donuts!</h1>
+<h1>All The Donuts!</h1>
 <ul>
-  <div *ngFor="let d of donuts?.results">
+<ng-container *ngFor="let d of donuts?.results">
     <li><a routerLink="/DonutDetails" [queryParams]="d">{{d.name}}</a></li>
-  </div>
+</ng-container>
 </ul>
