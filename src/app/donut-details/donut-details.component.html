@@ -1,5 +1,7 @@
 <h1>Details for {{donutDetails?.name}} Donuts</h1>
-<img src="{{donutDetails?.photo}}" />
+<ng-container *ngIf="donutDetails?.photo != undefined">
+    <img src="{{donutDetails.photo}}" />
+</ng-container>
 <table>
     <tr>
         <td class="bold">Name</td>

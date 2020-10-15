@@ -1,5 +1,7 @@
 img {
     width: 200px;
+    border: solid;
+    border-width: 1px;
 }
 
 td.bold {
