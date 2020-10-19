@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: "Donuts", component: DonutsComponent },
   { path: "DonutDetails", component: DonutDetailsComponent },
   { path: "Devs", component: FamousPeopleComponent }
-  //{ path: "DevDetails", component: FamousPersonDetailsComponent }
 ];
 
 @NgModule({
