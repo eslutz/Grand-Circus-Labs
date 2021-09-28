@@ -1,0 +1,49 @@
+﻿@model CardHand
+@{
+	ViewData["Title"] = "DeckOfCards";
+	int cardCount = 0;
+}
+<h1>@ViewBag.count</h1>
+<h1>Lets Draw Cards</h1>
+<form method="post" action="/Home/DeckOfCards">
+	<table>
+		<tr>
+			@foreach (CardDetail card in Model.Cards)
+			{
+				<td><img src="@card.Image" /></td>
+			}
+		</tr>
+		<tr>
+			@foreach (CardDetail card in Model.Cards)
+			{
+				<td align="center">
+					@card.Value of @card.Suit
+					<!--
+					<br />
+					<label name="keep">Keep Card: </label>
+					@{
+						string cardNumber = $"card{cardCount}";
+						cardCount = cardCount + 1;
+					}
+					<input type="checkbox" name="@cardNumber" value="@card.Code" />
+					-->
+				</td>
+			}
+		</tr>
+	</table>
+	<b>Remaining Cards: </b>@Model.Remaining
+	<hr />
+	@if (Model.Remaining == 0)
+	{
+		<strong>YOU ARE OUT OF CARDS!</strong>
+	}
+	else
+	{
+		<input type="submit" name="drawAgain" title="Draw Again" value="Draw Again" />
+		<input type="hidden" name="deck_id" value="@Model.Deck_ID" />
+		if (Model.Remaining - 5 <= 0)
+		{
+			<strong>YOU DO NOT HAVE ENOUGH CARDS TO DRAW A FULL HAND!</strong>
+		}
+	}
+</form>
