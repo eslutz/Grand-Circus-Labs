@@ -1,0 +1,78 @@
+1.	select * from Customers
+
+2.	select distinct Country from Customers
+
+3.	select * from Customers where CustomerID like 'BL%'
+
+4.	select top (100) * from Orders
+
+5.	select * from Orders where ShipPostalCode = '1010' or ShipPostalCode = '3012' or ShipPostalCode = '12209' or ShipPostalCode = '05023'
+
+6.	select * from Orders where ShipRegion is not null
+
+7.	select * from Customers order by Country, City
+
+8.	insert into Customers (CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax)
+	values ('ABCDE', 'Dunder Mifflin', 'Dwight Schrute', 'Asst to the Regional Manager', null, 'Scranton', null, null, 'USA', null, null)
+
+9.	update Orders set ShipRegion = 'EuroZone' where ShipCountry = 'France'
+
+10.	delete from [Order Details] where Quantity = 1
+
+11.	select avg(Quantity) as 'Average', max(Quantity) as 'Max', min(Quantity) as 'Min' from [Order Details]
+
+12.	select avg(Quantity) as 'Average', max(Quantity) as 'Max', min(Quantity) as 'Min' from [Order Details] group by OrderID
+
+13.	select CustomerID from Orders where OrderID = 10290
+
+14.	select * from Orders join Customers on Orders.CustomerID = Customers.CustomerID
+
+15.	select ShipCity, ShipCountry from Orders join Employees on Orders.EmployeeID = Employees.EmployeeID where Employees.City = 'London'
+
+16.	select ShipName from Orders
+	join [Order Details] on Orders.OrderID = [Order Details].OrderID
+	join Products on [Order Details].ProductID = Products.ProductID
+	where Discontinued = 1
+
+17.	select FirstName from Employees where ReportsTo is null
+
+18.	select FirstName from Employees where ReportsTo in (select EmployeeID from Employees where FirstName = 'Andrew')
+
+EXTENDEND CHALLENGE
+
+1.	select * from Customers
+
+2.	select * from Customers where City = 'London' or City = 'Paris'
+
+3.	select distinct City from Customers where City is not null
+
+4.	select FirstName from Employees order by FirstName
+
+5.	n/a
+
+6.	n/a
+
+7.	select * from Employees where Notes like '% BA %'
+
+8.	select OrderID, (sum(Quantity) * sum( UnitPrice)) as 'Order Total Price' from [Order Details] group by OrderID
+
+9.	select * from Employees where HireDate >= '1994-01-01' and HireDate <= CURRENT_TIMESTAMP
+
+10.	select EmployeeID, DATEDIFF(year, HireDate, CURRENT_TIMESTAMP)  from Employees
+
+11.	select * from Products order by (UnitsInStock + UnitsOnOrder) asc
+	select * from Products order by (UnitsInStock + UnitsOnOrder) desc
+
+12.	select * from Products where UnitsInStock < 6
+
+13.	select * from Products where Discontinued = 1
+
+14.	select * from Products where ProductName like '%Tofu%'
+
+15.	select * from Products where UnitPrice = (select max(UnitPrice) from Products)
+
+16.	select * from Employees where HireDate > '1993-01-01'
+
+17.	select * from Employees where TitleOfCourtesy = 'Ms.' or TitleOfCourtesy = 'Mrs.'
+
+18.	select * from Employees where HomePhone like '(206)%'
