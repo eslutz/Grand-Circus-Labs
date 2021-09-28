@@ -1,0 +1,13 @@
+img {
+    width: 200px;
+    border: solid;
+    border-width: 1px;
+    border-color: #afadad;
+}
+
+td.bold {
+    font-weight: bold;
+    text-align: right;
+    vertical-align: top;
+    padding-right: 10px;
+}

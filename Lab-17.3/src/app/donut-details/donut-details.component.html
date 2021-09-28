@@ -1,0 +1,21 @@
+<h1>Details for {{donutDetails?.name}} Donuts</h1>
+<ng-container *ngIf="donutDetails?.photo != undefined">
+    <img src="{{donutDetails.photo}}" />
+</ng-container>
+<table>
+    <tr>
+        <td class="bold">Name</td>
+        <td>{{donutDetails?.name}}</td>
+    </tr>
+    <tr>
+        <td class="bold">Calories</td>
+        <td>{{donutDetails?.calories}}</td>
+    </tr>
+    <tr>
+        <td class="bold">Extras</td>
+        <ng-container *ngFor="let e of donutDetails?.extras">
+            {{e}}
+            <br />
+        </ng-container>     
+    </tr>
+</table>
