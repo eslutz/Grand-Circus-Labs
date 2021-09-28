@@ -1,0 +1,11 @@
+<div class="center">
+	<h1 style="text-align: center; color: rgb(3, 169, 244)">{{title}}</h1>
+	<button class="newpost" (click)="unhide()">New Thought</button><!--this button should unhide <app-post-form>-->
+	<div class="postBody">
+		<div class="posts" *ngFor="let post of allPosts">
+			<app-post [currentPost]=post (callParent)="removeThought($event)"></app-post>
+			<hr />
+		</div>
+	</div>
+</div>
+<app-post-form [ngClass]="{'hidden':isHidden}" (callParent)="generateNewPost($event)"></app-post-form>

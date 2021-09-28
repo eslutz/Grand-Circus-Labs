@@ -1,0 +1,13 @@
+<table>
+    <tr>
+        <td style="width: 100%; padding-right: 5px;">
+            <p class="title">{{currentPost.title}}</p>
+            <p class="thought">{{currentPost.thought}}</p>
+        </td>
+        <td>
+            <button class="delete" (click)="$event.target.blur();deleteThought(currentPost)">
+                <span class="material-icons">delete</span>
+            </button>
+        </td>
+    </tr>
+</table>
