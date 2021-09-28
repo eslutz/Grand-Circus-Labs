@@ -1,0 +1,36 @@
+﻿@model List<Product>
+@{
+	ViewData["Title"] = "Admin";
+	int itemNumber = 1;
+}
+
+<h1>Admin</h1>
+<br />
+<h2>Select Edit or Delete for the desired product.</h2>
+<br />
+<table>
+	@foreach (Product product in Model)
+	{
+		<tr>
+			<td>@itemNumber. </td>
+			<td>@product.Name</td>
+			<td>
+				<form action="/Admin/Edit" method="post">
+					<input type="submit" name="edit" value="Edit" />
+					<input type="hidden" name="productID" value="@product.ID" />
+				</form>
+			</td>
+			<td>
+				<form action="/Admin/Delete" method="post">
+					<input type="submit" name="delete" value="Delete" />
+					<input type="hidden" name="productID" value="@product.ID" />
+				</form>
+			</td>
+		</tr>
+		itemNumber++;
+	}
+</table>
+<br />
+<form action="/Admin/New" method="post">
+	<input type="submit" name="edit" value="Add New" />
+</form>
