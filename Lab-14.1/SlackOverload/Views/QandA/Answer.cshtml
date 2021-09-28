@@ -1,0 +1,25 @@
+﻿@model Answers
+@{
+	ViewData["Title"] = "Answer";
+}
+
+<h1>@ViewBag.PageName:</h1>
+
+<form method="post" action="/QandA/SaveAnswer">
+	<table style="border: 0px">
+		<tr>
+			<td><label name="details" title="Details" value="details">Answer:</label></td>
+			<td><textarea name="details" required >@Model?.Details</textarea></td>
+		</tr>
+	</table>
+	<input type="hidden" name="username" value="@ViewBag.username" />
+	<input type="hidden" name="answerID" value="@Model?.id" />
+	<input type="hidden" name="questionID" value="@ViewBag.questionID" />
+	<input type="hidden" name="upvotes" value="@Model?.Upvotes" />
+	<br />
+	<input type="submit" name="submit" value="Save" class="btn-outline-success" />
+	@if (!string.IsNullOrEmpty(Model?.Details))
+	{
+		<input type="submit" name="submit" value="Delete" class="btn-outline-danger" />
+	}
+</form>
